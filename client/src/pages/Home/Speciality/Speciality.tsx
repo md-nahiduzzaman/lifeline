@@ -8,6 +8,7 @@ import image1 from '..//..//..//assets/images/doctor1.png'
 const Speciality = () => {
   return (
     <>
+    <div className='max-w-screen-xl mx-auto'>
     <div className='lg:w-2/3 mx-auto text-center mb-10'>
         <h2 className='text-xl font-bold mb-3'>Best Consulting Speciality</h2>
         <p>Follow this steps below to start use of Projećt Software. For personal guide
@@ -69,6 +70,8 @@ const Speciality = () => {
       </SwiperSlide>
      
     </Swiper>
+    </div>
+    
   </>
   )
 }
