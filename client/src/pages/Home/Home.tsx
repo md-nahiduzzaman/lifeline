@@ -1,3 +1,4 @@
+import Abouts from "./Abouts/Abouts";
 import Banner from "./Banner/Banner";
 
 const Home = () => {
@@ -5,6 +6,7 @@ const Home = () => {
     <div>
       {/* this is the banner section code-for-sanim */}
       <Banner></Banner>
+      <Abouts></Abouts>
     </div>
   );
 };
