@@ -1,12 +1,18 @@
+import Abouts from "./Abouts/Abouts";
+import Banner from "./Banner/Banner";
+import Services from "./Services/Services";
+import Speciality from "./Speciality/Speciality";
+
 const Home = () => {
   return (
     <div>
-      <h1 className="text-6xl">This is Home</h1>
-      {/* development branch test */}
-      <h2>this is development branch</h2>
-      {/* nahiduzzaman branch test */}
-      <h2>this is nahiduzzaman branch</h2>
-      <h2>hello this code-for-sanim branch</h2>
+      {/* this is the banner section code-for-sanim */}
+      <Banner></Banner>
+      <Abouts></Abouts>
+      <Speciality></Speciality>
+      <div className="max-w-screen-xl mx-auto">
+      <Services></Services>
+      </div>
     </div>
   );
 };
