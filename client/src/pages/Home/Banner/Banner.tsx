@@ -25,7 +25,7 @@ const Banner = () => {
           className="mySwiper  max-w-screen-xl mx-auto">
 
 <SwiperSlide>
-<div className='min-h-screen lg:flex flex-row-reverse items-center gap-5'>
+<div className='min-h-screen lg:px-0 px-2 lg:flex flex-row-reverse items-center gap-5'>
 <div className='lg:w-1/2'>
 <img className='w-full h-[300px] lg:h-[550px] object-cover object-center' src={imge1} alt="" />
 
@@ -44,7 +44,7 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas sit nisi dele
 </SwiperSlide>
 
 <SwiperSlide>
-<div className='min-h-screen lg:flex flex-row-reverse items-center gap-5'>
+<div className='min-h-screen lg:px-0 px-2 lg:flex flex-row-reverse items-center gap-5'>
 <div className='lg:w-1/2'>
 <img className='w-full  lg:h-[550px] object-cover object-center' src={imge2} alt="" />
 
@@ -63,7 +63,7 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas sit nisi dele
 </SwiperSlide>
 
 <SwiperSlide>
-<div className='min-h-screen lg:flex flex-row-reverse items-center gap-5'>
+<div className='min-h-screen lg:px-0 px-2 lg:flex flex-row-reverse items-center gap-5'>
 <div className='lg:w-1/2'>
 <img className='w-full  lg:h-[550px] object-cover object-center' src={imge3} alt="" />
 
@@ -82,7 +82,7 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas sit nisi dele
 </SwiperSlide>
 
 <SwiperSlide>
-<div className='min-h-screen lg:flex flex-row-reverse items-center gap-5'>
+<div className='min-h-screen lg:px-0 px-2 lg:flex flex-row-reverse items-center gap-5'>
 <div className='lg:w-1/2'>
 <img className='w-full  lg:h-[550px] object-cover object-center' src={imge4} alt="" />
 

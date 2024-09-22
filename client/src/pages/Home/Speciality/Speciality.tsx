@@ -15,7 +15,19 @@ const Speciality = () => {
         you can insert your mail here.</p>
     </div>
     <Swiper
-      slidesPerView={3}
+      slidesPerView={1}
+      breakpoints={
+            {
+                  640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                      },
+                      1024: {
+                        slidesPerView: 3, 
+                        spaceBetween: 30,
+                      },
+            }
+      }
       spaceBetween={30}
       freeMode={true}
       navigation={true}
