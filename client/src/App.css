@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+input::placeholder {
+  font-size: 17px; /* Adjust the size as needed */
+  color:black;     /* You can also change the color */
+}
+.hov {
+  background-color: #ffffe4; /* Light yellow */
+  
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.hov:hover {
+  background-color: #fafad2; /* Darker yellow on hover */
+}
