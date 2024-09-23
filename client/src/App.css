@@ -42,7 +42,7 @@
 }
 input::placeholder {
   font-size: 17px; /* Adjust the size as needed */
-  color:black;     /* You can also change the color */
+  color:gray;     /* You can also change the color */
 }
 .hov {
   background-color: #ffffe4; /* Light yellow */
