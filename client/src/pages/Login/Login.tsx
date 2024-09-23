@@ -6,7 +6,7 @@ import "../../App.css";
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  
+  console.log('shasdf')
   return (
     <div className="p-2 mt-8">
       <div className='flex w-[97%] mx-auto justify-between items-center'>
