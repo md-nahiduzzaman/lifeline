@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import PackagePrice from "../pages/Package/PackagePrice";
 
 const router = createBrowserRouter([
   {
@@ -15,10 +16,17 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>,
+      },{
+        path:'/package',
+        element:<PackagePrice></PackagePrice>
+      }
     ],
   },
   { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
+  // { path: "/signup", element: <SignUp /> },
   //   dashboard here
 ]);
 

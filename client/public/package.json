@@ -1,0 +1,45 @@
+[
+
+    {
+        "packageId": "PKG001",
+        "packageName": "Basic Health Monitoring",
+        "servicesIncluded": [
+          "Weekly Blood Pressure Monitoring",
+          "Blood Sugar Tests",
+          "Doctor Consultation (2 times)"
+        ],
+        "price": 40,
+        "currency": "BDT",
+        "duration": "1 Month"
+      },
+      {
+        "packageId": "PKG002",
+        "packageName": "Comprehensive Care",
+        "servicesIncluded": [
+          "Monthly Health Checkup",
+          "ECG and Blood Tests (once a month)",
+          "Doctor Consultation (4 times)",
+          "Dietary Guidance"
+        ],
+        "price": 100,
+        "currency": "BDT",
+        "duration": "3 Months"
+      },
+      {
+        "packageId": "PKG003",
+        "packageName": "Premium Health Package",
+        "servicesIncluded": [
+          "Monthly Health Checkups",
+          "Advanced Cardiac Screening (once every 3 months)",
+          "Full Body Tests (every 2 months)",
+          "Doctor Consultation (8 times)",
+          "Dietary and Fitness Planning"
+        ],
+        "price": 220,
+        "currency": "BDT",
+        "duration": "6 Months"
+      }
+      
+      
+
+]
