@@ -46,6 +46,7 @@ input::placeholder {
 }
 .hov {
   background-color: #ffffe4; /* Light yellow */
+
   
   transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
