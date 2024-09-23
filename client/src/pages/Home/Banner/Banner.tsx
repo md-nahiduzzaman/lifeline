@@ -3,10 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import imge1 from "..//..//..//assets/images/image1.jpg";
-import imge2 from "..//..//..//assets/images/image2.jpg";
-import imge3 from "..//..//..//assets/images/image3.jpg";
-import imge4 from "..//..//..//assets/images/images4.jpg";
 
 const Banner = () => {
   return (
