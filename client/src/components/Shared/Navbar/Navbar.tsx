@@ -9,9 +9,26 @@ const Navbar = () => {
       <li>
         <NavLink to={"/signup"}>Sign Up</NavLink>
       </li>
-      <li>Pharmacy</li>
+      <li>
+        <NavLink to={"/login"}>Login</NavLink>
+      </li>
+      {/* <li className="">
+        <details className="">
+          <summary>Solution</summary>
+          <ul className="p-2 ">
+            <li>Hospital Administration</li>
+            <li className="my-3">Patient Management</li>
+            <li>Doctor and Staff Portal</li>
+            <li className="my-3">Pharmacy and Lab Integration</li>
+            <li>Patient Self-Service Portal</li>
+            <li className="my-3">Telemedicine Integration</li>
+            <li>Billing and Insurance Management</li>
+            <li className="mt-3">Analytics and Reporting</li>
+          </ul>
+        </details>
+      </li> */}
       <li><NavLink to={'/package'}>Ours Package</NavLink> </li>
-      <li>About</li>
+      <li><NavLink to={'/about'}>About</NavLink></li>
     </>
   );
   return (
@@ -37,7 +54,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 min-w-56  p-2 shadow"
             >
               {navelink}
             </ul>
