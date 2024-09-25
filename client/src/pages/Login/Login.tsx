@@ -5,7 +5,8 @@ import facebook from '../../assets/images/facebook.png';
 import "../../App.css";
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../Auth/AuthProvider';
+import { AuthContext } from '../../providers/AuthProvider';
+
 
 
 const Login = () => {
@@ -95,3 +96,8 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
