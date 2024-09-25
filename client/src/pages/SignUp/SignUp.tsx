@@ -12,6 +12,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
   const auth = getAuth(app)
+  console.log('asdfs')
   const { createUser, user } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [photo, setPhoto]=useState<any>('')
@@ -26,7 +27,9 @@ const SignUp = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-
+    if(!selectedFile){
+      return
+    }
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.pass.value;
@@ -35,7 +38,7 @@ const SignUp = () => {
     const image2: any = form.get('image')
     const data: any = new FormData()
     data.append("image", image2)
-
+    
     fetch('https://api.imgbb.com/1/upload?key=58c258f947a2113010411cf51afd6eec', {
       method: 'POST',
       body:data,
