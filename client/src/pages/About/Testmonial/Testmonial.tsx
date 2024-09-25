@@ -111,7 +111,7 @@ const Testmonial = () => {
           
             </div>
 <p className='mt-6'>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident sapiente ipsa praesentium vel rem! Sunt sapiente inventore vitae ab reiciendis impedit illo minus dolor hic autem. Pariatur natus est nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, quod? Eveniet nulla quis commodi officia, obcaecati, esse qui corrupti provident possimus incidunt repellat cum eaque corporis perferendis quod deleniti eius?
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident sapiente ipsa praesentium vel rem! Sunt sapiente inventore vitae ab reiciendis impedit illo minus dolor hic autem. Pariatur natus est nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, quod? Eveniet nulla quis commodi officia, obcaecati, esse qui corrupti provident possimus incidunt repellat cum eaque corporis perferendis quod deleniti eius lorems?
 </p>
             </div>
             </SwiperSlide>
