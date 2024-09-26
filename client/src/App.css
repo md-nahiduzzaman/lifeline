@@ -45,11 +45,22 @@ input::placeholder {
   color:black;     /* You can also change the color */
 }
 .hov {
-  background-color: #ffffe4; /* Light yellow */
+  background-color: #ffffe4; 
   
-  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  transition: background-color 0.3s ease; 
 }
 
 .hov:hover {
-  background-color: #fafad2; /* Darker yellow on hover */
+  background-color: #fafad2; 
+}
+
+.con {
+  display: grid;
+  grid-template-columns: 1fr; 
+}
+
+@media (min-width: 1210px) {
+  .con {
+    grid-template-columns: 1fr 1fr; 
+  }
 }
