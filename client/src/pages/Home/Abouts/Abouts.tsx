@@ -5,7 +5,7 @@ import { FaUserDoctor } from "react-icons/fa6"
 const Abouts = () => {
  
   return (
-    <div className="w-4/5 mx-auto my-[100px]">
+    <div className=" w-full lg:w-4/5 mx-auto my-[100px]">
       <h2 className="text-2xl font-bold text-center">Why you sould trust us? <br />
       Get know about us</h2>
 <div className="grid gap-6 lg:grid-cols-3 mt-10 md:grid-cols-2 grid-cols-1">

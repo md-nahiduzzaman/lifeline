@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 const Banner = () => {
   return (
-    <div className="bg-[#ECFEFF]">
+    <div className="bg-[#ECFEFF] ">
       <>
         <Swiper
           spaceBetween={30}

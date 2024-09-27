@@ -4,7 +4,10 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
-
+import PackagePrice from "../pages/Package/PackagePrice";
+import About from "../pages/About/About";
+import Solutions from "../pages/Solutions/Solutions";
+import DrCart from "../components/DrCart/DrCart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,11 +21,23 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+      },{
+        path:'/package',
+        element:<PackagePrice></PackagePrice>
+      },{
+        path:'/about',
+        element:<About></About>
+      },{
+
+        path:'/solutions',
+        element:<Solutions></Solutions>
+      },{
+        path:'/login',
+        element:<Login></Login>
+      },{
+        path:'drCard',
+        element:<DrCart></DrCart>
+      }
     ],
   },
   // { path: "/login", element: <Login /> },
