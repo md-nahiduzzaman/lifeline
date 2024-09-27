@@ -7,7 +7,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import PackagePrice from "../pages/Package/PackagePrice";
 import About from "../pages/About/About";
 import Solutions from "../pages/Solutions/Solutions";
-
+import DrCart from "../components/DrCart/DrCart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +34,9 @@ const router = createBrowserRouter([
       },{
         path:'/login',
         element:<Login></Login>
+      },{
+        path:'drCard',
+        element:<DrCart></DrCart>
       }
     ],
   },
