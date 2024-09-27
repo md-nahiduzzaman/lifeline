@@ -1,5 +1,17 @@
+import React from "react"
+interface Solution {
+  title: string;
+  description: string;
+  image: string;
+  features:string[];
+  service:string
+  // Add other properties here if needed
+}
+interface PackageCardProps {
+  solution: Solution;
+}
 
-const SolutionsCardDeatils = ({solution}) => {
+const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {
     const {image,service,description,features,title}=solution
   return (
     <div className="w-full grid items-end overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">

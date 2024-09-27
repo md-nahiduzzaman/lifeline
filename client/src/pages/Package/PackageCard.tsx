@@ -1,6 +1,17 @@
+import React from "react";
 
-const PackageCard = ({prices}) => {
-  const {packageName,price,duration,servicesIncluded}=prices
+interface PackageProps {
+  packageName: string;
+  price: number;
+  duration: string;
+  servicesIncluded: string[];
+}
+
+interface PackageCardProps {
+  prices: PackageProps;
+}
+const PackageCard: React.FC<PackageCardProps> = ({ prices }) => {
+  const { packageName, price, duration, servicesIncluded } = prices;
   return (
     <div className="rounded-lg  shadow-lg grid items-end p-6 text-white bg-[#06B6D4]  transform transition-transform duration-300 hover:scale-105">
      <h2 className="text-xl font-bold text-center">{packageName}</h2>
