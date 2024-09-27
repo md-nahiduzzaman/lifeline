@@ -1,0 +1,80 @@
+[
+    {
+        "service": "Out Patient (OPD) Management",
+        "title":"OPD",
+        "description": "Streamlined system for managing outpatient appointments and consultations.",
+        "features": [
+            "Appointment scheduling",
+            "Patient check-in and registration",
+            "Doctor availability management",
+            "Electronic health records integration",
+            "Billing and insurance processing"
+        ],
+        "image": "https://amazingcharts.com/wp-content/uploads/2023/04/Why-Ambulatory-Care-and-Outpatient-Care-Will-Reduce-Healthcare-Costs-and-ICU-Admissions-scaled.jpg"
+    },
+    {
+        "service": "In Patient (IPD) Management",
+        "title":"IPD",
+        "description": "Comprehensive management of inpatient admissions and stay.",
+        "features": [
+            "Admission and discharge tracking",
+            "Ward management",
+            "Nursing staff scheduling",
+            "Medication administration records",
+            "Real-time patient monitoring"
+        ],
+        "image": "https://www.trsch.com/wp-content/uploads/2021/02/Emergency1.jpg"
+    },
+    {
+        "service": "Emergency Services Management",
+        "title":"Emergency",
+        "description": "Efficient handling of emergency cases and urgent care.",
+        "features": [
+            "Triage system for prioritizing care",
+            "Real-time updates for emergency rooms",
+            "Ambulance dispatch coordination",
+            "Patient tracking during emergencies",
+            "Integration with local emergency services"
+        ],
+        "image": "https://www.purdueglobal.edu/blog/fire-science/emergency-management-career.jpeg"
+    },
+    {
+        "service": "Surgery Management",
+        "title":"Surgery",
+        "description": "End-to-end management of surgical procedures and operations.",
+        "features": [
+            "Surgical scheduling",
+            "Anesthesia management",
+            "Post-operative care tracking",
+            "Surgeon and staff coordination",
+            "Inventory management for surgical supplies"
+        ],
+        "image": "https://nexgensurgical.com/wp-content/uploads/2021/12/surgical_practice_management-1.jpg"
+    },
+    {
+        "service": "Pharmacy Management",
+        "title":"Pharmacy",
+        "description": "Management of medication dispensing and pharmacy operations.",
+        "features": [
+            "Prescription management",
+            "Drug inventory tracking",
+            "Integration with EHR systems",
+            "Medication alerts and reminders",
+            "Reporting and analytics for pharmacy "
+        ],
+        "image": "https://ocm.auburn.edu/newsroom/news_articles/2021/08/images/20210824-pharmacy-future.jpg"
+    },
+    {
+        "service": "Laboratory Management",
+        "title":"Laboratory",
+        "description": "Efficient handling of lab tests and results management.",
+        "features": [
+            "Test ordering and tracking",
+            "Results reporting",
+            "Integration with clinical systems",
+            "Inventory management for lab supplies",
+            "Patient notifications for test results"
+        ],
+        "image": "https://cdn.sourceflow.co.uk/variant/800x500/7fo2qxw1bzm0svxtvjqnm67fycdl"
+    }
+]

@@ -12,12 +12,30 @@ const Navbar = () => {
       <li>
         <NavLink to={"/login"}>Login</NavLink>
       </li>
-      <li>Pharmacy</li>
-      <li>About</li>
+      <li>
+        <NavLink to={'/solutions'}>Solutions</NavLink>
+      </li>
+      {/* <li className="">
+        <details className="">
+          <summary>Solution</summary>
+          <ul className="p-2 ">
+            <li>Hospital Administration</li>
+            <li className="my-3">Patient Management</li>
+            <li>Doctor and Staff Portal</li>
+            <li className="my-3">Pharmacy and Lab Integration</li>
+            <li>Patient Self-Service Portal</li>
+            <li className="my-3">Telemedicine Integration</li>
+            <li>Billing and Insurance Management</li>
+            <li className="mt-3">Analytics and Reporting</li>
+          </ul>
+        </details>
+      </li> */}
+      <li><NavLink to={'/package'}>Ours Package</NavLink> </li>
+      <li><NavLink to={'/about'}>About</NavLink></li>
     </>
   );
   return (
-    <div className="bg-[#ECFEFF]  shadow-lg z-10 fixed w-full h-16">
+    <div className="bg-[#ECFEFF]  shadow-lg z-10 fixed mx-auto w-full  h-16">
       <div className="navbar max-w-screen-xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -39,7 +57,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 min-w-56  p-2 shadow"
             >
               {navelink}
             </ul>
