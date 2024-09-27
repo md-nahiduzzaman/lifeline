@@ -4,9 +4,30 @@ import facebook from '../../assets/images/facebook.png';
 
 import "../../App.css";
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+
+
 
 const Login = () => {
-  
+  const {signIn,user}=useContext(AuthContext)
+  console.log(signIn)
+  console.log(user)
+  const handleLogin=(e:any)=>{
+    e.preventDefault()
+
+    const Email=e.target.email.value;
+    const pass=e.target.pass.value
+    signIn(Email,pass)
+    .then((res:any)=>{
+      console.log(res)
+      console.log('yes')
+    })
+    .catch((error:any)=>{
+      console.log(error)
+    })
+
+  }
   return (
     <div className="p-2 mt-8">
       <div className='flex w-[97%] mx-auto justify-between items-center'>
@@ -44,13 +65,16 @@ const Login = () => {
           <div className='hov mt-5 p-2 lg:mt-[1px] w-full flex justify-center items-center lg:w-[44%] rounded-3xl'>
                       <div className=''>
                           <h1 className='text-3xl text-center font-medium mt-5 md:mt-[1px] mb-5'>Login</h1>
-                          <form action="" className=''>
+                          <form onSubmit={handleLogin} action="" className=''>
                              <input type="email" placeholder='Your Email' className='block p-1 mb-3 w-[330px] h-[45px] bg-gray-300
-                             rounded-xl' name="" id="" />
+                             rounded-xl' name="email" id="" />
                              
                              
                                  <input type="password" placeholder='Password' className='block p-1 mb-3 w-[330px] h-[45px] bg-gray-300
-                             rounded-xl' name="" id="" />
+                             rounded-xl' name="pass" id="" />
+
+                             <button type='submit' className='text-black mb-2 font-medium btn w-[330px] h-[45px]
+                             text-xl'>Login</button>
                           </form>
                           <Link to={''} className='mt-3 text-center
                           text-[17px] font-medium'>Already have an account?</Link>
@@ -72,3 +96,8 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+

@@ -1,0 +1,83 @@
+[
+    {
+      "name": "Dr. John Smith",
+      "img":"https://i.ibb.co.com/SxYHwWw/dr1.jpg",
+      "email": "john.smith@gmail.com",
+      "degrees": ["MBBS","MD in medichine", "MBBS"],
+      "medical_college": "Harvard Medical School",
+      "specialty": "Cardiology",
+      "time": "10:00 AM - 12:00 PM",
+      "days": ["Monday", "Wednesday", "Friday"]
+    },
+    {
+      "name": "Dr. Fatema Akter",
+       "img":"https://i.ibb.co.com/X3hfNZN/dr3.jpg",
+      "email": "emily.johnson@gmail.com",
+      "degrees": ["MBBS", "MD in arthopedic", "FC in Cardiology"],
+      "medical_college": "Johns Hopkins University",
+      "specialty": "Psychiatry",
+      "time": "2:00 PM - 4:00 PM",
+      "days": ["All Day Accept Friday"]
+    },
+    {
+      "name": "Dr. Shamim Patwary",
+      "img":"https://i.ibb.co.com/JF4D3MY/dr9.jpg",
+      "email": "michael.brown@gmail.com",
+      "degrees": ["MBBS", "MS in Orthopedics"],
+      "medical_college": "Stanford University",
+      "specialty": "Orthopedics",
+      "time": "1:00 PM - 3:00 PM",
+      "days": ["Monday", "Thursday"]
+    },
+    {
+      "name": "Dr. Sarah Wilson",
+      "img":"https://i.ibb.co.com/xLcdLwP/dr4.jpg",
+      "email": "sarah.wilson@gmail.com",
+      "degrees": ["MD in medichine", "PhD in Neuroscience"],
+      "medical_college": "Columbia University",
+      "specialty": "Neurology",
+      "time": "9:00 AM - 11:00 AM",
+      "days": ["Wednesday", "Friday"]
+    },
+    {
+      "name": "Dr. David Taylor",
+      "img":"https://i.ibb.co.com/9V6RJVv/doctor1.png",
+      "email": "david.taylor@gmail.com",
+      "degrees": ["MD in Neorulogy", "Fellowship in Gastroenterology"],
+      "medical_college": "Mayo Clinic Alix School of Medicine",
+      "specialty": "Gastroenterology",
+      "time": "3:00 PM - 5:00 PM",
+      "days": ["Tuesday", "Sunday"]
+    },
+    {
+        "name": "Dr. Md Monem",
+        "img":"https://i.ibb.co.com/sv1fvGb/dr2.jpg",
+        "email": "Monem@gmail.com",
+        "degrees": ["MBBS", "MD in daiabetic", "FCPS", "Fellowship in Gastroenterology"],
+        "medical_college": "Mayo Clinic Alix School of Medicine",
+        "specialty": "Gastroenterology",
+        "time": "3:00 PM - 5:00 PM",
+        "days": ["Tuesday", "Sunday"]
+      },
+      {
+        "name": "Dr.Nadizzaman",
+        "img":"https://i.ibb.co.com/9Y5VfF4/doctor5.png",
+        "email": "nahiduzzaman@gmail.com",
+        "degrees": ["FCPS", "Fellowship in high blood Presure"],
+        "medical_college": "Mayo Clinic Alix School of Medicine",
+        "specialty": "Gastroenterology",
+        "time": "3:00 PM - 5:00 PM",
+        "days": ["Tuesday", "Sunday"]
+      },
+      {
+        "name": "Dr.Md Sanim Mia",
+        "img":"https://i.ibb.co.com/HdmJ17R/doctor6.jpg",
+        "email": "Sanim@gmail.com",
+        "degrees": ["FCPS", "Fellowship in Daibetes"],
+        "medical_college": "Mayo Clinic Alix School of Medicine",
+        "specialty": "Gastroenterology",
+        "time": "3:00 PM - 5:00 PM",
+        "days": ["Tuesday", "Sunday"]
+      }
+  ]
+  
