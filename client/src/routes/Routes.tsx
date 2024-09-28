@@ -9,7 +9,7 @@ import About from "../pages/About/About";
 import Solutions from "../pages/Solutions/Solutions";
 import DrCart from "../components/DrCart/DrCart";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Profile from "../pages/Dashboard/Common/Profile";
+
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import PatientAppointment from "../pages/Dashboard/Patient/PatientAppointment";
 import PatientPrescription from "../pages/Dashboard/Patient/PatientPrescription";
