@@ -8,6 +8,8 @@ import PackagePrice from "../pages/Package/PackagePrice";
 import About from "../pages/About/About";
 import Solutions from "../pages/Solutions/Solutions";
 import DrCart from "../components/DrCart/DrCart";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Profile from "../pages/Dashboard/Common/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,28 +23,41 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
-      },{
-        path:'/package',
-        element:<PackagePrice></PackagePrice>
-      },{
-        path:'/about',
-        element:<About></About>
-      },{
-
-        path:'/solutions',
-        element:<Solutions></Solutions>
-      },{
-        path:'/login',
-        element:<Login></Login>
-      },{
-        path:'drCard',
-        element:<DrCart></DrCart>
-      }
+      },
+      {
+        path: "/package",
+        element: <PackagePrice></PackagePrice>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/solutions",
+        element: <Solutions></Solutions>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "drCard",
+        element: <DrCart></DrCart>,
+      },
     ],
   },
   // { path: "/login", element: <Login /> },
   // { path: "/signup", element: <SignUp /> },
-  //   dashboard here
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <Profile />,
+      },
+    ],
+  },
 ]);
 
 export default router;
