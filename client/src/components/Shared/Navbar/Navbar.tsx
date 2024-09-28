@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to={"/login"}>Login</NavLink>
       </li>
       <li>
-        <NavLink to={'/solutions'}>Solutions</NavLink>
+        <NavLink to={"/solutions"}>Solutions</NavLink>
       </li>
       {/* <li className="">
         <details className="">
@@ -30,8 +30,15 @@ const Navbar = () => {
           </ul>
         </details>
       </li> */}
-      <li><NavLink to={'/package'}>Ours Package</NavLink> </li>
-      <li><NavLink to={'/about'}>About</NavLink></li>
+      <li>
+        <NavLink to={"/package"}>Ours Package</NavLink>{" "}
+      </li>
+      <li>
+        <NavLink to={"/about"}>About</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/dashboard"}>Dashboard</NavLink>
+      </li>
     </>
   );
   return (
