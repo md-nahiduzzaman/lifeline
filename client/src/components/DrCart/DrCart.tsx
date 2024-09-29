@@ -27,15 +27,16 @@ const DrCart=()=>{
           <div className="con gap-3 my-12">
               {
                 info.map((drInfo:any)=><div className="mx-auto rounded-md w-[340px] p-2 py-4 md:w-[540px]
-                 border-2 border-black flex flex-col md:flex-row gap-2">
+                 border-2 border-black flex flex-col md:flex-row gap-2
+                 transform transition-transform duration-300 hover:scale-105">
                        <div>
                         <img src={drInfo.img} className="block mx-auto w-[160px] h-[160px]" alt="" />
                         </div>
                         <div className="">
                            <h1 className="mb-2  text-xl text-left font-medium">{drInfo.name}</h1>
                            <div className="flex">
-                            <h1 className="text-[15px] font-medium">{drInfo.degrees[0]},</h1>
-                            <h1 className="text-[15px] font-medium ml-1">{drInfo.degrees[1]}</h1>
+                            <h1 className="text-[15px] font-medium text-left">{drInfo.degrees[0]},</h1>
+                            <h1 className="text-[15px] font-medium ml-1 text-left">{drInfo.degrees[1]}</h1>
                             
                            </div>
                            <h1 className="font-medium text-[15px] my-2 text-left">{drInfo.medical_college}</h1>

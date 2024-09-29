@@ -21,22 +21,22 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
-      },{
-        path:'/package',
-        element:<PackagePrice></PackagePrice>
-      },{
-        path:'/about',
-        element:<About></About>
-      },{
+      }, {
+        path: '/package',
+        element: <PackagePrice></PackagePrice>
+      }, {
+        path: '/about',
+        element: <About></About>
+      }, {
 
-        path:'/solutions',
-        element:<Solutions></Solutions>
-      },{
-        path:'/login',
-        element:<Login></Login>
-      },{
-        path:'drCard',
-        element:<DrCart></DrCart>
+        path: '/solutions',
+        element: <Solutions></Solutions>
+      }, {
+        path: '/login',
+        element: <Login></Login>
+      }, {
+        path: '/drCart',
+        element: <DrCart></DrCart>
       }
     ],
   },

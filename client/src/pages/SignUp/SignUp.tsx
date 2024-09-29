@@ -73,22 +73,16 @@ const SignUp = () => {
 
   return (
     <div className="my-8 rounded-xl w-[98%] mx-auto bg-gradient-to-r from-cyan-100 to-blue-200
-    min-h-[75vh] flex justify-center items-center ">
+    min-h-[75vh] flex justify-center items-center">
       <div className="w-[94%] flex flex-wrap gap-5 justify-evenly rounded-xl mx-auto min-h-[62vh]">
-        <motion.div initial={{ scale: 0 }} animate={{ rotate: 360, scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-            duration: 2,
-          }}
-          className='w-[350px] bg-white rounded-lg p-2'>
+        <div 
+          className='bg-white rounded-lg p-2'>
 
           <img src={logo} className='w-[40px] h-[40px] block mx-auto mb-2' alt="" />
 
-          <h1 className='text-3xl font-medium'><span className='text-blue-300'>Heath </span>
+          <h1 className='text-3xl text-center font-medium'><span className='text-blue-300'>Heath </span>
             <span className='text-blue-400'>Mas<span className='text-blue-500'>termind</span></span></h1>
-          <span className='text-3xl font-medium text-blue-300'>Register</span>
+          <span className='text-3xl font-medium text-blue-300 ml-[120px]'>Register</span>
           <form onSubmit={handleSubmit} action="" className='p-1 mt-3'>
             <div className='flex items-center my-3 space-x-2'>
               <FaUser className='text-blue-400 text-[23px]'></FaUser>
@@ -119,7 +113,7 @@ const SignUp = () => {
 
           </form>
           <a className='font-medium mb-1' href="">Already have an acount?</a>
-        </motion.div>
+        </div>
         <div style={bannerStyle} className='p-2 min-h-[60vh] flex items-center rounded-xl w-[350px] md:w-[480px] opacity-80 bg-white'>
           <div><h1 className='text-3xl font-medium'>Mastermind For Better <br />Health Together</h1>
             <p className='font-medium mt-4 text-gray-900'>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Provident consequuntur soluta amet quaerat?
