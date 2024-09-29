@@ -1,0 +1,380 @@
+[
+  {
+    "reg_no": "LL985665",
+    "name": "Prof. Dr. Md. Kabirul Islam",
+    "email": "kabirul.islam@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Senior Consultant, Paediatric Surgery",
+    "degree": "MBBS, MS (Ped. Surgery), FICS (USA), FRCS(Glasg). Trained in Pediatric Urology (UK) & Pediatric Laparoscopic Surgery (India)",
+    "experience": "30+ years",
+    "short_description": "Prof. Dr. Md. Kabirul Islam is the first qualified Pediatric Surgeon in Bangladesh with over 30 years of experience.",
+    "description": "Prof. Dr. Md. Kabirul Islam is a senior Pediatric surgeon with extensive experience in the field. He graduated from Chittagong Medical College and has worked at Dhaka Shishu Hospital and other prestigious institutions.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 2000,
+    "publications": 45,
+    "achievements": [
+      "Asir Memorial Gold Medal",
+      "Editor-in-Chief of 'The Journal of Surgical Science'"
+    ],
+    "department": "PAEDIATRIC SURGERY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "John Doe",
+        "rating": 5,
+        "comment": "Dr. Kabirul Islam is amazing! He handled my son's surgery with utmost care and professionalism.",
+        "date": "2023-07-15"
+      },
+      {
+        "reviewer_name": "Jane Smith",
+        "rating": 4,
+        "comment": "Great doctor! The consultation was thorough.",
+        "date": "2023-08-22"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985666",
+    "name": "Dr. Amina Rahman",
+    "email": "amina.rahman@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Cardiology",
+    "degree": "MBBS, MD (Cardiology)",
+    "experience": "15 years",
+    "short_description": "Dr. Amina Rahman specializes in cardiovascular health and has a wealth of experience in managing complex cases.",
+    "description": "Dr. Amina Rahman graduated from Dhaka Medical College and has been practicing cardiology for over 15 years. She is known for her patient-centered approach.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1200,
+    "publications": 20,
+    "achievements": [
+      "Best Cardiologist Award 2021",
+      "Member of Cardiology Association of Bangladesh"
+    ],
+    "department": "CARDIOLOGY (INTERVENTIONAL)",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Alice Johnson",
+        "rating": 5,
+        "comment": "Dr. Amina is a fantastic cardiologist. She saved my life!",
+        "date": "2023-06-10"
+      },
+      {
+        "reviewer_name": "Michael Brown",
+        "rating": 4,
+        "comment": "Very thorough and knowledgeable. Highly recommend!",
+        "date": "2023-07-18"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985667",
+    "name": "Dr. Tahmina Sultana",
+    "email": "tahmina.sultana@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Dermatology",
+    "degree": "MBBS, MD (Dermatology)",
+    "experience": "10 years",
+    "short_description": "Dr. Tahmina Sultana is a leading dermatologist with extensive experience in skin treatments and cosmetic procedures.",
+    "description": "Dr. Tahmina Sultana graduated from Dhaka Medical College and has specialized in dermatology for over 10 years. She is well-known for her expertise in skin disorders.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 900,
+    "publications": 15,
+    "achievements": [
+      "Best Dermatologist Award 2020",
+      "Member of Dermatology Society of Bangladesh"
+    ],
+    "department": "DERMATOLOGY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Linda Green",
+        "rating": 5,
+        "comment": "Dr. Tahmina transformed my skin! So grateful!",
+        "date": "2023-05-12"
+      },
+      {
+        "reviewer_name": "James White",
+        "rating": 4,
+        "comment": "Knowledgeable and professional. I felt at ease.",
+        "date": "2023-08-01"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985668",
+    "name": "Dr. Shahidul Islam",
+    "email": "shahidul.islam@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Orthopedics",
+    "degree": "MBBS, MS (Orthopedics)",
+    "experience": "20 years",
+    "short_description": "Dr. Shahidul Islam is a highly experienced orthopedic surgeon specializing in joint replacement surgeries.",
+    "description": "Dr. Shahidul Islam has been practicing orthopedics for over 20 years, focusing on joint replacements and sports medicine.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1500,
+    "publications": 30,
+    "achievements": [
+      "Gold Medal in Orthopedic Surgery",
+      "Member of Orthopedic Association"
+    ],
+    "department": "ORTHOPEDICS",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Sarah Wilson",
+        "rating": 5,
+        "comment": "Fantastic surgeon! My knee feels brand new!",
+        "date": "2023-06-15"
+      },
+      {
+        "reviewer_name": "David Taylor",
+        "rating": 4,
+        "comment": "Very skilled and professional. Highly recommend!",
+        "date": "2023-08-12"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985669",
+    "name": "Dr. Farhana Nisa",
+    "email": "farhana.nisa@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Obstetrics & Gynecology",
+    "degree": "MBBS, MD (Obstetrics & Gynecology)",
+    "experience": "12 years",
+    "short_description": "Dr. Farhana Nisa is a compassionate gynecologist with expertise in maternal care and women's health.",
+    "description": "Dr. Farhana Nisa graduated from Bangabandhu Sheikh Mujib Medical University and has been practicing for over 12 years.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1100,
+    "publications": 10,
+    "achievements": [
+      "Women’s Health Advocate Award",
+      "Member of Obstetrics and Gynecology Society"
+    ],
+    "department": "OBSTETRICS & GYNECOLOGY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Emma Davis",
+        "rating": 5,
+        "comment": "Dr. Farhana is so kind and understanding. I felt cared for.",
+        "date": "2023-07-20"
+      },
+      {
+        "reviewer_name": "Noah Miller",
+        "rating": 4,
+        "comment": "Very knowledgeable and patient. Great experience!",
+        "date": "2023-09-05"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985670",
+    "name": "Dr. Anwar Hossain",
+    "email": "anwar.hossain@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Neurology",
+    "degree": "MBBS, MD (Neurology)",
+    "experience": "18 years",
+    "short_description": "Dr. Anwar Hossain is an experienced neurologist known for his expertise in stroke management.",
+    "description": "Dr. Anwar Hossain completed his MD in Neurology from Dhaka Medical College and has been practicing for over 18 years.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1400,
+    "publications": 25,
+    "achievements": [
+      "Best Neurologist Award 2019",
+      "Member of Neurological Society of Bangladesh"
+    ],
+    "department": "NEUROLOGY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Sophia Martinez",
+        "rating": 5,
+        "comment": "Dr. Anwar diagnosed my issue quickly. Very grateful!",
+        "date": "2023-05-25"
+      },
+      {
+        "reviewer_name": "Lucas Anderson",
+        "rating": 4,
+        "comment": "Very thorough examination. I feel much better now.",
+        "date": "2023-08-30"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985671",
+    "name": "Dr. Kazi Nazrul Islam",
+    "email": "kazi.nazrul@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Gastroenterology",
+    "degree": "MBBS, MD (Gastroenterology)",
+    "experience": "16 years",
+    "short_description": "Dr. Kazi Nazrul Islam is a renowned gastroenterologist known for his expertise in liver diseases.",
+    "description": "Dr. Kazi Nazrul Islam completed his training in Gastroenterology from BSMMU and has been practicing for over 16 years.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1300,
+    "publications": 22,
+    "achievements": [
+      "Best Gastroenterologist Award 2020",
+      "Member of Gastroenterology Society"
+    ],
+    "department": "GASTROENTEROLOGY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Mia Young",
+        "rating": 5,
+        "comment": "Dr. Kazi helped me understand my condition. Highly recommend!",
+        "date": "2023-06-05"
+      },
+      {
+        "reviewer_name": "Ethan King",
+        "rating": 4,
+        "comment": "Good experience overall. I trust his judgment.",
+        "date": "2023-07-30"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985672",
+    "name": "Dr. Jahanara Begum",
+    "email": "jahanara.begum@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Pediatrics",
+    "degree": "MBBS, MD (Pediatrics)",
+    "experience": "14 years",
+    "short_description": "Dr. Jahanara Begum specializes in pediatric health and is passionate about children's well-being.",
+    "description": "Dr. Jahanara Begum graduated from Dhaka Medical College and has been working with children for over 14 years.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 1000,
+    "publications": 12,
+    "achievements": [
+      "Child Health Advocate Award",
+      "Member of Pediatric Association"
+    ],
+    "department": "PEDIATRICS",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Isabella Wright",
+        "rating": 5,
+        "comment": "Dr. Jahanara is amazing with kids! My daughter loves her.",
+        "date": "2023-06-20"
+      },
+      {
+        "reviewer_name": "Jacob Hall",
+        "rating": 4,
+        "comment": "Very caring and professional. Would recommend to others.",
+        "date": "2023-08-02"
+      }
+    ]
+  },
+  {
+    "reg_no": "LL985673",
+    "name": "Dr. Mizanur Rahman",
+    "email": "mizanur.rahman@example.com",
+    "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "specialty": "Consultant, Endocrinology",
+    "degree": "MBBS, MD (Endocrinology)",
+    "experience": "10 years",
+    "short_description": "Dr. Mizanur Rahman specializes in diabetes management and thyroid disorders.",
+    "description": "Dr. Mizanur Rahman completed his training in Endocrinology from BSMMU and has been practicing for over 10 years.",
+    "social_links": {
+      "facebook": "",
+      "linkedin": "",
+      "twitter": ""
+    },
+    "total_patient_checkups": 800,
+    "publications": 8,
+    "achievements": [
+      "Diabetes Educator Certification",
+      "Member of Endocrinology Society"
+    ],
+    "department": "ENDOCRINOLOGY",
+    "schedule": {
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "time": "3:00 PM - 8:00 PM"
+    },
+    "visit_charge": 1.0,
+    "patient_reviews": [
+      {
+        "reviewer_name": "Ava Wilson",
+        "rating": 5,
+        "comment": "Dr. Mizanur has helped me manage my diabetes effectively.",
+        "date": "2023-04-15"
+      },
+      {
+        "reviewer_name": "William Green",
+        "rating": 4,
+        "comment": "Very attentive and knowledgeable. Good experience!",
+        "date": "2023-08-10"
+      }
+    ]
+  }
+]
