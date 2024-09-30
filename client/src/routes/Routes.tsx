@@ -17,6 +17,7 @@ import PatientHealthRecord from "../pages/Dashboard/Patient/PatientHealthRecord"
 import DoctorAppointment from "../pages/Dashboard/Doctor/DoctorAppointment";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
+import AdminDoctors from "../pages/Dashboard/Admin/AdminDoctors";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
         path: "admin-messages",
         element: <AdminMessages />,
       },
+      {
+        path:'admin-doctors',
+        element:<AdminDoctors></AdminDoctors>
+      }
     ],
   },
 ]);
