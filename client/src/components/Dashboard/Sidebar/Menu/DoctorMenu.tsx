@@ -1,8 +1,15 @@
+import { FaUser } from "react-icons/fa6";
+import MenuItem from "./MenuItem";
+
 const DoctorMenu = () => {
   return (
-    <div>
-      <h1>doctor menu</h1>
-    </div>
+    <>
+      <MenuItem
+        label="Appointment"
+        address="doctor-appointment"
+        icon={FaUser}
+      />
+    </>
   );
 };
 
