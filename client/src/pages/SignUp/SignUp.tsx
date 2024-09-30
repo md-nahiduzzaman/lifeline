@@ -1,10 +1,8 @@
 import { FaEnvelope, FaImage, FaKey, FaUser, FaUserClock } from 'react-icons/fa6';
 import bg from '../../assets/images/bg.avif'
 import logo from '../../assets/images/signlogo (1).jpg'
-import '../../App.css'
-import { motion } from "framer-motion"
-import { useContext, useState } from 'react';
 
+import { useContext, useState } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -12,7 +10,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
   const auth = getAuth(app)
-  console.log('asdfs')
+  
   const { createUser, user } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [photo, setPhoto]=useState<any>('')

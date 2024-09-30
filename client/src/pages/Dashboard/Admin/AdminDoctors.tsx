@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { FaCreditCard, FaMoneyBill, FaTrash } from "react-icons/fa6"
+import { FaMoneyBill, FaTrash } from "react-icons/fa6"
 
 
 const AdminDoctors = () => {

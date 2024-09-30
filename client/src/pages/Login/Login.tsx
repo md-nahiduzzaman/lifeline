@@ -1,12 +1,10 @@
 
-
 import "../../App.css";
 import logo from '../../assets/images/signlogo (1).jpg';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from "react-router-dom";
 import { FaClinicMedical } from "react-icons/fa";
-
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
