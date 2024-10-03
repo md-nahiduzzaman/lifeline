@@ -9,7 +9,7 @@ const DashboardLayout = () => {
         {/* sidebar */}
         <Sidebar />
         {/* main content */}
-        <div>
+        <div className="bg-[#FAFBFF] min-h-screen">
           {/* sticky header */}
           <Header />
           {/* dynamic content */}
