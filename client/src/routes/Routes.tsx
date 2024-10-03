@@ -18,6 +18,8 @@ import DoctorAppointment from "../pages/Dashboard/Doctor/DoctorAppointment";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
 import AdminDoctors from "../pages/Dashboard/Admin/AdminDoctors";
+import AdminEditDoctors from "../pages/Dashboard/Admin/AdminEditDoctors";
+import Total_Bed from "../pages/Dashboard/Admin/ActiveBed";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,8 +52,7 @@ const router = createBrowserRouter([
       }
     ],
   },
-  // { path: "/login", element: <Login /> },
-  // { path: "/signup", element: <SignUp /> },
+  
   {
     path: "/dashboard",
     element: <DashboardLayout />,
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
       {
         path:'admin-doctors',
         element:<AdminDoctors></AdminDoctors>
+      },
+      {
+        path:'total-bed',
+        element:<Total_Bed></Total_Bed>
+      },
+      {
+        path:'/dashboard/admin-doctors/admin-edit-doctors',
+        element:<AdminEditDoctors></AdminEditDoctors>
       }
     ],
   },

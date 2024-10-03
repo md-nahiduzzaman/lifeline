@@ -1,19 +1,44 @@
 import { useEffect, useState } from "react"
+import { FaEdit } from "react-icons/fa"
 import { FaMoneyBill, FaTrash } from "react-icons/fa6"
+import { Link } from "react-router-dom"
+import Swal from "sweetalert2"
 
 
 const AdminDoctors = () => {
-     const [docotrs,setDoctors]=useState([])
-    useEffect(()=>{
-       fetch('/doctors.json')
-       .then((res:any)=>{
-         return res.json()
-       })
-       .then((data:any)=>{
-          setDoctors(data)
-       })
-    },[])
+    const [docotrs, setDoctors] = useState([])
+    useEffect(() => {
+        fetch('/doctors.json')
+            .then((res: any) => {
+                return res.json()
+            })
+            .then((data: any) => {
+                setDoctors(data)
+            })
+    }, [])
     console.log('adefsaf')
+
+    const handleDelete=((id:any)=>{
+         console.log(id)
+         Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#7396DB",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+           
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+    })
     return (
         <section className="container px-4 mx-auto">
             <div className="flex items-center gap-x-3">
@@ -55,49 +80,48 @@ const AdminDoctors = () => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                     {
-                                        docotrs.map((info:any)=> <tr>
-                                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                            <div className="inline-flex items-center gap-x-3">
+                                        docotrs.map((info: any) => <tr>
+                                            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                <div className="inline-flex items-center gap-x-3">
 
-                                                <div className="flex items-center gap-x-2">
-                                                    <img src={info.image_url} className="w-[50px] h-[50px] rounded-[50%]" alt="" />
-                                                    <span>{info.name}</span>
+                                                    <div className="flex items-center gap-x-2">
+                                                        <img src={info.image_url} className="w-[50px] h-[50px] rounded-[50%]" alt="" />
+                                                        <span>{info.name}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                            <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                            </td>
+                                            <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                                <button><FaMoneyBill className="text-xl"></FaMoneyBill></button>
-                                            </div>
-                                        </td>
-                                       
-                                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{info.email}</td>
-                                       
-                                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                                                    <button><FaMoneyBill className="text-xl"></FaMoneyBill></button>
+                                                </div>
+                                            </td>
 
-                                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
-                                                <FaTrash className="text-xl text-red-400 ml-3"></FaTrash>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>)
+                                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{info.email}</td>
+
+                                            <td className="px-4 py-4 text-sm whitespace-nowrap">
+
+                                                <button onClick={handleDelete} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                    <FaTrash className="text-xl ml-3 text-red-400"></FaTrash>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <Link to='/dashboard/admin-doctors/admin-edit-doctors'>
+                                                    <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-600 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                                                        <FaEdit className="text-xl"></FaEdit>
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                        </tr>)
                                     }
-                                   
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </section>
     )
