@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DateRange } from "react-date-range";
+import { DateRange, RangeKeyDict } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
@@ -37,7 +37,7 @@ const BookAppointmentModal = () => {
             showDateDisplay={false}
             rangeColors={["#041e49"]}
             editableDateInputs={true}
-            onChange={(item) => setState([item.selection])}
+            onChange={(item: RangeKeyDict) => setState([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={state}
           />
@@ -65,7 +65,6 @@ const BookAppointmentModal = () => {
             <button className="py-3 text-sm text-center transition duration-150 bg-gray-100 rounded-lg hover:bg-gray-200 focus:bg-blue-500 focus:text-white">
               12:30 PM - 01:00 PM
             </button>
-            {/* Add more time slots as needed */}
           </div>
         </div>
       </div>
