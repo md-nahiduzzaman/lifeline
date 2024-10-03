@@ -1,9 +1,28 @@
+import { useEffect, useState } from "react";
 import DrCard from "../../../components/Dashboard/Card/DrCard";
-import BookAppointmentModal from "../../../components/Dashboard/Modal/BookAppointmentModal";
+import axios from "axios";
 
 const PatientAppointment = () => {
+  const [doctors, setDoctors] = useState<any[]>([]); // Using 'any' type for doctors array
+
+  // Fetch doctors
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/users?role=doctor`
+        );
+        setDoctors(response.data);
+      } catch (error) {
+        console.error("Failed to fetch doctors", error);
+      }
+    };
+    fetchDoctors();
+  }, []);
+
   return (
     <div className="space-y-6">
+      {/* filter section */}
       <div className="flex items-center p-10 bg-white border rounded-lg shadow-sm">
         <div className="space-y-6">
           <div className="space-y-2">
@@ -30,7 +49,7 @@ const PatientAppointment = () => {
               </select>
             </div>
 
-            {/* dr search by name */}
+            {/* Doctor search by name */}
             <form>
               <div className="flex items-center overflow-hidden border border-gray-300 rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:ring-gray-100">
                 <input
@@ -41,14 +60,16 @@ const PatientAppointment = () => {
                   aria-label="Enter Doctor Name"
                 />
 
-                <button className="mr-1 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform rounded-md bg-slate-800 hover:bg-gray-300 hover:text-slate-800 focus:bg-gray-100 focus:outline-none btn btn-sm">
+                <button
+                  type="submit"
+                  className="mr-1 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform rounded-md bg-slate-800 hover:bg-gray-300 hover:text-slate-800 focus:bg-gray-100 focus:outline-none btn btn-sm"
+                >
                   Search
                 </button>
               </div>
             </form>
 
-            {/* review filter */}
-
+            {/* Rating filter */}
             <div className="relative text-right text-gray-700">
               <select
                 name="rating"
@@ -64,20 +85,19 @@ const PatientAppointment = () => {
               </select>
             </div>
 
-            {/* btn */}
-            <button className="px-3 py-1.5 text-white bg-slate-900 border border-gray-300 rounded-lg hover:bg-gray-200 focus:ring ">
+            {/* Reset button */}
+            <button className="px-3 py-1.5 text-white bg-slate-900 border border-gray-300 rounded-lg hover:bg-gray-200 focus:ring">
               Reset
             </button>
           </div>
         </div>
       </div>
 
-      <div>
-        <DrCard></DrCard>
-      </div>
-
-      <div>
-        <BookAppointmentModal></BookAppointmentModal>
+      {/* Display Doctor Cards */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {doctors.map((doctor: any) => (
+          <DrCard key={doctor._id} doctor={doctor} />
+        ))}
       </div>
     </div>
   );
