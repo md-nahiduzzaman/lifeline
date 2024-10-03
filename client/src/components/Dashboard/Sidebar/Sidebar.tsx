@@ -10,11 +10,11 @@ const Sidebar = () => {
     <div>
       {/* Sidebar */}
       <div
-        className={`z-40 md:fixed flex flex-col justify-between overflow-x-hidden bg-[#F3F7FD] w-60 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform md:translate-x-0 transition duration-200 ease-in-out`}
+        className={`z-40 md:fixed flex flex-col justify-between overflow-x-hidden bg-[#F3F7FD] w-60 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform md:translate-x-0 transition duration-200 ease-in-out border-r`}
       >
         <div>
           {/* logo */}
-          <div className="w-full hidden md:flex px-4 justify-center items-center mx-auto">
+          <div className="items-center justify-center hidden w-full px-4 mx-auto md:flex">
             <Link to="/">
               <h1 className="text-4xl font-bold pb-3 text-[#041e49]">
                 Life Line
