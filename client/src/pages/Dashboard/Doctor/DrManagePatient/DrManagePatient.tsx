@@ -1,10 +1,8 @@
-
-import { useEffect, useState } from "react"
-import DrAppointmenttable from "./DrAppointmenttable"
 import axios from "axios"
-
+import { useEffect, useState } from "react"
+import DrManagePatientCard from "./DrManagePatientCard";
 interface patients{
-  _id: string;    
+  id: string;    
   name: string;       
   gender: string;     
   contact: string;    
@@ -14,40 +12,23 @@ interface patients{
   status: string;
   email:string;
 }
+const DrManagePatient = () => {
+  const [appointment,setAppointment]=useState<patients[]>([])
 
-const DoctorAppointment = () => {
-const [appointment,setAppointment]=useState<patients[]>([])
-const email='daniel.harris@hospital.com'
-useEffect(()=>{
-axios.get(`http://localhost:5000/apppionment-request?email=${email}`).then(res=>{
-  setAppointment(res.data)
-  console.log(res.data)
-}).catch(error=>{
-  console.log(error)
-})
-
-},[])
-
-const handileClickApprove=(_id:string):void=>{
-console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-approve/${_id}`).then(res=>{
+  console.log(appointment)
+  useEffect(()=>{
+  axios.get('/testdata.json').then(res=>{
+    setAppointment(res.data)
     console.log(res.data)
   }).catch(error=>{
     console.log(error)
   })
-}
-const handileClickRjects=(_id:string):void=>{
-console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-reject/${_id}`).then(res=>{
-    console.log(res.data)
-  }).catch(error=>{
-    console.log(error)
-  })
-}
+  
+  },[])
 
   return (
     <div>
-  <section className="container px-4 mx-auto">
+      <section className="container px-4 mx-auto">
   <div className="flex items-center gap-x-3">
     <h2 className="text-lg font-medium text-gray-800 dark:text-white">Appointment</h2>
     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
@@ -71,16 +52,18 @@ console.log(_id)
                     <span>Name</span>
                   </div>
                 </th>
+                <th
+                  scope="col"
+                  className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
+                >
+                  <div className="flex items-center gap-x-3">
+                    <span>Status</span>
+                  </div>
+                </th>
 
                 <th
                   scope="col"
-                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
-                >
-                  Status
-                </th>
-                <th
-                  scope="col"
-                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
+                  className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
                   Email
                 </th>
@@ -105,10 +88,6 @@ console.log(_id)
                 >
              Diseases
                 </th>
-
-                <th scope="col" className=" py-3.5 px-4  text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
-            Action
-                </th>
                 <th scope="col" className=" py-3.5 px-4  text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
                 Reject
                 </th>
@@ -118,7 +97,7 @@ console.log(_id)
             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
             
             {
-              appointment.map((patient,index)=><DrAppointmenttable key={index} handileClickApprove={handileClickApprove} handileClickRjects={handileClickRjects}  patient={patient} index={index}></DrAppointmenttable>)
+              appointment.map((patient,index)=><DrManagePatientCard key={index}  patient={patient} index={index}></DrManagePatientCard>)
             }
             </tbody>
           </table>
@@ -129,7 +108,7 @@ console.log(_id)
 </section>
 
     </div>
-  );
-};
+  )
+}
 
-export default DoctorAppointment;
+export default DrManagePatient

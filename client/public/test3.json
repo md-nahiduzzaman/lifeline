@@ -1,0 +1,50 @@
+  {
+        "address": "123 Elm Street, Springfield",
+        "admittedDate": "2024-09-25",
+        "age": "04/09/2004",
+        "blood": "O+",
+        "doctorEmail": "nahidbro162@gamil.com",
+        "doctorName": "Dr. Nahid bro",
+        "gender": "Male",
+        "instructions": "sdadfsavfsvxcreteyhrehgdsgda",
+        "issuDate": "now()",
+        "medicineDetails":[
+          {
+            "medicationName": "Paracetamol",
+            "dosage": "500 mg",
+            "frequency": "Three times a day",
+            "duration": "14 days (2 weeks)"
+          },
+          {
+            "medicationName": "Paracetamol",
+            "dosage": "500 mg",
+            "frequency": "Three times a day",
+            "duration": "14 days (2 weeks)"
+          },
+          {
+            "medicationName": "Paracetamol",
+            "dosage": "500 mg",
+            "frequency": "Three times a day",
+            "duration": "14 days (2 weeks)"
+          },
+          {
+            "medicationName": "Paracetamol",
+            "dosage": "500 mg",
+            "frequency": "Three times a day",
+            "duration": "14 days (2 weeks)"
+          },
+          {
+            "medicationName": "Paracetamol",
+            "dosage": "500 mg",
+            "frequency": "Three times a day",
+            "duration": "14 days (2 weeks)"
+          }
+        ],
+        "patientEmail": "john.doe@example.com",
+        "patientName": "John Doe",
+        "patientNumber": "123-456-7890",
+        "pressure": "Hypertension",
+        "pushRate": "Slow IV Push",
+        "weight": "58kg"
+      }
+       

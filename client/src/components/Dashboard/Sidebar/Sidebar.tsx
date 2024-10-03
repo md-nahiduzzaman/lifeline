@@ -28,7 +28,7 @@ const Sidebar = () => {
               <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Overview
               </p>
-              <MenuItem label="Statistics" address="/dashboard" icon={FaUser} />
+              <MenuItem label="Statistics" address="/dashboard/doctorHome" icon={FaUser} />
               <hr className="mt-6 mb-6" />
               <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Patient Panel
