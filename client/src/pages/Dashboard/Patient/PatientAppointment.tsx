@@ -1,4 +1,5 @@
 import DrCard from "../../../components/Dashboard/Card/DrCard";
+import BookAppointmentModal from "../../../components/Dashboard/Modal/BookAppointmentModal";
 
 const PatientAppointment = () => {
   return (
@@ -31,7 +32,7 @@ const PatientAppointment = () => {
 
             {/* dr search by name */}
             <form>
-              <div className="flex items-center overflow-hidden border border-gray-300 rounded-lg  focus-within:ring focus-within:ring-opacity-40 focus-within:ring-gray-100">
+              <div className="flex items-center overflow-hidden border border-gray-300 rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:ring-gray-100">
                 <input
                   className="px-6 py-2 text-sm text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent focus:ring-0 focus:bg-gray-100"
                   type="text"
@@ -73,6 +74,10 @@ const PatientAppointment = () => {
 
       <div>
         <DrCard></DrCard>
+      </div>
+
+      <div>
+        <BookAppointmentModal></BookAppointmentModal>
       </div>
     </div>
   );
