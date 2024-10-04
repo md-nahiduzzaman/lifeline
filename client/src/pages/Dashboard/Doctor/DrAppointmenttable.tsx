@@ -1,16 +1,16 @@
 import React from "react"
-import { RxReader } from "react-icons/rx";
 
 interface patients{
     _id: string;    
     name: string;       
     gender: string;     
-    contact: string;    
+    number: string;    
     address: string;    
     doctor: string;     
     admittedDate: string; 
     status: string;
-    email:string
+    email:string;
+    img:string
   }
 interface patientProps{
     patient:patients;
@@ -19,7 +19,7 @@ handileClickApprove:(_id: string)=>void,
 handileClickRjects:(_id:string)=>void
 }
 const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickApprove,handileClickRjects}) => {
-    const {name,email,admittedDate,contact,status,_id}=patient
+    const {name,email,admittedDate,number,status,_id,img}=patient
   return (
           <tr>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -31,7 +31,7 @@ const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickAp
                     <div className="flex items-center gap-x-2">
                       <img
                         className="object-cover w-10 h-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                        src={img}
                         alt=""
                       />
                       <div>
@@ -56,10 +56,7 @@ const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickAp
                  {admittedDate}
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                {contact}
-                </td>
-                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                <RxReader className="text-3xl cursor-pointer text-[#06B6D4]" />
+                {number}
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                 {

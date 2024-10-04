@@ -1,37 +1,39 @@
 
-import { useEffect, useState } from "react"
+import {useState } from "react"
 import DrAppointmenttable from "./DrAppointmenttable"
 import axios from "axios"
+import { useQuery } from "@tanstack/react-query";
 
 interface patients{
   _id: string;    
   name: string;       
   gender: string;     
-  contact: string;    
+  number: string;    
   address: string;    
   doctor: string;     
   admittedDate: string; 
   status: string;
   email:string;
+  img:string;
 }
 
 const DoctorAppointment = () => {
 const [appointment,setAppointment]=useState<patients[]>([])
 const email='daniel.harris@hospital.com'
-useEffect(()=>{
-axios.get(`http://localhost:5000/apppionment-request?email=${email}`).then(res=>{
-  setAppointment(res.data)
-  console.log(res.data)
-}).catch(error=>{
-  console.log(error)
-})
+const {data,refetch}=useQuery({queryKey:['approve'],
+  queryFn:async()=>{
+    const res=await axios.get(`http://localhost:5000/apppionment-request?email=${email}`)
+    setAppointment(res.data)
+    return res.data
+  }
 
-},[])
+})
 
 const handileClickApprove=(_id:string):void=>{
 console.log(_id)
   axios.patch(`http://localhost:5000/appionment-approve/${_id}`).then(res=>{
     console.log(res.data)
+   refetch()
   }).catch(error=>{
     console.log(error)
   })
@@ -40,6 +42,7 @@ const handileClickRjects=(_id:string):void=>{
 console.log(_id)
   axios.patch(`http://localhost:5000/appionment-reject/${_id}`).then(res=>{
     console.log(res.data)
+    refetch()
   }).catch(error=>{
     console.log(error)
   })
@@ -97,13 +100,6 @@ console.log(_id)
                   className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
                       Mobile
-                </th>
-
-                <th
-                  scope="col"
-                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
-                >
-             Diseases
                 </th>
 
                 <th scope="col" className=" py-3.5 px-4  text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">

@@ -43,6 +43,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     const database = client.db("lifeline");
     const appointmentCollection = database.collection("Appointment");
+    const presaipationCollection = database.collection("Presaipation");
 
     // await client.connect();
     // Send a ping to confirm a successful connection
@@ -83,6 +84,37 @@ app.patch(('/appionment-reject/:id'),async(req,res)=>{
   res.send(result)
 })
 
+app.get('/approve-appionment',async(req,res)=>{
+const status={status:'approved',doctorEmail:req.query.email}
+
+const result=await appointmentCollection.find(status).toArray()
+res.send(result)
+})
+app.get('/patient-deatils/:id',async(req,res)=>{
+const id=req.params.id
+const query={_id:new ObjectId(id)}
+const result=await appointmentCollection.findOne(query)
+res.send(result)
+})
+app.get('/patients-deatils/:id',async(req,res)=>{
+const id=req.params.id
+const query={_id:new ObjectId(id)}
+const result=await appointmentCollection.findOne(query)
+res.send(result)
+})
+
+app.post('/add-presaipation',async(req,res)=>{
+  const presaipationInfo=req.body
+  const result=await presaipationCollection.insertOne(presaipationInfo)
+ res.send(result)
+})
+
+app.get('/show-prescription',async(req,res)=>{
+const query={patientEmail:req.query.email, doctorEmail:req.query.dremail}
+
+const result=await presaipationCollection.findOne(query)
+res.send(result)
+})
 
     // await client.db("admin").command({ ping: 1 });
     console.log(

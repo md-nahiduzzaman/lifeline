@@ -2,23 +2,24 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import AddPresaipationTb from "./AddPresaipationTb";
 interface patients{
-    id: string;    
+    _id: string;    
     name: string;       
     gender: string;     
-    contact: string;    
+    number: string;    
     address: string;    
     doctor: string;     
     admittedDate: string; 
     status: string;
     email:string;
+    img:string
   }
   
 const AddPrescription = () => {
     const [appointment,setAppointment]=useState<patients[]>([])
-
+const doctor='daniel.harris@hospital.com'
 console.log(appointment)
 useEffect(()=>{
-axios.get('/testdata.json').then(res=>{
+axios.get(`http://localhost:5000/approve-appionment?email=${doctor}`).then(res=>{
   setAppointment(res.data)
   console.log(res.data)
 }).catch(error=>{

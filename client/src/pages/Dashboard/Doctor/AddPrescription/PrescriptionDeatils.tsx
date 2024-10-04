@@ -1,21 +1,53 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useLoaderData } from "react-router-dom";
+interface PatientInfo {
+  patientName: string; // রোগীর নাম
+  patientEmail: string; // রোগীর ইমেইল
+  doctorEmail: string; // ডাক্তার এর ইমেইল
+  doctorName: string; // ডাক্তার এর নাম
+  medicineDetails: string; // প্রেসক্রিপশনের ডেটা
+  age: Date; // রোগীর জন্ম তারিখ
+  gender: string; // রোগীর লিঙ্গ
+  patientNumber: string; // রোগীর ফোন নাম্বার
+  address: string; // রোগীর ঠিকানা
+  admittedDate: Date; // রোগী ভর্তি হওয়ার তারিখ
+  blood: string; // রক্তের গ্রুপ
+  pressure: string; // রক্তচাপ
+  pushRate: string; // হার্টবিটের হার
+  weight: string; // ওজন
+  issuDate: Date; // প্রিস্ক্রিপশন ইস্যু করার তারিখ
+  instructions: string | undefined; // ডাক্তার এর নির্দেশনা, যা হয়তো `undefined` হতে পারে
+}
 
+interface patients{
+  _id: string;    
+  name: string;       
+  gender: string;     
+  number: string;    
+  address: string;    
+  doctor: string;     
+  admittedDate: string; 
+  status: string;
+  email:string;
+  img:string;
+doctorName:string;
+doctorEmail:string;
+}
 const PrescriptionDeatils = () => {
-  const [prescriptionDeatils,setPresaipationDeatils]=useState<any>(null)
+const presInfo=useLoaderData()as patients
+ const {email,doctorEmail}=presInfo
 
+const {data}=useQuery({
+  queryKey:['prescription'],
+  queryFn:async()=>{
+const res=await axios.get(`http://localhost:5000/show-prescription?email=${email}&&dremail=${doctorEmail}`)
+
+return res.data
+  }
+})
  
-  useEffect(()=>{
-  axios.get('/test3.json').then(res=>{
-  setPresaipationDeatils(res.data)
-    console.log(res.data.medicineDeatils)
-  }).catch(error=>{
-    console.log(error)
-  })
-  
-  },[])
-
-  console.log(prescriptionDeatils?.medicineDetails)
+const medicin=data?.medicineDeatils
   return (
     <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
      <h2 className="text-3xl font-bold text-[#06B6D4] text-center">Lifeline</h2>
@@ -26,32 +58,32 @@ const PrescriptionDeatils = () => {
       <tbody>
 <tr className="border-t">
 <td className="p-2 font-semibold">Patient's Name:</td>
-            <td className="p-2">{prescriptionDeatils?.patientName}</td>
+            <td className="p-2">{data?.patientName}</td>
             <td className="p-2 font-semibold">Date:</td>
-            <td className="p-2">{prescriptionDeatils?.admittedDate} </td>
+            <td className="p-2">{data?.admittedDate} </td>
 </tr>
 <tr className="border-t">
             <td className="p-2 font-semibold">Date of Birth:</td>
-            <td className="p-2">{prescriptionDeatils?.age}</td>
+            <td className="p-2">{data?.age}</td>
             <td className="p-2 font-semibold">Age:</td>
             <td className="p-2">20 Year</td>
             <td className="p-2 font-semibold">Sex:</td>
-            <td className="p-2">{prescriptionDeatils?.gender}</td>
+            <td className="p-2">{data?.gender}</td>
           </tr>
 <tr className="border-t">
             <td className="p-2 font-semibold">Phone Number:</td>
-            <td className="p-2">{prescriptionDeatils?.patientNumber}</td>
+            <td className="p-2">{data?.patientNumber}</td>
             <td className="p-2 font-semibold">address:</td>
-            <td className="p-2">{prescriptionDeatils?.address}</td>
+            <td className="p-2">{data?.address}</td>
            
           </tr>
           <tr className="border-t">
           <td className="p-2 font-semibold">Blood group:</td>
-            <td className="p-2">{prescriptionDeatils?.blood}</td>
+            <td className="p-2">{data?.blood}</td>
             <td className="p-2 font-semibold">Blood pressure:</td>
-            <td className="p-2">{prescriptionDeatils?.pressure}</td>
+            <td className="p-2">{data?.pressure}</td>
             <td className="p-2 font-semibold">weight:</td>
-            <td className="p-2">{prescriptionDeatils?.weight}</td>
+            <td className="p-2">{data?.weight}</td>
           </tr>
       </tbody>
     </table>
@@ -70,12 +102,12 @@ const PrescriptionDeatils = () => {
       </tr>
     </thead>
     <tbody>
-    {prescriptionDeatils?.medicineDetails?.map((pres:any,index:number)=> <tr key={index}>
+    {medicin?.map((pres:any,index:number)=> <tr key={index}>
         <th>{index+1}</th>
         <td className="text-sm">{pres?.medicationName}</td>
-        <td className="text-sm">{pres.dosage}</td>
-        <td className="text-sm">{pres.frequency}</td>
-        <td className="text-sm">{pres.duration}</td>
+        <td className="text-sm">{pres?.dosage}</td>
+        <td className="text-sm">{pres?.frequency}</td>
+        <td className="text-sm">{pres?.duration}</td>
       </tr>
        )
     }
@@ -88,7 +120,7 @@ const PrescriptionDeatils = () => {
   <div className="grid justify-end mt-4">
     <p className="">Signature of prescription</p>
 
-    <p className="border-b py-2 ml-6 italic border-blue-400">{prescriptionDeatils?.doctorName}</p>
+    <p className="border-b py-2 ml-6 italic border-blue-400">{data?.doctorName}</p>
   </div>
 </div>
     </div>

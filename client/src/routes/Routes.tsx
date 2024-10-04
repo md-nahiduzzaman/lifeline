@@ -97,11 +97,13 @@ element:<DoctorHome></DoctorHome>
         element:<AddPrescription></AddPrescription>
       },{
 path:'/dashboard/added-prescription/:id',
-element:<AddedPresaipation></AddedPresaipation>
+element:<AddedPresaipation></AddedPresaipation>,
+loader:({params})=>fetch(`http://localhost:5000/patient-deatils/${params.id}`)
 
       } ,{
         path:'/dashboard/prescriptionDeatils/:id',
-        element:<PrescriptionDeatils></PrescriptionDeatils>
+        element:<PrescriptionDeatils></PrescriptionDeatils>,
+        loader:({params})=>fetch(`http://localhost:5000/patients-deatils/${params.id}`)
       }
        // --------------------this is the asmin dshboard route arey -----------------------------------
       ,{

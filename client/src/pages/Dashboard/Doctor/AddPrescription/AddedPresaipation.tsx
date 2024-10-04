@@ -1,20 +1,40 @@
 
 import axios from "axios";
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
+import { useLoaderData, useNavigate } from "react-router-dom";
 interface presaipationProps{
      medicationName:string;
     dosage:string;
     frequency:string;
     duration:string;
 }
+
+interface PatientInfo {
+  img: string;
+  name: string;
+  email: string;
+  birthdate: number;
+  gender: string;
+  number: string;
+  address: string;
+  blood: string;
+  pressure: string;
+  pushRate: string;
+  weight: string;
+  admittedDate: string;
+  doctorEmail:string;
+  doctorName:string;
+
+}
 const AddedPresaipation = () => {
+  const navigate=useNavigate()
+  const patientInfos=useLoaderData()as PatientInfo
    const [presaipation,setPresaipation]=useState({
     medicationName:'',
     dosage:'',
     frequency:'',
     duration:'',
    })
-   const [testData,setTestData]=useState<any>()
    const [doctorMessage,setDoctorMessage]=useState({
     drMessage:'',
    })
@@ -27,39 +47,43 @@ e.preventDefault()
 setPresaipationData([...presaipationData,presaipation])
 
     }
+const {img,name,email,birthdate,gender,number,address,doctorName,blood,doctorEmail,pressure,pushRate,weight,admittedDate}= patientInfos
+
 const handilePresaipationSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
 e.preventDefault()
 const presaipationInfo={
-  patientName:testData.name,
-  patientEmail:testData.email,
-  doctorName:"Dr.Nahid bro",
-  doctorEmail:'nahidbro162@gamil.com',
+  patientName:name,
+  patientEmail:email,
+  doctorEmail,
+  doctorName,
   medicineDeatils:presaipationData,
-  age:testData.age,
-   gender:testData.gender,
-   patientNumber:testData.contact,
-   address: testData.address,
-   admittedDate: testData.admittedDate,
-   blood:testData.blood,
-   pressure:testData.pressure,
-   pushRate:testData.pushRate,
-   weight:testData.weight,
-   issuDate:Date.now,
-   instructions:doctorMessage.drMessage
+  age:birthdate,
+   gender:gender,
+   patientNumber:number,
+   address:address,
+   admittedDate:admittedDate,
+   blood:blood,
+   pressure:pressure,
+   pushRate:pushRate,
+   weight:weight,
+   issuDate:new Date(),
+   instructions:doctorMessage?.drMessage
 
 }
+
+axios.post('http://localhost:5000/add-presaipation',presaipationInfo).then(res=>{
+  console.log(res.data)
+if(res.data.insertedId){
+navigate('/dashboard/AddprescriptionTb')
+}
+}).catch(error=>{
+  console.log(error)
+})
 
 console.log(presaipationInfo)
 }
 
-  useEffect(()=>{
-    axios.get('/test2.json').then(res=>{
-setTestData(res.data)
-    }).catch(error=>{
-      console.log(error)
-    })
-  },[])
-console.log(testData)
+
 
   return (
     <div>
@@ -67,7 +91,7 @@ console.log(testData)
 <div className=" lg:flex gap-6">
   <div className=" lg:w-1/2 ">
   <div className="flex gap-4">
-  <img className="w-24 h-24 p-1 rounded-full" src={testData?.img} alt="" />
+  <img className="w-24 h-24 p-1 rounded-full" src={img} alt="" />
   <h2 className="text-xl font-bold text-[#06B6D4]">Patient information</h2>
   </div>
  <div className="mt-6">
@@ -88,17 +112,16 @@ console.log(testData)
     <p className="mt-3">Address</p>
    </div>
    <div>
-
-   <p>{testData?.name} </p>
-   <p className="my-3">{testData?.age}</p>
-    <p>{testData?.gender}</p>
-    <p className="my-3">{testData?.blood}</p>
-    <p>{testData?.pressure}</p>
-    <p className="my-3">{testData?.pushRate}</p>
-    <p>{testData?.weight}</p>
-    <p className="my-3">{testData?.email}</p>
-    <p>{testData?.contact}</p>
-    <p className="mt-3">{testData?.address}</p>
+   <p>{name} </p>
+   <p className="my-3">{birthdate}</p>
+    <p>{gender}</p>
+    <p className="my-3">{blood}</p>
+    <p>{pressure}</p>
+    <p className="my-3">{pushRate}</p>
+    <p>{weight}</p>
+    <p className="my-3">{email}</p>
+    <p>{number}</p>
+    <p className="mt-3">{address}</p>
    </div>
   </div>
 </div>
@@ -145,7 +168,6 @@ console.log(testData)
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" 
                 />
             </div>
-
             <div>
                 <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Dosage</label>
                 <input  onChange={(e)=>setPresaipation({...presaipation,dosage:e.target.value})}
