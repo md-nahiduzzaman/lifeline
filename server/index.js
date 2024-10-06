@@ -2,15 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const {
-  MongoClient,
-  ServerApiVersion,
-  Timestamp,
-  ObjectId,
-} = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+require("dotenv").config();
 
 // config
-require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -41,12 +36,29 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
+    const userCollection = client.db("lifeline").collection("users");
     const database = client.db("lifeline");
     const appointmentCollection = database.collection("Appointment");
     const presaipationCollection = database.collection("Presaipation");
 
     // await client.connect();
     // Send a ping to confirm a successful connection
+
+// --------------------------------this is the doctort and user api ---------------------------------------
+
+
+
+app.get("/users", async (req, res) => {
+  const role = req.query.role || "doctor";
+  try {
+    const result = await userCollection.find({ role }).toArray();
+    res.send(result);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).send({ message: error.message });
+  }
+});
+
 
 
     // ----------------this is the doctor handile api section ----------------------------------------
@@ -116,18 +128,39 @@ const result=await presaipationCollection.findOne(query)
 res.send(result)
 })
 
+app.get('/appionment-today',async(req,res)=>{
+  const today=new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const  tomorrow=new Date()
+
+  tomorrow.setHours(24, 0, 0, 0)
+
+  const todayAppionments=await appointmentCollection.countDocuments({
+admittedDate:{$gte:today,$lt:tomorrow}
+  })
+ 
+
+  const pending={status:"pending"}
+
+  const pendingappionment=await appointmentCollection.countDocuments(pending)
+
+  const allAppionments=await appointmentCollection.estimatedDocumentCount()
+
+  res.send({todayAp:todayAppionments,pendingAp:pendingappionment,allAp:allAppionments})
+})
+
     // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
   } finally {
-    // Ensures that the client will close when you finish/error
+    // Optionally close the connection
     // await client.close();
   }
 }
 run().catch(console.dir);
 
-// test
 app.get("/", (req, res) => {
   res.send("lifeline server is Running");
 });

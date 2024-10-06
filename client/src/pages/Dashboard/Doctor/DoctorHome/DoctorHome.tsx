@@ -1,10 +1,20 @@
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
 
 const DoctorHome = () => {
+const {data}=useQuery({
+  queryKey:['appionmentslength'],
+  queryFn:async()=>{
+const {data}=await axios.get('http://localhost:5000/appionment-today')
+return data
+  }
+})
+
   return (
     <div>
-      <div className="stats shadow">
-  <div className="stat">
-    <div className="stat-figure text-primary">
+      <div className=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-8">
+  <div className="stat shadow-md bg-white border border-gray-300 rounded-lg">
+    <div className="stat-figure text-blue-500">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -17,13 +27,13 @@ const DoctorHome = () => {
           d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
       </svg>
     </div>
-    <div className="stat-title">Total Likes</div>
-    <div className="stat-value text-primary">25.6K</div>
+    <div className="stat-title text-blue-500 text-xl font-semibold">Today Appointments</div>
+    <div className="stat-value text-blue-500 my-4">{data?.todayAp}</div>
     <div className="stat-desc">21% more than last month</div>
   </div>
 
-  <div className="stat">
-    <div className="stat-figure text-secondary">
+  <div className="stat shadow-md bg-white border border-gray-300 rounded-lg">
+    <div className="stat-figure text-[#FFA500]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -36,22 +46,28 @@ const DoctorHome = () => {
           d="M13 10V3L4 14h7v7l9-11h-7z"></path>
       </svg>
     </div>
-    <div className="stat-title">Page Views</div>
-    <div className="stat-value text-secondary">2.6M</div>
+    <div className="stat-title text-[#FFA500] text-xl font-semibold">Pending  Appointments</div>
+    <div className="stat-value text-[#FFA500] my-4">{data?.pendingAp}</div>
     <div className="stat-desc">21% more than last month</div>
   </div>
 
-  <div className="stat">
+  <div className="stat shadow-md bg-white border border-gray-300">
     <div className="stat-figure text-secondary">
-      <div className="avatar online">
-        <div className="w-16 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
-      </div>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        className="inline-block h-8 w-8 stroke-current">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      </svg>
     </div>
-    <div className="stat-value">86%</div>
-    <div className="stat-title">Tasks done</div>
-    <div className="stat-desc text-secondary">31 tasks remaining</div>
+    <div className="stat-title text-xl text-secondary font-semibold">All Appointments</div>
+    <div className="stat-value my-4 text-secondary">{data?.allAp}</div>
+    <div className="stat-desc ">31 tasks remaining</div>
   </div>
 </div>
     </div>

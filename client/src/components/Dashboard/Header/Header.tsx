@@ -2,8 +2,8 @@ import { IoMdNotifications } from "react-icons/io";
 
 const Header = () => {
   return (
-    <div className="sticky top-0 z-30 bg-white shadow py-2 p-4">
-      <div className="flex justify-end gap-2 items-center space-x-6 pr-6">
+    <div className="sticky top-0 z-30 p-4 py-2 bg-white border-b">
+      <div className="flex items-center justify-end gap-2 pr-6 space-x-6">
         {/* Notification Icon */}
         <div className="text-2xl">
           <IoMdNotifications />
