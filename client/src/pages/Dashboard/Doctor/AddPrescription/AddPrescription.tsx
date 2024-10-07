@@ -1,57 +1,36 @@
-
-import {useState } from "react"
-import DrAppointmenttable from "./DrAppointmenttable"
 import axios from "axios"
-import { useQuery } from "@tanstack/react-query";
-
+import { useEffect, useState } from "react"
+import AddPresaipationTb from "./AddPresaipationTb";
 interface patients{
-  _id: string;    
-  name: string;       
-  gender: string;     
-  number: string;    
-  address: string;    
-  doctor: string;     
-  admittedDate: string; 
-  status: string;
-  email:string;
-  img:string;
-}
-
-const DoctorAppointment = () => {
-const [appointment,setAppointment]=useState<patients[]>([])
-const email='daniel.harris@hospital.com'
-const {data,refetch}=useQuery({queryKey:['approve'],
-  queryFn:async()=>{
-    const res=await axios.get(`http://localhost:5000/apppionment-request?email=${email}`)
-    setAppointment(res.data)
-    return res.data
+    _id: string;    
+    name: string;       
+    gender: string;     
+    number: string;    
+    address: string;    
+    doctor: string;     
+    admittedDate: string; 
+    status: string;
+    email:string;
+    img:string
   }
-
+  
+const AddPrescription = () => {
+    const [appointment,setAppointment]=useState<patients[]>([])
+const doctor='daniel.harris@hospital.com'
+console.log(appointment)
+useEffect(()=>{
+axios.get(`http://localhost:5000/approve-appionment?email=${doctor}`).then(res=>{
+  setAppointment(res.data)
+  console.log(res.data)
+}).catch(error=>{
+  console.log(error)
 })
-console.log(data)
 
-const handileClickApprove=(_id:string):void=>{
-console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-approve/${_id}`).then(res=>{
-    console.log(res.data)
-   refetch()
-  }).catch(error=>{
-    console.log(error)
-  })
-}
-const handileClickRjects=(_id:string):void=>{
-console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-reject/${_id}`).then(res=>{
-    console.log(res.data)
-    refetch()
-  }).catch(error=>{
-    console.log(error)
-  })
-}
+},[])
 
   return (
     <div>
-  <section className="container px-4 mx-auto">
+       <section className="container px-4 mx-auto">
   <div className="flex items-center gap-x-3">
     <h2 className="text-lg font-medium text-gray-800 dark:text-white">Appointment</h2>
     <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
@@ -80,7 +59,7 @@ console.log(_id)
                   scope="col"
                   className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
-                  Status
+             prescription
                 </th>
                 <th
                   scope="col"
@@ -104,10 +83,7 @@ console.log(_id)
                 </th>
 
                 <th scope="col" className=" py-3.5 px-4  text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
-            Action
-                </th>
-                <th scope="col" className=" py-3.5 px-4  text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
-                Reject
+              Add prescription
                 </th>
               </tr>
             </thead>
@@ -115,7 +91,7 @@ console.log(_id)
             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
             
             {
-              appointment.map((patient,index)=><DrAppointmenttable key={index} handileClickApprove={handileClickApprove} handileClickRjects={handileClickRjects}  patient={patient} index={index}></DrAppointmenttable>)
+              appointment.map((patient,index)=><AddPresaipationTb key={index}  patient={patient} index={index}></AddPresaipationTb>)
             }
             </tbody>
           </table>
@@ -126,7 +102,7 @@ console.log(_id)
 </section>
 
     </div>
-  );
-};
+  )
+}
 
-export default DoctorAppointment;
+export default AddPrescription
