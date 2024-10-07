@@ -1,16 +1,17 @@
 
 
-import { useContext, useState } from 'react';
+
+import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../providers/AuthProvider';
+
 import Swal from 'sweetalert2';
 
 const AdminEditDoctors = () => {
-    const { user } = useContext(AuthContext)
     
-    const sender: any = user.email
+    
+    
     const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
     let photo:any='';
@@ -54,14 +55,12 @@ const AdminEditDoctors = () => {
             .then((res: any) => {
                 return res.json()
             })
-            .then((data: any) => {
-
-              
+            .then((data: any) => { 
 
                 if (data.data.url) {
                     photo=data.data.url;
                     const updateDoc = {
-                        speciality, sender,
+                        speciality, 
                         checked_patient, date, experience, email,
                         visit, time, short_des, long_des, photo
                     }
