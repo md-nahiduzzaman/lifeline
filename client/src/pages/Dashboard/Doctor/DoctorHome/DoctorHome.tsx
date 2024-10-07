@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import BarChat from "./BarChat"
 
 const DoctorHome = () => {
 const {data}=useQuery({
@@ -11,7 +12,7 @@ return data
 })
 
   return (
-    <div>
+    <div className="bg-white max-w-screen-xl  mx-auto">
       <div className=" grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-8">
   <div className="stat shadow-md bg-white border border-gray-300 rounded-lg">
     <div className="stat-figure text-blue-500">
@@ -70,7 +71,9 @@ return data
     <div className="stat-desc ">31 tasks remaining</div>
   </div>
 </div>
+<BarChat></BarChat>
     </div>
+
   )
 }
 

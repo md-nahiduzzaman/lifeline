@@ -19,7 +19,6 @@ import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
 
 import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
-import DrManagePatient from "../pages/Dashboard/Doctor/DrManagePatient/DrManagePatient";
 import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
 import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
@@ -89,9 +88,6 @@ const router = createBrowserRouter([
 path:'doctorHome',
 element:<DoctorHome></DoctorHome>
 
-      },{
-        path:'drmanagepatient',
-        element:<DrManagePatient></DrManagePatient>
       },{
         path:'AddprescriptionTb',
         element:<AddPrescription></AddPrescription>
