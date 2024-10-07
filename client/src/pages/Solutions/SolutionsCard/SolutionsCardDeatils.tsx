@@ -1,5 +1,5 @@
 import React from "react"
-interface Solution {
+interface Solutions {
   title: string;
   description: string;
   image: string;
@@ -8,7 +8,7 @@ interface Solution {
   // Add other properties here if needed
 }
 interface PackageCardProps {
-  solution: Solution;
+  solution: Solutions;
 }
 
 const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {

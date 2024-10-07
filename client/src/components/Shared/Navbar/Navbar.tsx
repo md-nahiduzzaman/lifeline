@@ -30,8 +30,20 @@ const Navbar = () => {
           </ul>
         </details>
       </li> */}
+<<<<<<< HEAD
       <li><NavLink to={'/package'}>Ours Package</NavLink> </li>
       <li><NavLink to={'/about'}>About</NavLink></li>
+=======
+      <li>
+        <NavLink to={"/package"}>Ours Package</NavLink>{" "}
+      </li>
+      <li>
+        <NavLink to={"/about"}>About</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/dashboard/doctorHome"}>Dashboard</NavLink>
+      </li>
+>>>>>>> 0e0897b0cfe91527d453278f8bcdc855c6226f56
     </>
   );
   return (

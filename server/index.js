@@ -26,6 +26,8 @@ app.use(cookieParser());
 console.log("sfsdfs", process.env.DB_USER)
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.r6s2z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
+
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -36,14 +38,14 @@ const client = new MongoClient(uri, {
 });
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail', 
+  service: 'gmail',
   auth: {
     user: 'nayemshahadat581@gmail.com',
     pass: 'bpij osjx hofk eaaj',
   },
 
 });
-   
+
 async function run() {
   try {
 
@@ -76,23 +78,23 @@ async function run() {
 
       const updateDoc = {
         $set: {
-           
-          specialty:update.speciality,
+
+          specialty: update.speciality,
           total_patient_checkups: update.checked_patient,
           experience: update.experience,
           visit_charge: update.visit,
           "schedule.days": update.date,
           "schedule.time": update.time,
           short_description: update.short_des,
-          description:update.long_des,
-          image_url:update.photo
+          description: update.long_des,
+          image_url: update.photo
         }
       }
-      const result=await userCollection.updateOne(query,updateDoc,options)
+      const result = await userCollection.updateOne(query, updateDoc, options)
       if (result.modifiedCount > 0) {
         const mailOptions = {
           from: 'nayemshahadat581@gmail.com',
-          to:update.email, // Doctor's email should be provided in the frontend data or fetched from the database
+          to: update.email, // Doctor's email should be provided in the frontend data or fetched from the database
           subject: 'Your Profile Information Has Been Updated',
           text: `Dear ${update.specialty},\n\nYour profile information has been successfully updated.\n\nThank you.\n\nBest Regards,\nHospital Management Team`,
           html: `      
@@ -100,7 +102,7 @@ async function run() {
             any thing wrong update it </p>          
           `,
         };
-  
+
         // Send the email
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
@@ -115,8 +117,125 @@ async function run() {
         res.status(404).send({ message: 'Doctor not found or no changes made.' });
       }
     })
+    // Connect the client to the server	(optional starting in v4.7)
+    // const userCollection = client.db("lifeline").collection("users");
+    const database = client.db("lifeline");
+    const appointmentCollection = database.collection("Appointment");
+    const presaipationCollection = database.collection("Presaipation");
 
-    console.log("Pinged your deployment. Successfully connected to MongoDB!");
+    // await client.connect();
+    // Send a ping to confirm a successful connection
+
+// --------------------------------this is the doctort and user api ---------------------------------------
+
+
+
+    app.get("/users", async (req, res) => {
+      const role = req.query.role || "doctor";
+      try {
+        const result = await userCollection.find({ role }).toArray();
+        res.send(result);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).send({ message: error.message });
+      }
+    });
+
+
+
+    // ----------------this is the doctor handile api section ----------------------------------------
+    app.get('/apppionment-request', async (req, res) => {
+      const email = { doctorEmail: req.query.email }
+      const result = await appointmentCollection.find(email).toArray()
+      res.send(result)
+    })
+
+
+    app.patch(('/appionment-approve/:id'), async (req, res) => {
+      const id = req.params.id
+
+      const query = { _id: new ObjectId(id) }
+      const updates = {
+        $set: {
+          status: "approved"
+        }
+      }
+
+      const result = await appointmentCollection.updateOne(query, updates)
+      res.send(result)
+    })
+    app.patch(('/appionment-reject/:id'), async (req, res) => {
+      const id = req.params.id
+
+      const query = { _id: new ObjectId(id) }
+      const updates = {
+        $set: {
+          status: "rejected"
+        }
+      }
+
+      const result = await appointmentCollection.updateOne(query, updates)
+      res.send(result)
+    })
+
+    app.get('/approve-appionment', async (req, res) => {
+      const status = { status: 'approved', doctorEmail: req.query.email }
+
+      const result = await appointmentCollection.find(status).toArray()
+      res.send(result)
+    })
+    app.get('/patient-deatils/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await appointmentCollection.findOne(query)
+      res.send(result)
+    })
+    app.get('/patients-deatils/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await appointmentCollection.findOne(query)
+      res.send(result)
+    })
+
+    app.post('/add-presaipation', async (req, res) => {
+      const presaipationInfo = req.body
+      const result = await presaipationCollection.insertOne(presaipationInfo)
+      res.send(result)
+    })
+
+    app.get('/show-prescription', async (req, res) => {
+      const query = { patientEmail: req.query.email, doctorEmail: req.query.dremail }
+
+      const result = await presaipationCollection.findOne(query)
+      res.send(result)
+    })
+
+    app.get('/appionment-today', async (req, res) => {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+
+      const tomorrow = new Date()
+
+      tomorrow.setHours(24, 0, 0, 0)
+
+      const todayAppionments = await appointmentCollection.countDocuments({
+        admittedDate: { $gte: today, $lt: tomorrow }
+      })
+
+
+      const pending = { status: "pending" }
+
+      const pendingappionment = await appointmentCollection.countDocuments(pending)
+
+      const allAppionments = await appointmentCollection.estimatedDocumentCount()
+
+      res.send({ todayAp: todayAppionments, pendingAp: pendingappionment, allAp: allAppionments })
+    })
+
+    // await client.db("admin").command({ ping: 1 });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   } finally {
 
   }
