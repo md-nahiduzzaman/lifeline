@@ -9,7 +9,6 @@ import About from "../pages/About/About";
 import Solutions from "../pages/Solutions/Solutions";
 import DrCart from "../components/DrCart/DrCart";
 import DashboardLayout from "../layouts/DashboardLayout";
-
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import PatientAppointment from "../pages/Dashboard/Patient/PatientAppointment";
 import PatientPrescription from "../pages/Dashboard/Patient/PatientPrescription";
@@ -17,7 +16,6 @@ import PatientHealthRecord from "../pages/Dashboard/Patient/PatientHealthRecord"
 import DoctorAppointment from "../pages/Dashboard/Doctor/DoctorAppointment";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
-
 import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
 import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
 import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";

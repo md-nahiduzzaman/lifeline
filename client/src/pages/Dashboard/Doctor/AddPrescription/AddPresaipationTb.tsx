@@ -21,7 +21,7 @@ index:number
 }
 
 const AddPresaipationTb:React.FC<patientProps> = ({patient,index}) => {
-    const {name,email,admittedDate,number,status,_id,img}=patient
+    const {name,email,admittedDate,number,_id,img}=patient
   return (
     <tr>
     <td className="px-2 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

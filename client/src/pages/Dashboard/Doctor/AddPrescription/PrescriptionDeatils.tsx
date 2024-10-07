@@ -1,25 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
 import { useLoaderData } from "react-router-dom";
-interface PatientInfo {
-  patientName: string; // রোগীর নাম
-  patientEmail: string; // রোগীর ইমেইল
-  doctorEmail: string; // ডাক্তার এর ইমেইল
-  doctorName: string; // ডাক্তার এর নাম
-  medicineDetails: string; // প্রেসক্রিপশনের ডেটা
-  age: Date; // রোগীর জন্ম তারিখ
-  gender: string; // রোগীর লিঙ্গ
-  patientNumber: string; // রোগীর ফোন নাম্বার
-  address: string; // রোগীর ঠিকানা
-  admittedDate: Date; // রোগী ভর্তি হওয়ার তারিখ
-  blood: string; // রক্তের গ্রুপ
-  pressure: string; // রক্তচাপ
-  pushRate: string; // হার্টবিটের হার
-  weight: string; // ওজন
-  issuDate: Date; // প্রিস্ক্রিপশন ইস্যু করার তারিখ
-  instructions: string | undefined; // ডাক্তার এর নির্দেশনা, যা হয়তো `undefined` হতে পারে
-}
-
 interface patients{
   _id: string;    
   name: string;       
