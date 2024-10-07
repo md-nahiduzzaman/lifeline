@@ -16,7 +16,7 @@ const PackagePrice = () => {
 
   useEffect(() => {
     axios
-      .get("package.json")
+      .get("packagePk.json")
       .then((res) => {
         setPackage(res.data);
       })

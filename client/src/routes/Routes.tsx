@@ -9,7 +9,6 @@ import About from "../pages/About/About";
 import Solutions from "../pages/Solutions/Solutions";
 import DrCart from "../components/DrCart/DrCart";
 import DashboardLayout from "../layouts/DashboardLayout";
-
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import PatientAppointment from "../pages/Dashboard/Patient/PatientAppointment";
 import PatientPrescription from "../pages/Dashboard/Patient/PatientPrescription";
@@ -17,6 +16,10 @@ import PatientHealthRecord from "../pages/Dashboard/Patient/PatientHealthRecord"
 import DoctorAppointment from "../pages/Dashboard/Doctor/DoctorAppointment";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
+import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
+import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
+import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";
+import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,11 +78,29 @@ const router = createBrowserRouter([
         path: "patient-record",
         element: <PatientHealthRecord />,
       },
+      // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",
         element: <DoctorAppointment />,
-      },
-      {
+      },{
+path:'doctorHome',
+element:<DoctorHome></DoctorHome>
+
+      },{
+        path:'AddprescriptionTb',
+        element:<AddPrescription></AddPrescription>
+      },{
+path:'/dashboard/added-prescription/:id',
+element:<AddedPresaipation></AddedPresaipation>,
+loader:({params})=>fetch(`http://localhost:5000/patient-deatils/${params.id}`)
+
+      } ,{
+        path:'/dashboard/prescriptionDeatils/:id',
+        element:<PrescriptionDeatils></PrescriptionDeatils>,
+        loader:({params})=>fetch(`http://localhost:5000/patients-deatils/${params.id}`)
+      }
+       // --------------------this is the asmin dshboard route arey -----------------------------------
+      ,{
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
