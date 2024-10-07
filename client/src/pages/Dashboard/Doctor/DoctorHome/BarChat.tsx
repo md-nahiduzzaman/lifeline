@@ -62,10 +62,10 @@ const BarChat = () => {
             shape={<TriangleBar />}
             label={{ position: 'top' }}
           >
-            {appointmentData.map((entry, index) => (
+            {appointmentData.map(( index) => (
               <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
             ))}
-            
+
           </Bar>
         </BarChart>
       </ResponsiveContainer>
