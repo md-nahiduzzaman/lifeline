@@ -94,8 +94,9 @@ const router = createBrowserRouter([
         element:<Total_Bed></Total_Bed>
       },
       {
-        path:'/dashboard/admin-doctors/admin-edit-doctors',
-        element:<AdminEditDoctors></AdminEditDoctors>
+        path:'/dashboard/admin-doctors/admin-edit-doctors/:id',
+        element:<AdminEditDoctors></AdminEditDoctors>,
+        loader:({params})=>fetch(`http://localhost:5000/admin/${params.id}`)
       }
     ],
   },

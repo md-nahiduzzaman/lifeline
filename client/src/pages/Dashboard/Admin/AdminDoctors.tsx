@@ -8,7 +8,7 @@ import Swal from "sweetalert2"
 const AdminDoctors = () => {
     const [docotrs, setDoctors] = useState([])
     useEffect(() => {
-        fetch('/doctors.json')
+        fetch('http://localhost:5000/users')
             .then((res: any) => {
                 return res.json()
             })
@@ -18,9 +18,9 @@ const AdminDoctors = () => {
     }, [])
     console.log('adefsaf')
 
-    const handleDelete=((id:any)=>{
-         console.log(id)
-         Swal.fire({
+    const handleDelete = ((id: any) => {
+        console.log(id)
+        Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -28,21 +28,21 @@ const AdminDoctors = () => {
             confirmButtonColor: "#7396DB",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-           
-          }).then((result) => {
+
+        }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
             }
-          });
+        });
     })
     return (
         <section className="container px-4 mx-auto">
             <div className="flex items-center gap-x-3">
-                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Numbers of Doctors</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Numbers of Doctors{docotrs.length}</h2>
 
                 <span className="px-3 py-1 text-blue-600 bg-blue-100 text-[16px] rounded-full dark:bg-gray-800 dark:text-blue-400">100</span>
             </div>
@@ -107,9 +107,9 @@ const AdminDoctors = () => {
                                                 </button>
                                             </td>
                                             <td>
-                                                <Link to='/dashboard/admin-doctors/admin-edit-doctors'>
+                                                <Link to={`/dashboard/admin-doctors/admin-edit-doctors/${info._id}`}>
                                                     <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-600 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
-                                                        <FaEdit className="text-xl"></FaEdit>
+                                                        <FaEdit className="text-xl" />
                                                     </button>
                                                 </Link>
                                             </td>
