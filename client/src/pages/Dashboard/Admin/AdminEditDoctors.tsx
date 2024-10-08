@@ -1,6 +1,5 @@
 
 
-
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -10,11 +9,10 @@ import Swal from 'sweetalert2';
 
 const AdminEditDoctors = () => {
     
-    
-    
     const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
     let photo:any='';
+
     const singleData: any = useLoaderData()
     
     const handleSubmit = ((e: any) => {
