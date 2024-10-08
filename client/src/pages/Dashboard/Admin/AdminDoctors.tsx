@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useEffect, useState } from "react"
 import { FaEdit } from "react-icons/fa"
 import { FaMoneyBill, FaTrash } from "react-icons/fa6"
@@ -8,18 +9,20 @@ import Swal from "sweetalert2"
 const AdminDoctors = () => {
     const [docotrs, setDoctors] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/users')
-            .then((res: any) => {
-                return res.json()
+
+        axios.get('http://localhost:5000/users')
+            .then((response) => {
+                setDoctors(response.data);
             })
-            .then((data: any) => {
-                setDoctors(data)
-            })
-    }, [])
-    console.log('adefsaf')
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
 
     const handleDelete = ((id: any) => {
         console.log(id)
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -31,20 +34,33 @@ const AdminDoctors = () => {
 
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+
+                axios.delete(`http://localhost:5000/admin-delete-doctor/${id}`)
+                    .then((res) => {
+                        console.log(res.data)
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        axios.get('http://localhost:5000/users')
+                            .then((response) => {
+                                setDoctors(response.data);
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching data:', error);
+                            });
+                    })
+
             }
         });
     })
     return (
         <section className="container px-4 mx-auto">
             <div className="flex items-center gap-x-3">
-                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Numbers of Doctors{docotrs.length}</h2>
+                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Numbers of Doctors</h2>
 
-                <span className="px-3 py-1 text-blue-600 bg-blue-100 text-[16px] rounded-full dark:bg-gray-800 dark:text-blue-400">100</span>
+                <span className="px-3 py-1 text-blue-600 bg-blue-100 text-[16px] rounded-full dark:bg-gray-800 dark:text-blue-400">{docotrs.length}</span>
             </div>
 
             <div className="flex flex-col mt-6">
@@ -102,7 +118,9 @@ const AdminDoctors = () => {
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
 
-                                                <button onClick={handleDelete} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                                <button onClick={() => {
+                                                    handleDelete(info._id)
+                                                }} className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                                                     <FaTrash className="text-xl ml-3 text-red-400"></FaTrash>
                                                 </button>
                                             </td>

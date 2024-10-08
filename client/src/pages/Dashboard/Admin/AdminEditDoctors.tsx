@@ -1,5 +1,6 @@
 
 
+import axios from 'axios';
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -20,7 +21,7 @@ const AdminEditDoctors = () => {
         if (!selectedFile) {
            
             alert('Please Select a photo')
-           
+            
             return
         }
         
@@ -60,21 +61,19 @@ const AdminEditDoctors = () => {
                         checked_patient, date, experience, email,
                         visit, time, short_des, long_des, photo
                     }
-                    // http://localhost:5000/admin-edit-doctor/${singleData._id}
-                    fetch(``, {
-                        method: 'PUT',
+                   
+                    axios.put(`http://localhost:5000/admin-edit-doctor/${singleData._id}`, updateDoc, {
                         headers: {
-                            'content-type': 'application/json',
+                            'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(updateDoc)
                     })
-                        .then((res: any) => {
-                            return res.json()
-                        })
-                        .then((data: any) => {
-                            Swal.fire("Data updated Succesfully");
-                            console.log(data)
-                        })
+                    .then((response) => {
+                        Swal.fire("Data updated successfully");
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.error('Error updating doctor data:', error);
+                    });
                 }
             })
     })
