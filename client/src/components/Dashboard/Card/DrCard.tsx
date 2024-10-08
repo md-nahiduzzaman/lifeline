@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import BookAppointmentModal from "../Modal/BookAppointmentModal";
 
 // Define the type for doctor prop
 type Doctor = {
@@ -15,7 +17,14 @@ interface DrCardProps {
   doctor: Doctor; // Define the prop type
 }
 
-const DrCard = ({ doctor }: DrCardProps) => {
+const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // Close modal function
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="flex max-w-lg bg-white border rounded-lg shadow-sm">
       {/* Doctor Image */}
@@ -60,14 +69,25 @@ const DrCard = ({ doctor }: DrCardProps) => {
 
         {/* Action Buttons */}
         <div className="flex mt-4 space-x-2">
-          <button className="px-4 py-2 text-white bg-blue-500 rounded-lg">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="px-4 py-2 text-white bg-blue-500 rounded-lg"
+          >
             Get Appointment
           </button>
+
           <button className="px-4 py-2 bg-gray-200 rounded-lg">
             View Profile
           </button>
         </div>
       </div>
+
+      {/* Modal */}
+      <BookAppointmentModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        bookingInfo={doctor.name}
+      />
     </div>
   );
 };
