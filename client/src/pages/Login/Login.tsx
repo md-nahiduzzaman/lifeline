@@ -1,5 +1,4 @@
 
-import "../../App.css";
 import logo from '../../assets/images/signlogo (1).jpg';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';

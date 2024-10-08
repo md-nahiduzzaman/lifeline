@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-import '../../App.css'
 import Marquee from "react-fast-marquee"
 const DrCart=()=>{
     const [info,setInfo]=useState<any>([])
@@ -24,7 +23,7 @@ const DrCart=()=>{
                  text-[17px]">Discover our team of highly qualified doctors, each specializing in diverse fields, dedicated to providing exceptional
                  healthcare and  personalized patient care for a healthier and happier life.</p></Marquee>
           </div>
-          <div className="con gap-3 my-12">
+          <div className="grid lg:grid-cols-2 gap-3 my-12">
               {
                 info.map((drInfo:any)=><div className="mx-auto rounded-md w-[340px] p-2 py-4 md:w-[540px]
                  border-2 border-black flex flex-col md:flex-row gap-2

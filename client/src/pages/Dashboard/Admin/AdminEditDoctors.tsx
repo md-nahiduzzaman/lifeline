@@ -37,9 +37,7 @@ const AdminEditDoctors = () => {
         const date = date1.split(',');
         
         const short_des = e.target.short_des.value;
-        const long_des = value
-
-       
+        const long_des = value;   
 
         const form: any = new FormData(e.target)
         const image2: any = form.get('image')
@@ -62,8 +60,8 @@ const AdminEditDoctors = () => {
                         checked_patient, date, experience, email,
                         visit, time, short_des, long_des, photo
                     }
-
-                    fetch(`http://localhost:5000/admin-edit-doctor/${singleData._id}`, {
+                    // http://localhost:5000/admin-edit-doctor/${singleData._id}
+                    fetch(``, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

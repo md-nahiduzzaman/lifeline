@@ -7,7 +7,6 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from '../../providers/AuthProvider';
 
-
 const SignUp = () => {
   const auth = getAuth(app)
   
