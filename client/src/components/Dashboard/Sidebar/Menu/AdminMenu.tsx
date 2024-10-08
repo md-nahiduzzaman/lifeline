@@ -9,8 +9,7 @@ const AdminMenu = () => {
       <MenuItem label="Messages" address="admin-messages" icon={FaUser} />
       <MenuItem label="All Doctors" address="admin-doctors" icon={FaUserMd} />
       <MenuItem label="Total Bed" address="total-bed" icon={FaBed} />
-      
-      
+           
     </>
   );
 };

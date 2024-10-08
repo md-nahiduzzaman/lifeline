@@ -14,7 +14,7 @@ const AdminEditDoctors = () => {
     let photo:any='';
 
     const singleData: any = useLoaderData()
-    
+    console.log(singleData)
     const handleSubmit = ((e: any) => {
         e.preventDefault()
         if (!selectedFile) {
