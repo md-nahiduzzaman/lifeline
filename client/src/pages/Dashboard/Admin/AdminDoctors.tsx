@@ -51,7 +51,6 @@ const AdminDoctors = () => {
                                 console.error('Error fetching data:', error);
                             });
                     })
-
             }
         });
     })
