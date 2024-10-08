@@ -1,8 +1,7 @@
 
-
 import axios from 'axios';
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
+
 import 'react-quill/dist/quill.snow.css';
 import { useLoaderData } from 'react-router-dom';
 
@@ -10,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const AdminEditDoctors = () => {
     
-    const [value, setValue] = useState('');
+    // const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
     let photo:any='';
 
@@ -38,7 +37,7 @@ const AdminEditDoctors = () => {
         const date = date1.split(',');
         
         const short_des = e.target.short_des.value;
-        const long_des = value;   
+        // const long_des = value;   
 
         const form: any = new FormData(e.target)
         const image2: any = form.get('image')
@@ -59,7 +58,7 @@ const AdminEditDoctors = () => {
                     const updateDoc = {
                         speciality, 
                         checked_patient, date, experience, email,
-                        visit, time, short_des, long_des, photo
+                        visit, time, short_des,photo
                     }
                    
                     axios.put(`http://localhost:5000/admin-edit-doctor/${singleData._id}`, updateDoc, {
@@ -160,7 +159,8 @@ const AdminEditDoctors = () => {
 
                 </div>
                 <div className='mt-8'>
-                    <ReactQuill theme="snow" value={value} onChange={setValue} />
+                    {/* <ReactQuill theme="snow" value={value} onChange={setValue}/> */}
+                    
                 </div>
                 <div className='w-[290px] mx-auto mt-6'>
                     <button type='submit' className='bg-blue-200 hover:bg-blue-300
