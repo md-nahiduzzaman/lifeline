@@ -17,6 +17,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://lifeline-omega.vercel.app",
+      "http://localhost:5175"
     ],
     credentials: true,
   })
@@ -37,6 +38,9 @@ const client = new MongoClient(uri, {
   },
 });
 
+
+// Nodemailer: if admin change any data of a doctor an email
+// will go automatically to the doctor
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -117,6 +121,18 @@ async function run() {
         res.status(404).send({ message: 'Doctor not found or no changes made.' });
       }
     })
+
+
+    app.delete('/admin-delete-doctor/:id',async (req,res)=>{
+         const id=req.params.id;
+
+         const query= {_id:new ObjectId(id)}
+
+         const result=await userCollection.deleteOne(query)
+         res.send(result)
+    })
+
+
     // Connect the client to the server	(optional starting in v4.7)
     // const userCollection = client.db("lifeline").collection("users");
     const database = client.db("lifeline");
@@ -141,7 +157,7 @@ async function run() {
       }
     });
 
-
+    
 
     // ----------------this is the doctor handile api section ----------------------------------------
     app.get('/apppionment-request', async (req, res) => {

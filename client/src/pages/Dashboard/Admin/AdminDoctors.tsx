@@ -8,6 +8,7 @@ import Swal from "sweetalert2"
 
 const AdminDoctors = () => {
     const [docotrs, setDoctors] = useState([])
+    // ok done
     useEffect(() => {
 
         axios.get('http://localhost:5000/users')
