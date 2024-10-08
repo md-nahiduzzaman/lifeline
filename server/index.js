@@ -61,7 +61,7 @@ async function run() {
       }
     });
 
-
+   
     app.get('/admin/:id', async (req, res) => {
       const id = req.params.id;
       console.log(id)
@@ -126,7 +126,7 @@ async function run() {
     // await client.connect();
     // Send a ping to confirm a successful connection
 
-// --------------------------------this is the doctort and user api ---------------------------------------
+    // --------------------------------this is the doctort and user api ---------------------------------------
 
 
 
