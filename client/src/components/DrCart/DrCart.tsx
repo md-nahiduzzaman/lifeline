@@ -9,7 +9,7 @@ const DrCart=()=>{
             return res.json()
         })
         .then((data:any)=>{
-            console.log(data)
+             console.log(data)
              setInfo(data)
         })
     },[])
