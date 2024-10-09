@@ -6,7 +6,7 @@ const Total_Bed = () => {
     const [fixed, setFixed] = useState<String>('all')
     console.log(fixed)
     useEffect(() => {
-        fetch('/TotalRoom.json')
+        fetch('http://localhost:5000/admin-all-bed')
             .then((res: any) => {
                 return res.json()
             })

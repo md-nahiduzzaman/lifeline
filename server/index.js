@@ -54,6 +54,7 @@ async function run() {
   try {
 
     const userCollection = client.db("lifeline").collection("users");
+    const bedCollection = client.db("lifeline").collection("beds");
     app.get("/users", async (req, res) => {
       const role = 'doctor'
       try {
@@ -64,8 +65,32 @@ async function run() {
         res.status(500).send({ message: error.message });
       }
     });
+    
 
-   
+
+    // Admin routes start
+    
+    app.put('/admin-change_status/:id', async (req,res)=>{
+       const id=req.params.id;
+       const query= {_id:new ObjectId(id)}
+       const data=req.body
+       console.log("is ",data.stat)
+       const options={upsert:true}
+
+       const status={
+        $set:{
+           status:data.stat
+        }
+       }
+      const result=await bedCollection.updateOne(query,status,options)
+      res.send(result)
+    })
+
+
+    app.get('/admin-all-bed',async (req,res)=>{
+        const result=await bedCollection.find().toArray()
+        res.send(result) 
+    })
     app.get('/admin/:id', async (req, res) => {
       const id = req.params.id;
       console.log(id)
