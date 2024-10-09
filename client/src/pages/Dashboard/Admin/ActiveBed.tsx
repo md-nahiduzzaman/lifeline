@@ -35,7 +35,7 @@ const Total_Bed = () => {
 
                 <button onClick={() => {
                     setFixed('active')
-                }} className="h-[33px] font-medium px-3 rounded-xl bg-[#79f042e0]">Active Bed</button>
+                }} className="h-[33px] font-medium px-3 rounded-xl bg-blue-200">Active Bed</button>
                 <button onClick={() => {
                     setFixed('unactive')
                 }} className="h-[33px] font-medium px-3 rounded-xl bg-red-400">Unactive Bed</button>
@@ -106,7 +106,7 @@ const Total_Bed = () => {
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                 {
-                                                    data.status === 'unactive' ? (<button className="bg-[#79f042e0] font-medium px-3 py-1 rounded-xl w-[100px]">Active it</button>) : (<button className="bg-red-300 w-[100px] font-medium px-3 py-1 rounded-xl">Unactive it</button>)
+                                                    data.status === 'unactive' ? (<button className="bg-blue-200 font-medium px-3 py-1 rounded-xl w-[100px]">Active it</button>) : (<button className="bg-red-300 w-[100px] font-medium px-3 py-1 rounded-xl">Unactive it</button>)
                                                 }
                                             </td>
 
