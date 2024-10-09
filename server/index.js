@@ -74,12 +74,13 @@ async function run() {
        const id=req.params.id;
        const query= {_id:new ObjectId(id)}
        const data=req.body
-       console.log("is ",data.stat)
+       console.log("is ",data.condition)
+       
        const options={upsert:true}
 
        const status={
         $set:{
-           status:data.stat
+           status:data.condition
         }
        }
       const result=await bedCollection.updateOne(query,status,options)

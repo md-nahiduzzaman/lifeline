@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useEffect, useState } from "react"
 
 const Total_Bed = () => {
@@ -22,6 +23,12 @@ const Total_Bed = () => {
                 }
             })
     }, [fixed])
+
+    const handleChangeStatus=(id:any,condition:any)=>{
+       console.log(id,condition)
+       axios.put(`http://localhost:5000/admin-change_status/${id}`,{condition})
+       .then(res=>console.log(res.data))
+    }
     return (
 
         <section className="container px-4 mx-auto">
@@ -106,7 +113,13 @@ const Total_Bed = () => {
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                 {
-                                                    data.status === 'unactive' ? (<button className="bg-blue-200 font-medium px-3 py-1 rounded-xl w-[100px]">Active it</button>) : (<button className="bg-red-300 w-[100px] font-medium px-3 py-1 rounded-xl">Unactive it</button>)
+                                                    data.status === 'unactive' ? 
+                                                    (<button onClick={()=>{
+                                                        handleChangeStatus(data._id,'active')
+                                                    }} className="bg-blue-200 font-medium px-3 py-1 rounded-xl w-[100px]">Active it</button>) :
+                                                     (<button onClick={()=>{
+                                                        handleChangeStatus(data._id,'unactive')
+                                                    }} className="bg-red-300 w-[100px] font-medium px-3 py-1 rounded-xl">Unactive it</button>)
                                                 }
                                             </td>
 
