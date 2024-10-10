@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
 import ServiceCart from "./ServiceCart"
-
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 const HServiceCard = () => {
+  const axiosCommon=useAxiosCommon()
     const {data}=useQuery({
         queryKey:['homeservice-card'],
         queryFn:async()=>{
-const {data}=await axios.get('http://localhost:5000/hsService-card')
+const {data}=await axiosCommon.get('/hsService-card')
 return data
         }
     })

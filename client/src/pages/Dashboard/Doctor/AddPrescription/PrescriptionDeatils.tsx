@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios"
 import { useLoaderData } from "react-router-dom";
+import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 interface patients{
   _id: string;    
   name: string;       
@@ -16,13 +16,14 @@ doctorName:string;
 doctorEmail:string;
 }
 const PrescriptionDeatils = () => {
+  const axiosCommon=useAxiosCommon()
 const presInfo=useLoaderData()as patients
  const {email,doctorEmail}=presInfo
 
 const {data}=useQuery({
   queryKey:['prescription'],
   queryFn:async()=>{
-const res=await axios.get(`http://localhost:5000/show-prescription?email=${email}&&dremail=${doctorEmail}`)
+const res=await axiosCommon.get(`show-prescription?email=${email}&&dremail=${doctorEmail}`)
 
 return res.data
   }

@@ -1,8 +1,8 @@
 
 import {useState } from "react"
 import DrAppointmenttable from "./DrAppointmenttable"
-import axios from "axios"
 import { useQuery } from "@tanstack/react-query";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 interface patients{
   _id: string;    
@@ -18,11 +18,12 @@ interface patients{
 }
 
 const DoctorAppointment = () => {
+  const axiosCommon=useAxiosCommon()
 const [appointment,setAppointment]=useState<patients[]>([])
 const email='daniel.harris@hospital.com'
 const {data,refetch}=useQuery({queryKey:['approve'],
   queryFn:async()=>{
-    const res=await axios.get(`http://localhost:5000/apppionment-request?email=${email}`)
+    const res=await axiosCommon.get(`apppionment-request?email=${email}`)
     setAppointment(res.data)
     return res.data
   }
@@ -32,7 +33,7 @@ console.log(data)
 
 const handileClickApprove=(_id:string):void=>{
 console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-approve/${_id}`).then(res=>{
+  axiosCommon.patch(`appionment-approve/${_id}`).then(res=>{
     console.log(res.data)
    refetch()
   }).catch(error=>{
@@ -41,7 +42,7 @@ console.log(_id)
 }
 const handileClickRjects=(_id:string):void=>{
 console.log(_id)
-  axios.patch(`http://localhost:5000/appionment-reject/${_id}`).then(res=>{
+  axiosCommon.patch(`appionment-reject/${_id}`).then(res=>{
     console.log(res.data)
     refetch()
   }).catch(error=>{

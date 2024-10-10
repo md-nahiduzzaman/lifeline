@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import AddPresaipationTb from "./AddPresaipationTb";
+import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 interface patients{
     _id: string;    
     name: string;       
@@ -16,10 +17,11 @@ interface patients{
   
 const AddPrescription = () => {
     const [appointment,setAppointment]=useState<patients[]>([])
+    const axiosCommon=useAxiosCommon()
 const doctor='daniel.harris@hospital.com'
 console.log(appointment)
 useEffect(()=>{
-axios.get(`http://localhost:5000/approve-appionment?email=${doctor}`).then(res=>{
+axiosCommon.get(`approve-appionment?email=${doctor}`).then(res=>{
   setAppointment(res.data)
   console.log(res.data)
 }).catch(error=>{
