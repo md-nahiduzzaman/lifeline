@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to={"/login"}>Login</NavLink>
       </li>
       <li>
-        <NavLink to={"/solutions"}>Solutions</NavLink>
+        <NavLink to={'/solutions'}>Solutions</NavLink>
       </li>
       <li>
         <NavLink to={"/home-service"}>Home Service</NavLink>
@@ -30,7 +30,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-[#ECFEFF]  shadow-lg z-10 fixed mx-auto w-full  h-16">
+    <div className="bg-[#ECFEFF] shadow-lg z-10 fixed mx-auto w-full  h-16">
       <div className="navbar max-w-screen-xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -65,7 +65,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn bg-[#06B6D4] text-white">Appointment</a>
+          <a href="/drCart" className="btn bg-[#06B6D4] text-white">Appointment</a>
         </div>
       </div>
     </div>
