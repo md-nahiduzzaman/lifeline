@@ -1,6 +1,7 @@
-import axios from "axios";
+
 import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 interface FormData {
   fullName: string;
   email: string;
@@ -13,6 +14,7 @@ interface FormData {
 
 const HSCardDetails: React.FC = () => {
   const navigates=useNavigate()
+  const axiosCommon=useAxiosCommon()
   const serviceData = useLoaderData() as any;
   console.log(serviceData);
 const {details}=serviceData
@@ -39,7 +41,7 @@ const {details}=serviceData
     e.preventDefault();
     // Handle form submission (e.g., send the data to an API)
     console.log(formData);
-    axios.post('http://localhost:5000/Booking-HS',formData).then(res=>{
+    axiosCommon.post('/Booking-HS',formData).then(res=>{
       console.log(res.data)
 
       if(res.data.insertedId){
