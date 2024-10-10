@@ -1,7 +1,6 @@
-
-import axios from "axios";
 import React, { useState } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 interface presaipationProps{
      medicationName:string;
     dosage:string;
@@ -39,7 +38,7 @@ const AddedPresaipation = () => {
     drMessage:'',
    })
    const [presaipationData,setPresaipationData]=useState<presaipationProps[]>([])
-
+   const axiosCommon=useAxiosCommon()
     const handileClickPresaipation=(e:React.FormEvent<HTMLFormElement>)=>{
 e.preventDefault()
 
@@ -71,7 +70,7 @@ const presaipationInfo={
 
 }
 
-axios.post('http://localhost:5000/add-presaipation',presaipationInfo).then(res=>{
+axiosCommon.post('/add-presaipation',presaipationInfo).then(res=>{
   console.log(res.data)
 if(res.data.insertedId){
 navigate('/dashboard/AddprescriptionTb')
@@ -95,7 +94,7 @@ console.log(presaipationInfo)
   <h2 className="text-xl font-bold text-[#06B6D4]">Patient information</h2>
   </div>
  <div className="mt-6">
- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores perferendis quaerat nesciunt consectetur, deleniti sit. Quas autem ea totam, accusantium aperiam modi veniam explicabo. Doloremque necessitatibus culpa explicabo laboriosam et ratione eius quae ab est exercitationem, facilis, voluptate hic aut.</p>
+ <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores perferendis quaerat nesciunt consectetur, deleniti sit. Quas autem ea totam, accusantium aperiam modi veniam explicabo. Doloremque necessitatibus culpa explicabo laboriosam et ratione eius quae ab est exercitationem, facilis, voluptate hic aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat necessitatibus labore amet mollitia quae ex</p>
  </div>
   </div>
   <div className="flex lg:w-1/2 gap-12">

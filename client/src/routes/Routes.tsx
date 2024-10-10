@@ -23,6 +23,8 @@ import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
 import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
 import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
+import HomeServices from "../pages/HomeServices/HomeServices";
+import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,26 +35,40 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
+    {
         path: "/signup",
-        element: <SignUp></SignUp>,
-      }, {
-        path: '/package',
-        element: <PackagePrice></PackagePrice>
-      }, {
-        path: '/about',
-        element: <About></About>
-      }, {
-
-        path: '/solutions',
-        element: <Solutions></Solutions>
-      }, {
-        path: '/login',
-        element: <Login></Login>
-      }, {
-        path: '/drCart',
-        element: <DrCart></DrCart>
-      }
+        element: <SignUp />,
+      },
+      {
+        path: "/package",
+        element: <PackagePrice />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/solutions",
+        element: <Solutions />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/drCart", // Correcting the typo and keeping DrCart
+        element: <DrCart />,
+      },
+      {
+        path: "/home-service", // Adding new route from development branch
+        element: <HomeServices />,
+      },
+      {
+        path: "/home-serviceDeatils/:id", // Adding dynamic route from development branch
+        element: <HSCardDeatils />,
+        loader: ({ params }) =>
+          fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`),
+      },
     ],
   },
 
@@ -84,18 +100,20 @@ const router = createBrowserRouter([
         path: 'doctorHome',
         element: <DoctorHome></DoctorHome>
 
-      }, {
-        path: 'AddprescriptionTb',
-        element: <AddPrescription></AddPrescription>
-      }, {
-        path: '/dashboard/added-prescription/:id',
-        element: <AddedPresaipation></AddedPresaipation>,
-        loader: ({ params }) => fetch(`http://localhost:5000/patient-deatils/${params.id}`)
 
-      }, {
-        path: '/dashboard/prescriptionDeatils/:id',
-        element: <PrescriptionDeatils></PrescriptionDeatils>,
-        loader: ({ params }) => fetch(`http://localhost:5000/patients-deatils/${params.id}`)
+      },{
+        path:'AddprescriptionTb',
+        element:<AddPrescription></AddPrescription>
+      },{
+path:'/dashboard/added-prescription/:id',
+element:<AddedPresaipation></AddedPresaipation>,
+loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${params.id}`)
+
+      } ,{
+        path:'/dashboard/prescriptionDeatils/:id',
+        element:<PrescriptionDeatils></PrescriptionDeatils>,
+        loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
+
       }
       // --------------------this is the asmin dshboard route arey -----------------------------------
       , {

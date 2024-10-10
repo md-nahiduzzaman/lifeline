@@ -15,21 +15,9 @@ const Navbar = () => {
       <li>
         <NavLink to={'/solutions'}>Solutions</NavLink>
       </li>
-      {/* <li className="">
-        <details className="">
-          <summary>Solution</summary>
-          <ul className="p-2 ">
-            <li>Hospital Administration</li>
-            <li className="my-3">Patient Management</li>
-            <li>Doctor and Staff Portal</li>
-            <li className="my-3">Pharmacy and Lab Integration</li>
-            <li>Patient Self-Service Portal</li>
-            <li className="my-3">Telemedicine Integration</li>
-            <li>Billing and Insurance Management</li>
-            <li className="mt-3">Analytics and Reporting</li>
-          </ul>
-        </details>
-      </li> */}
+      <li>
+        <NavLink to={"/home-service"}>Home Service</NavLink>
+      </li>
       <li>
         <NavLink to={"/package"}>Ours Package</NavLink>{" "}
       </li>

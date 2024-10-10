@@ -164,6 +164,8 @@ async function run() {
     const database = client.db("lifeline");
     const appointmentCollection = database.collection("Appointment");
     const presaipationCollection = database.collection("Presaipation");
+    const HservoceCardCollection = database.collection("Hservice-card");
+    const HSBookingCollection = database.collection("HS-Booking");
 
     // await client.connect();
     // Send a ping to confirm a successful connection
@@ -273,6 +275,26 @@ async function run() {
 
       res.send({ todayAp: todayAppionments, pendingAp: pendingappionment, allAp: allAppionments })
     })
+
+app.get('/hsService-card',async(req,res)=>{
+
+const result=await HservoceCardCollection.find().toArray()
+res.send(result)
+
+})
+
+app.get('/serviceDs/:id',async(req,res)=>{
+const id=req.params.id
+const query={_id:new ObjectId(id)}
+const result=await HservoceCardCollection.findOne(query)
+res.send(result)
+})
+
+app.post('/Booking-HS',async(req,res)=>{
+  const bookingInfo=req.body
+  const result=await HSBookingCollection.insertOne(bookingInfo)
+  res.send(result)
+})
 
     // await client.db("admin").command({ ping: 1 });
     console.log(

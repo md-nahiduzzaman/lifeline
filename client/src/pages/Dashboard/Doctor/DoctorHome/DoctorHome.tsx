@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
 import BarChat from "./BarChat"
+import useAxiosCommon from "../../../../hooks/useAxiosCommon"
 
 const DoctorHome = () => {
+  const axiosCommon=useAxiosCommon()
 const {data}=useQuery({
   queryKey:['appionmentslength'],
   queryFn:async()=>{
-const {data}=await axios.get('http://localhost:5000/appionment-today')
+const {data}=await axiosCommon.get('/appionment-today')
 return data
   }
 })
