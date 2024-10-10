@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       {
         path:'/home-serviceDeatils/:id',
         element:<HSCardDeatils></HSCardDeatils>,
-        loader:({params})=>fetch(`http://localhost:5000/serviceDs/${params.id}`)
+        loader:({params})=>fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`)
       }
     ],
   },
@@ -102,12 +102,12 @@ element:<DoctorHome></DoctorHome>
       },{
 path:'/dashboard/added-prescription/:id',
 element:<AddedPresaipation></AddedPresaipation>,
-loader:({params})=>fetch(`http://localhost:5000/patient-deatils/${params.id}`)
+loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${params.id}`)
 
       } ,{
         path:'/dashboard/prescriptionDeatils/:id',
         element:<PrescriptionDeatils></PrescriptionDeatils>,
-        loader:({params})=>fetch(`http://localhost:5000/patients-deatils/${params.id}`)
+        loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
       }
        // --------------------this is the asmin dshboard route arey -----------------------------------
       ,{

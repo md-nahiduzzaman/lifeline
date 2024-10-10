@@ -1,7 +1,6 @@
-
-import axios from "axios";
 import React, { useState } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 interface presaipationProps{
      medicationName:string;
     dosage:string;
@@ -39,7 +38,7 @@ const AddedPresaipation = () => {
     drMessage:'',
    })
    const [presaipationData,setPresaipationData]=useState<presaipationProps[]>([])
-
+   const axiosCommon=useAxiosCommon()
     const handileClickPresaipation=(e:React.FormEvent<HTMLFormElement>)=>{
 e.preventDefault()
 
@@ -71,7 +70,7 @@ const presaipationInfo={
 
 }
 
-axios.post('http://localhost:5000/add-presaipation',presaipationInfo).then(res=>{
+axiosCommon.post('/add-presaipation',presaipationInfo).then(res=>{
   console.log(res.data)
 if(res.data.insertedId){
 navigate('/dashboard/AddprescriptionTb')
