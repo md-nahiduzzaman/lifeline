@@ -20,6 +20,8 @@ import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
 import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
 import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
+import HomeServices from "../pages/HomeServices/HomeServices";
+import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,7 +55,15 @@ const router = createBrowserRouter([
       {
         path: "drCard",
         element: <DrCart></DrCart>,
+      },{
+        path:'/home-service',
+        element:<HomeServices></HomeServices>
       },
+      {
+        path:'/home-serviceDeatils/:id',
+        element:<HSCardDeatils></HSCardDeatils>,
+        loader:({params})=>fetch(`http://localhost:5000/serviceDs/${params.id}`)
+      }
     ],
   },
   // { path: "/login", element: <Login /> },
