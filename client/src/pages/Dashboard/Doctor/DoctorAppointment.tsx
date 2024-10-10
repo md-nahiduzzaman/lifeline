@@ -23,7 +23,7 @@ const [appointment,setAppointment]=useState<patients[]>([])
 const email='daniel.harris@hospital.com'
 const {data,refetch}=useQuery({queryKey:['approve'],
   queryFn:async()=>{
-    const res=await axiosCommon.get(`apppionment-request?email=${email}`)
+    const res=await axiosCommon.get(`/apppionment-request?email=${email}`)
     setAppointment(res.data)
     return res.data
   }
@@ -33,7 +33,7 @@ console.log(data)
 
 const handileClickApprove=(_id:string):void=>{
 console.log(_id)
-  axiosCommon.patch(`appionment-approve/${_id}`).then(res=>{
+  axiosCommon.patch(`/appionment-approve/${_id}`).then(res=>{
     console.log(res.data)
    refetch()
   }).catch(error=>{
@@ -42,7 +42,7 @@ console.log(_id)
 }
 const handileClickRjects=(_id:string):void=>{
 console.log(_id)
-  axiosCommon.patch(`appionment-reject/${_id}`).then(res=>{
+  axiosCommon.patch(`/appionment-reject/${_id}`).then(res=>{
     console.log(res.data)
     refetch()
   }).catch(error=>{

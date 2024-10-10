@@ -23,7 +23,7 @@ const presInfo=useLoaderData()as patients
 const {data}=useQuery({
   queryKey:['prescription'],
   queryFn:async()=>{
-const res=await axiosCommon.get(`show-prescription?email=${email}&&dremail=${doctorEmail}`)
+const res=await axiosCommon.get(`/show-prescription?email=${email}&&dremail=${doctorEmail}`)
 
 return res.data
   }

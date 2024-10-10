@@ -1,4 +1,3 @@
-
 import React, { useState } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
@@ -71,7 +70,7 @@ const presaipationInfo={
 
 }
 
-axiosCommon.post('add-presaipation',presaipationInfo).then(res=>{
+axiosCommon.post('/add-presaipation',presaipationInfo).then(res=>{
   console.log(res.data)
 if(res.data.insertedId){
 navigate('/dashboard/AddprescriptionTb')

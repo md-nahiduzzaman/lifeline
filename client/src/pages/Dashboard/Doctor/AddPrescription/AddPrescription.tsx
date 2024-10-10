@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import AddPresaipationTb from "./AddPresaipationTb";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
@@ -21,7 +20,7 @@ const AddPrescription = () => {
 const doctor='daniel.harris@hospital.com'
 console.log(appointment)
 useEffect(()=>{
-axiosCommon.get(`approve-appionment?email=${doctor}`).then(res=>{
+axiosCommon.get(`/approve-appionment?email=${doctor}`).then(res=>{
   setAppointment(res.data)
   console.log(res.data)
 }).catch(error=>{
