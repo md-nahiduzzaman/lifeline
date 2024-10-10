@@ -3,7 +3,7 @@ import DrCard from "../../../components/Dashboard/Card/DrCard";
 import axios from "axios";
 
 const PatientAppointment = () => {
-  const [doctors, setDoctors] = useState<any[]>([]); // Using 'any' type for doctors array
+  const [doctors, setDoctors] = useState<any[]>([]);
 
   // Fetch doctors
   useEffect(() => {
