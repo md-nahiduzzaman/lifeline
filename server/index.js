@@ -6,11 +6,9 @@ const nodemailer = require('nodemailer');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 
-// config
 const app = express();
 const port = process.env.PORT || 5000;
 
-// middleware
 app.use(
   cors({
     origin: [
@@ -28,8 +26,6 @@ console.log("sfsdfs", process.env.DB_USER)
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.r6s2z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -69,7 +65,13 @@ async function run() {
 
 
     // Admin routes start
-    
+
+    app.post('/admin_add_doctor',async (req,res)=>{
+       const info=req.body;
+       console.log(info)
+       const result =await userCollection.insertOne(info)
+       res.send(result)
+    })
     app.put('/admin-change_status/:id', async (req,res)=>{
        const id=req.params.id;
        const query= {_id:new ObjectId(id)}
