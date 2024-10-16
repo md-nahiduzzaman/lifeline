@@ -8,7 +8,7 @@ import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AdminEditDoctors = () => {
-    
+    console.log('testing')
     const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
     let photo:any='';
