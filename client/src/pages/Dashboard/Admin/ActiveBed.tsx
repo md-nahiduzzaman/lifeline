@@ -7,7 +7,7 @@ const Total_Bed = () => {
     const [fixed, setFixed] = useState<String>('all')
     
     useEffect(() => {
-        fetch('https://lifeline-server.vercel.app/admin-all-bed')
+        fetch('http://localhost:5000/admin-all-bed')
             .then((res: any) => {
                 return res.json()
             })

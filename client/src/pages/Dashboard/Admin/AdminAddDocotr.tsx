@@ -61,7 +61,7 @@ const AdminAddDocotr = () => {
             experience, visit_charge, description, short_description, schedule,
             department, total_patient_checkups, achievement, patient_reviews,image_url
           }
-          axios.post('https://lifeline-server.vercel.app/admin_add_doctor',objData)
+          axios.post('http://localhost:5000/admin_add_doctor',objData)
           .then(res=>console.log(res))
           .catch(err => console.error('Error:', err));
         }

@@ -35,7 +35,7 @@ const AdminDoctors = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`https://lifeline-server.vercel.app/admin-delete-doctor/${id}`)
+                axios.delete(`http://localhost:5000/admin-delete-doctor/${id}`)
                     .then((res) => {
                         console.log(res.data)
                         Swal.fire({
@@ -43,7 +43,7 @@ const AdminDoctors = () => {
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
-                        axios.get('https://lifeline-server.vercel.app/users')
+                        axios.get('http://localhost:5000/users')
                             .then((response) => {
                                 setDoctors(response.data);
                             })

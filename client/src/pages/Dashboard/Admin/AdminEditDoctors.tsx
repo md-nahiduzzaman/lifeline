@@ -62,7 +62,7 @@ const AdminEditDoctors = () => {
                         visit, time, short_des, long_des, photo
                     }
                    
-                    axios.put(`https://lifeline-server.vercel.app/admin-edit-doctor/${singleData._id}`, updateDoc, {
+                    axios.put(`http://localhost:5000/admin-edit-doctor/${singleData._id}`, updateDoc, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
