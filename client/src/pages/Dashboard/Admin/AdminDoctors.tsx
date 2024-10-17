@@ -109,7 +109,7 @@ const AdminDoctors = () => {
                                                 <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                                    <button><FaMoneyBill className="text-xl"></FaMoneyBill></button>
+                                                    <Link to={`/dashboard/admin-doctors/payment/${info._id}`}><button><FaMoneyBill className="text-xl"></FaMoneyBill></button></Link>
                                                 </div>
                                             </td>
 

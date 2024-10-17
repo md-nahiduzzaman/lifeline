@@ -26,6 +26,7 @@ import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/Presc
 import HomeServices from "../pages/HomeServices/HomeServices";
 import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
+import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -140,7 +141,12 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${p
       {
         path: '/dashboard/admin-doctors/admin-edit-doctors/:id',
         element: <AdminEditDoctors></AdminEditDoctors>,
-        loader: ({ params }) => fetch(`https://lifeline-server.vercel.app/admin/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+      },
+      {
+         path:'/dashboard/admin-doctors/payment/:id',
+         element:<PaymentPage></PaymentPage>,
+         loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
       }
     ],
   },
