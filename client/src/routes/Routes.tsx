@@ -72,11 +72,11 @@ const router = createBrowserRouter([
       {
         path:'/home-serviceDeatils/:id',
         element:<HSCardDeatils></HSCardDeatils>,
-        loader:({params})=>fetch(`http://localhost:5000/serviceDs/${params.id}`)
+        loader:({params})=>fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`)
       },{
 path:'/payments/:id',
 element:<Payments></Payments>,
-loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
+loader:({params})=>fetch(`https://lifeline-server.vercel.app/package-price/${params.id}`)
       }
     ],
   },
@@ -156,12 +156,12 @@ element:<VideoChats></VideoChats>
       {
         path: '/dashboard/admin-doctors/admin-edit-doctors/:id',
         element: <AdminEditDoctors></AdminEditDoctors>,
-        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+        loader: ({ params }) => fetch(`https://lifeline-server.vercel.app/admin/${params.id}`)
       },
       {
          path:'/dashboard/admin-doctors/payment/:id',
          element:<PaymentPage></PaymentPage>,
-         loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+         loader: ({ params }) => fetch(`https://lifeline-server.vercel.app/admin/${params.id}`)
       }
     ],
   },
