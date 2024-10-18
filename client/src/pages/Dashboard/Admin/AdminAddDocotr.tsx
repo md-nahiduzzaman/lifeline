@@ -75,7 +75,7 @@ const AdminAddDocotr = () => {
           <span className="text-red-400 lg:hidden"> !</span></p>
 
       </div>
-      <section className="max-w-4xl p-6 mx-auto bg-[#fbf7f0] rounded-md shadow-md dark:bg-gray-800">
+      <section className="max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
 
         <form onSubmit={handleSubmit}>

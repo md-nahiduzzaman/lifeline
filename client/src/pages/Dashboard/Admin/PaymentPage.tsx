@@ -13,16 +13,16 @@ const PaymentPage = () => {
             <div className='mb-8'>
                 <img src={logo} className='w-[220px] h-[145px] block mx-auto' alt="" />
             </div>
-            <div className='relative w-[350px] mx-auto min-h-[60vh] rounded-xl bg-white shadow-xl'>
+            <div className='relative w-[370px] mx-auto min-h-[66vh] rounded-xl bg-white shadow-xl'>
                 <div>
-                    <img src={singleData.image_url} className='w-[75px] h-[75px] rounded-[50%] absolute -top-5 -left-3' alt="" />
+                    <img src={singleData.image_url} className='w-[75px] h-[75px] rounded-[50%] absolute -top-5 -left-4' alt="" />
                 </div>
-                <div className='absolute top-[75px] left-4'>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Name: {singleData.name}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Email: {singleData.email}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Role: Doctor</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Department: {singleData.department}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Reg_No: {singleData.reg_no}</h2>
+                <div className='absolute top-[55px] left-4 p-2'>
+                    <h2 className='border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Name: {singleData.name}</h2>
+                    <h2 className='border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Email: {singleData.email}</h2>
+                    <h2 className='border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Role: Doctor</h2>
+                    <h2 className='border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Department: {singleData.department}</h2>
+                    <h2 className='border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Reg_No: {singleData.reg_no}</h2>
 
                     <div>
                         <h1 className='text-gray-500'>Amount: </h1>
