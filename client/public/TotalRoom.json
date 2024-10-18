@@ -1,0 +1,45 @@
+[
+    {
+      "category": "ICU",
+      "roomNumber": "101",
+      "floorNumber": 1,
+      "status": "active",
+      "price": 500
+    },
+    {
+      "category": "CCU",
+      "roomNumber": "202",
+      "floorNumber": 2,
+      "status": "unactive",
+      "price": 450
+    },
+    {
+      "category": "General",
+      "roomNumber": "303",
+      "floorNumber": 3,
+      "status": "active",
+      "price": 300
+    },
+    {
+      "category": "ICU",
+      "roomNumber": "102",
+      "floorNumber": 1,
+      "status": "active",
+      "price": 520
+    },
+    {
+      "category": "VIP",
+      "roomNumber": "404",
+      "floorNumber": 4,
+      "status": "unactive",
+      "price": 1000
+    },
+    {
+      "category": "General",
+      "roomNumber": "305",
+      "floorNumber": 3,
+      "status": "active",
+      "price": 280
+    }
+  ]
+  

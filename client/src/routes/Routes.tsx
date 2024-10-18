@@ -16,6 +16,9 @@ import PatientHealthRecord from "../pages/Dashboard/Patient/PatientHealthRecord"
 import DoctorAppointment from "../pages/Dashboard/Doctor/DoctorAppointment";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import AdminMessages from "../pages/Dashboard/Admin/AdminMessages";
+import AdminDoctors from "../pages/Dashboard/Admin/AdminDoctors";
+import AdminEditDoctors from "../pages/Dashboard/Admin/AdminEditDoctors";
+import Total_Bed from "../pages/Dashboard/Admin/ActiveBed";
 import DoctorHome from "../pages/Dashboard/Doctor/DoctorHome/DoctorHome";
 import AddPrescription from "../pages/Dashboard/Doctor/AddPrescription/AddPrescription";
 import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPresaipation";
@@ -36,32 +39,33 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
+    {
         path: "/signup",
-        element: <SignUp></SignUp>,
+        element: <SignUp />,
       },
       {
         path: "/package",
-        element: <PackagePrice></PackagePrice>,
+        element: <PackagePrice />,
       },
       {
         path: "/about",
-        element: <About></About>,
+        element: <About />,
       },
       {
         path: "/solutions",
-        element: <Solutions></Solutions>,
+        element: <Solutions />,
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
       {
-        path: "drCard",
-        element: <DrCart></DrCart>,
-      },{
-        path:'/home-service',
-        element:<HomeServices></HomeServices>
+        path: "/drCart", // Correcting the typo and keeping DrCart
+        element: <DrCart />,
+      },
+      {
+        path: "/home-service", // Adding new route from development branch
+        element: <HomeServices />,
       },
       {
         path:'/home-serviceDeatils/:id',
@@ -74,8 +78,7 @@ loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
       }
     ],
   },
-  // { path: "/login", element: <Login /> },
-  // { path: "/signup", element: <SignUp /> },
+
   {
     path: "/dashboard",
     element: <DashboardLayout />,
@@ -105,9 +108,10 @@ loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
       {
         path: "doctor-appointment",
         element: <DoctorAppointment />,
-      },{
-path:'doctorHome',
-element:<DoctorHome></DoctorHome>
+      }, {
+        path: 'doctorHome',
+        element: <DoctorHome></DoctorHome>
+
 
       },{
         path:'AddprescriptionTb',
@@ -126,8 +130,8 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${p
 path:'/dashboard/video-chats',
 element:<VideoChats></VideoChats>
       }
-       // --------------------this is the asmin dshboard route arey -----------------------------------
-      ,{
+      // --------------------this is the asmin dshboard route arey -----------------------------------
+      , {
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
@@ -135,6 +139,28 @@ element:<VideoChats></VideoChats>
         path: "admin-messages",
         element: <AdminMessages />,
       },
+      {
+        path: 'admin-doctors',
+        element: <AdminDoctors></AdminDoctors>
+      },
+      {
+        path: 'total-bed',
+        element: <Total_Bed></Total_Bed>
+      },
+      {
+        path:"admin-add-doctor",
+        element:<AdminAddDocotr></AdminAddDocotr>
+      },
+      {
+        path: '/dashboard/admin-doctors/admin-edit-doctors/:id',
+        element: <AdminEditDoctors></AdminEditDoctors>,
+        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+      },
+      {
+         path:'/dashboard/admin-doctors/payment/:id',
+         element:<PaymentPage></PaymentPage>,
+         loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+      }
     ],
   },
   {
