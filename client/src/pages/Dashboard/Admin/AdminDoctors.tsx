@@ -10,7 +10,7 @@ const AdminDoctors = () => {
     // ok done
     useEffect(() => {
 
-        axios.get('https://lifeline-server.vercel.app/users')
+        axios.get('http://localhost:5000/users')
             .then((response) => {
                 setDoctors(response.data);
             })

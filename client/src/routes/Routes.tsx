@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-    {
+      {
         path: "/signup",
         element: <SignUp />,
       },
@@ -70,13 +70,13 @@ const router = createBrowserRouter([
         element: <HomeServices />,
       },
       {
-        path:'/home-serviceDeatils/:id',
-        element:<HSCardDeatils></HSCardDeatils>,
-        loader:({params})=>fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`)
-      },{
-path:'/payments/:id',
-element:<Payments></Payments>,
-loader:({params})=>fetch(`https://lifeline-server.vercel.app/package-price/${params.id}`)
+        path: '/home-serviceDeatils/:id',
+        element: <HSCardDeatils></HSCardDeatils>,
+        loader: ({ params }) => fetch(`http://localhost:5000/serviceDs/${params.id}`)
+      }, {
+        path: '/payments/:id',
+        element: <Payments></Payments>,
+        loader: ({ params }) => fetch(`http://localhost:5000/package-price/${params.id}`)
       }
     ],
   },
@@ -103,8 +103,8 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/package-price/${par
       },
       {
 
-        path:'user-payment-history',
-        element:<PaymentHistory></PaymentHistory>
+        path: 'user-payment-history',
+        element: <PaymentHistory></PaymentHistory>
       },
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
@@ -115,22 +115,22 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/package-price/${par
         element: <DoctorHome></DoctorHome>
 
 
-      },{
-        path:'AddprescriptionTb',
-        element:<AddPrescription></AddPrescription>
-      },{
-path:'/dashboard/added-prescription/:id',
-element:<AddedPresaipation></AddedPresaipation>,
-loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${params.id}`)
+      }, {
+        path: 'AddprescriptionTb',
+        element: <AddPrescription></AddPrescription>
+      }, {
+        path: '/dashboard/added-prescription/:id',
+        element: <AddedPresaipation></AddedPresaipation>,
+        loader: ({ params }) => fetch(`http://localhost:5000/patient-deatils/${params.id}`)
 
-      } ,{
-        path:'/dashboard/prescriptionDeatils/:id',
-        element:<PrescriptionDeatils></PrescriptionDeatils>,
-        loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
+      }, {
+        path: '/dashboard/prescriptionDeatils/:id',
+        element: <PrescriptionDeatils></PrescriptionDeatils>,
+        loader: ({ params }) => fetch(`http://localhost:5000/patients-deatils/${params.id}`)
       },
       {
-path:'/dashboard/video-chats',
-element:<VideoChats></VideoChats>
+        path: '/dashboard/video-chats',
+        element: <VideoChats></VideoChats>
       }
       // --------------------this is the asmin dshboard route arey -----------------------------------
       , {
@@ -150,24 +150,24 @@ element:<VideoChats></VideoChats>
         element: <Total_Bed></Total_Bed>
       },
       {
-        path:"admin-add-doctor",
-        element:<AdminAddDocotr></AdminAddDocotr>
+        path: "admin-add-doctor",
+        element: <AdminAddDocotr></AdminAddDocotr>
       },
       {
         path: '/dashboard/admin-doctors/admin-edit-doctors/:id',
         element: <AdminEditDoctors></AdminEditDoctors>,
-        loader: ({ params }) => fetch(`https://lifeline-server.vercel.app/admin/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
       },
       {
-         path:'/dashboard/admin-doctors/payment/:id',
-         element:<PaymentPage></PaymentPage>,
-         loader: ({ params }) => fetch(`https://lifeline-server.vercel.app/admin/${params.id}`)
+        path: '/dashboard/admin-doctors/payment/:id',
+        element: <PaymentPage></PaymentPage>,
+        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
       }
     ],
   },
   {
-      path:'/room/:id',
-      element:<VideoChatsPages></VideoChatsPages>
+    path: '/room/:id',
+    element: <VideoChatsPages></VideoChatsPages>
   }
 ]);
 
