@@ -25,6 +25,10 @@ import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPr
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
 import HomeServices from "../pages/HomeServices/HomeServices";
 import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
+import VideoChats from "../pages/VidoChats/VideoChats";
+import VideoChatsPages from "../pages/VidoChats/VideoChatsPages";
+import Payments from "../pages/Payments/Payments";
+import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
 import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
 const router = createBrowserRouter([
@@ -66,11 +70,14 @@ const router = createBrowserRouter([
         element: <HomeServices />,
       },
       {
-        path: "/home-serviceDeatils/:id", // Adding dynamic route from development branch
-        element: <HSCardDeatils />,
-        loader: ({ params }) =>
-          fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`),
-      },
+        path:'/home-serviceDeatils/:id',
+        element:<HSCardDeatils></HSCardDeatils>,
+        loader:({params})=>fetch(`http://localhost:5000/serviceDs/${params.id}`)
+      },{
+path:'/payments/:id',
+element:<Payments></Payments>,
+loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
+      }
     ],
   },
 
@@ -94,6 +101,11 @@ const router = createBrowserRouter([
         path: "patient-record",
         element: <PatientHealthRecord />,
       },
+      {
+
+        path:'user-payment-history',
+        element:<PaymentHistory></PaymentHistory>
+      },
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",
@@ -115,7 +127,10 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${p
         path:'/dashboard/prescriptionDeatils/:id',
         element:<PrescriptionDeatils></PrescriptionDeatils>,
         loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
-
+      },
+      {
+path:'/dashboard/video-chats',
+element:<VideoChats></VideoChats>
       }
       // --------------------this is the asmin dshboard route arey -----------------------------------
       , {
@@ -150,6 +165,10 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${p
       }
     ],
   },
+  {
+      path:'/room/:id',
+      element:<VideoChatsPages></VideoChatsPages>
+  }
 ]);
 
 export default router;
