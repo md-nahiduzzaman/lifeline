@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const nodemailer = require('nodemailer');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
+const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -168,6 +170,8 @@ async function run() {
     const presaipationCollection = database.collection("Presaipation");
     const HservoceCardCollection = database.collection("Hservice-card");
     const HSBookingCollection = database.collection("HS-Booking");
+    const SerivcesCollection = database.collection("service-card");
+    const paymentHistoryCollection = database.collection("payment-history");
 
     // await client.connect();
     // Send a ping to confirm a successful connection
@@ -297,7 +301,43 @@ app.post('/Booking-HS',async(req,res)=>{
   const result=await HSBookingCollection.insertOne(bookingInfo)
   res.send(result)
 })
+app.get('/services-cards',async(req,res)=>{
 
+const result=await SerivcesCollection.find().toArray()
+res.send(result)
+
+})
+app.get('/package-price/:id',async(req,res)=>{
+  const id=req.params.id
+  const query={_id:new ObjectId(id)}
+  const result=await SerivcesCollection.findOne(query)
+  res.send(result)
+})
+
+app.post("/create-payment-intent", async (req, res) => {
+  const {price} = req.body;
+  const amount=parseInt(price*100)
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount:amount,
+    currency: "usd",
+    payment_method_types:['card']
+  })
+
+  res.send({
+    clientSecret: paymentIntent.client_secret
+  })
+})
+app.post('/payments-history',async(req,res)=>{
+  const paymentInfo=req.body
+  const result=await paymentHistoryCollection.insertOne(paymentInfo)
+  res.send(result)
+})
+
+app.get('/UP-history',async(req,res)=>{
+  const query={email:req.query.email}
+const result=await paymentHistoryCollection.find(query).toArray()
+res.send(result)
+})
     // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"

@@ -15,6 +15,7 @@ const PatientMenu = () => {
         icon={FaUser}
       />
       <MenuItem label="Health Records" address="patient-record" icon={FaUser} />
+      <MenuItem label="Payment History" address="user-payment-history" icon={FaUser} />
     </>
   );
 };
