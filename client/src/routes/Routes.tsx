@@ -29,6 +29,8 @@ import VideoChats from "../pages/VidoChats/VideoChats";
 import VideoChatsPages from "../pages/VidoChats/VideoChatsPages";
 import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
+import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
+import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
 const router = createBrowserRouter([
   {
     path: "/",
