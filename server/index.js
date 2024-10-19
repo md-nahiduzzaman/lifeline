@@ -110,11 +110,11 @@ async function run() {
 
     app.get('/get_doctor_payment/:email',async (req,res)=>{
          const email=req.params;
-
-         const query={email:email}
+         
+         const query={email:email.email}
          
          const result=await adminHistoryCollection.find(query).toArray()
-         console.log(result)
+      
          res.send(result)
     })
 

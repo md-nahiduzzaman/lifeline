@@ -110,16 +110,17 @@ const AdminDoctors = () => {
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td className="w-[100px]">
+                                                <Link to={`/dashboard/admin-doctors/payment/${info._id}`}><FaMoneyBill className="block mx-auto text-2xl"></FaMoneyBill> </Link>
+                                            </td>
                                             <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                 <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                                    <Link to={`/dashboard/admin-doctors/payment/${info._id}`}><button><FaMoneyBill className="text-xl"></FaMoneyBill></button></Link>
+                                                    <Link to={`/dashboard/admin-doctors/payment_details/${info.email}`}><button><FaInfoCircle className="text-xl"></FaInfoCircle></button></Link>
                                                 </div>
                                             </td>
-                                            <td className="w-[100px]">
-                                                <Link to={`/dashboard/admin-doctors/payment_details/${info._id}`}><FaInfoCircle className="block mx-auto"></FaInfoCircle> </Link>
-                                            </td>
+                                            
                                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{info.email}</td>
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">

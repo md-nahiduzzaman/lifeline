@@ -155,7 +155,7 @@ const router = createBrowserRouter([
         element: <AdminAddDocotr></AdminAddDocotr>
       },
       {
-        path:'/dashboard/admin-doctors/payment_details/:id',
+        path:'/dashboard/admin-doctors/payment_details/:email',
         element:<PaymentDetails></PaymentDetails>
       },
       {
