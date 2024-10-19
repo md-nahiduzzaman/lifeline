@@ -6,6 +6,7 @@ import './style.css'
 import { FaPlus } from 'react-icons/fa6'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import AdminCheckOutForm from './AdminCheckOutForm'
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GETWAY);
 
@@ -13,9 +14,9 @@ const PaymentPage = () => {
     const singleData: any = useLoaderData()
     console.log(singleData)
     const [amount, setAmount] = useState(0)
-    const [modal,setModal]=useState(false)
+    const [modal, setModal] = useState(false)
     console.log("it is amount", amount)
-    const handleChange=()=>setModal(true)
+    const handleChange = () => setModal(true)
     console.log(modal)
     return (
         <div>
@@ -47,27 +48,31 @@ const PaymentPage = () => {
                                 </div>
                             </form>
                         </div>
-                        <button onClick={handleChange}  className='px-3 py-2 w-full rounded-lg text-[17px] font-medium mt-5 bg-blue-500'>Proceed Payment</button>
+                        <button disabled={!amount} onClick={handleChange} className='px-3 py-2 w-full rounded-lg text-[17px] font-medium mt-5 bg-blue-500'>Proceed Payment</button>
                         {
-                            modal&&(
+                            modal && (
                                 <div className="mo relative">
-                            <div className="over"></div>
-                            <div className='mo-con '>
-                                <Elements stripe={stripePromise}>
-                                    
-                                </Elements>
-                                <button onClick={()=>{
-                                    setModal(false)
-                                }}>
-                                <FaPlus className='bg-red-300 rounded-[50%] text-3xl -top-3 -right-3 rotate-45 absolute text-black'></FaPlus>
-                                </button>
-                            </div>
-                              
-                            
-                        </div>
+                                    <div className="over"></div>
+                                    <div className='mo-con '>
+                                        {
+                                            amount && (
+                                                <Elements stripe={stripePromise}>
+                                                    <AdminCheckOutForm price={amount}></AdminCheckOutForm>
+                                                </Elements>
+                                            )
+                                        }
+                                        <button  onClick={() => {
+                                            setModal(false)
+                                        }}>
+                                            <FaPlus className='bg-red-300 rounded-[50%] text-3xl -top-3 -right-3 rotate-45 absolute text-black'></FaPlus>
+                                        </button>
+                                    </div>
+
+
+                                </div>
                             )
                         }
-                         
+
                     </div>
                 </div>
             </div>
