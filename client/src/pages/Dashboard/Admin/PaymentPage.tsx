@@ -57,7 +57,10 @@ const PaymentPage = () => {
                                         {
                                             amount && (
                                                 <Elements stripe={stripePromise}>
-                                                    <AdminCheckOutForm price={amount}></AdminCheckOutForm>
+                                                    <AdminCheckOutForm
+                                                     price={amount} name={singleData.name} email={singleData.email}>
+
+                                                     </AdminCheckOutForm>
                                                 </Elements>
                                             )
                                         }

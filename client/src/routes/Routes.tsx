@@ -31,6 +31,7 @@ import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
 import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
+import PaymentDetails from "../pages/Dashboard/Admin/PaymentDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
       {
         path: "admin-add-doctor",
         element: <AdminAddDocotr></AdminAddDocotr>
+      },
+      {
+        path:'/dashboard/admin-doctors/payment_details/:id',
+        element:<PaymentDetails></PaymentDetails>
       },
       {
         path: '/dashboard/admin-doctors/admin-edit-doctors/:id',

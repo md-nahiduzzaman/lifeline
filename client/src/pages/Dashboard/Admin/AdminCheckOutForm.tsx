@@ -4,19 +4,22 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 interface AdminCheckOutFormProps {
-    price: number;
+    price: number,
+    name: string,
+    email:string
 }
 
-const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price }) => {
+const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email }) => {
 
     const { user } = useContext(AuthContext)
     console.log(user)
     const stripe = useStripe()
-
+    
     const [error, setError] = useState<any>('')
     const [clientSecret, setClientSecret] = useState("");
     const elements = useElements()
-
+    
+    
     useEffect(() => {
         axios.post('http://localhost:5000/create-payment-intent', { price })
             .then(res => {
@@ -68,6 +71,14 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price }) => {
             console.log(paymentIntent)
             if (paymentIntent.status) {
                 Swal.fire("Payment Successfully Done");
+                const date=new Date()
+                const info={
+                    price,name,email,date,paymentIntent
+                }
+                console.log(info)
+
+                axios.post('http://localhost:5000/doctor-payment',info)
+                .then(res=>console.log(res.data))
             }
         }
     }

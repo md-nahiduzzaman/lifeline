@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { FaEdit } from "react-icons/fa"
+import { FaEdit, FaInfoCircle } from "react-icons/fa"
 import { FaMoneyBill, FaTrash } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
@@ -82,6 +82,11 @@ const AdminDoctors = () => {
                                                 <span>Pay</span>
                                             </button>
                                         </th>
+                                        <th scope="col" className="px-12 w-[100px] py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                            <button className="flex items-center gap-x-2">
+                                                <span>Payment Details</span>
+                                            </button>
+                                        </th>
 
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Email address</th>
 
@@ -112,7 +117,9 @@ const AdminDoctors = () => {
                                                     <Link to={`/dashboard/admin-doctors/payment/${info._id}`}><button><FaMoneyBill className="text-xl"></FaMoneyBill></button></Link>
                                                 </div>
                                             </td>
-
+                                            <td className="w-[100px]">
+                                                <Link to={`/dashboard/admin-doctors/payment_details/${info._id}`}><FaInfoCircle className="block mx-auto"></FaInfoCircle> </Link>
+                                            </td>
                                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{info.email}</td>
 
                                             <td className="px-4 py-4 text-sm whitespace-nowrap">
