@@ -49,7 +49,17 @@ const transporter = nodemailer.createTransport({
 
 async function run() {
   try {
+    //  it is Sanim's collection
+    const database = client.db("lifeline");
+    const appointmentCollection = database.collection("Appointment");
+    const presaipationCollection = database.collection("Presaipation");
+    const HservoceCardCollection = database.collection("Hservice-card");
+    const HSBookingCollection = database.collection("HS-Booking");
+    const SerivcesCollection = database.collection("service-card");
+    const paymentHistoryCollection = database.collection("payment-history");
+    // end of sanim collection
 
+    const adminHistoryCollection=client.db("lifeline").collection("doctor-payment")
     const userCollection = client.db("lifeline").collection("users");
     const bedCollection = client.db("lifeline").collection("beds");
     app.get("/users", async (req, res) => {
@@ -88,6 +98,24 @@ async function run() {
        }
       const result=await bedCollection.updateOne(query,status,options)
       res.send(result)
+    })
+
+    
+    app.post('/doctor-payment', async (req,res)=>{
+         const info=req.body;
+         const result=await adminHistoryCollection.insertOne(info)
+         res.send(result)
+    })
+   
+
+    app.get('/get_doctor_payment',async (req,res)=>{
+         const email=req.query.email;
+
+         const query={email:email}
+         
+         const result=await adminHistoryCollection.find(query).toArray()
+         console.log(result)
+         return
     })
 
 
@@ -164,13 +192,7 @@ async function run() {
 
     // Connect the client to the server	(optional starting in v4.7)
     // const userCollection = client.db("lifeline").collection("users");
-    const database = client.db("lifeline");
-    const appointmentCollection = database.collection("Appointment");
-    const presaipationCollection = database.collection("Presaipation");
-    const HservoceCardCollection = database.collection("Hservice-card");
-    const HSBookingCollection = database.collection("HS-Booking");
-    const SerivcesCollection = database.collection("service-card");
-    const paymentHistoryCollection = database.collection("payment-history");
+
 
     // await client.connect();
     // Send a ping to confirm a successful connection

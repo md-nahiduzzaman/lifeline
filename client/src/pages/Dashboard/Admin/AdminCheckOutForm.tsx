@@ -7,24 +7,24 @@ interface AdminCheckOutFormProps {
     price: number;
 }
 
-const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({price}) => {
+const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price }) => {
 
-    const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     console.log(user)
     const stripe = useStripe()
-    
-    const [error,setError]=useState<any> ('')
+
+    const [error, setError] = useState<any>('')
     const [clientSecret, setClientSecret] = useState("");
     const elements = useElements()
 
-    useEffect(()=>{
-       axios.post('http://localhost:5000/create-payment-intent',{price})
-       .then(res=>{
-        console.log(res.data.clientSecret)
-        setClientSecret(res.data.clientSecret)
-        console.log(clientSecret)
-    })
-    },[price])
+    useEffect(() => {
+        axios.post('http://localhost:5000/create-payment-intent', { price })
+            .then(res => {
+                console.log(res.data.clientSecret)
+                setClientSecret(res.data.clientSecret)
+                console.log(clientSecret)
+            })
+    }, [price])
     const handelSubmit = async (e: any) => {
         e.preventDefault()
         if (!stripe || !elements) {
@@ -37,40 +37,41 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({price}) => {
             return
         }
 
-        const {error,paymentMethod}=await stripe.createPaymentMethod ({
-            type:'card',
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
             card
         })
-        if(error){
-            console.log('payment error ',error)
+        if (error) {
+            console.log('payment error ', error)
             setError(error.message)
-        
-        }else{
-            console.log('payment method',paymentMethod)
+
+        } else {
+            console.log('payment method', paymentMethod)
             setError("")
         }
 
-       const { paymentIntent, error:con }=await stripe.confirmCardPayment(clientSecret,
-        {
-            payment_method:{
-                card:card,
-                billing_details:{
-                    email:user.email ||'anonymous',
-                    name:user.displayName || 'anonymous'
+        const { paymentIntent, error: con } = await stripe.confirmCardPayment(clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        email: user.email || 'anonymous',
+                        name: user.displayName || 'anonymous'
+                    }
                 }
             }
+        )
+        if (con) {
+            console.log(con)
         }
-       )
-       if(con){
-          console.log(con)
-       }
-       else{
-        console.log(paymentIntent)
-        if(paymentIntent.status){
-            Swal.fire("Payment Successfully Done");
+        else {
+            console.log(paymentIntent)
+            if (paymentIntent.status) {
+                Swal.fire("Payment Successfully Done");
+            }
         }
-       }
     }
+    
     return (
         <div>
             <form onSubmit={handelSubmit}>
@@ -91,7 +92,7 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({price}) => {
                     Pay Now
                 </button>
                 {
-                   error&&(<p className="text-red-400">{error}</p>)
+                    error && (<p className="text-red-400">{error}</p>)
                 }
             </form>
         </div>
