@@ -71,9 +71,11 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
             console.log(paymentIntent)
             if (paymentIntent.status) {
                 Swal.fire("Payment Successfully Done");
-                const date=new Date()
+                const date1=new Date()
+                const date=new Date(date1).toLocaleDateString()
+                const time=new Date(date1).toLocaleTimeString()
                 const info={
-                    price,name,email,date,paymentIntent
+                    price,name,email,date,paymentIntent,time
                 }
                 console.log(info)
 
