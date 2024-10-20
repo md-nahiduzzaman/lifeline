@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { FaEdit, FaInfoCircle } from "react-icons/fa"
-import { FaMoneyBill, FaTrash } from "react-icons/fa6"
+import { FaInfoCircle } from "react-icons/fa"
+import { FaMoneyBill } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
 
