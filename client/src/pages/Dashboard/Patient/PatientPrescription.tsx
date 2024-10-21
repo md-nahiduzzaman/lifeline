@@ -1,98 +1,76 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Assuming you're using react-router-dom
 
 interface Prescription {
   date: string;
   doctor: string;
   diagnosis: string;
-  medications: {
-    name: string;
-    dosage: string;
-    frequency: string;
-    duration: string;
-  }[];
-  notes: string;
+  id: string; // Added for redirection to specific prescription page
 }
 
 const PatientPrescription: React.FC = () => {
+  const navigate = useNavigate();
+
   const prescriptions: Prescription[] = [
     {
       date: "2024-10-05",
       doctor: "Dr. John Doe",
       diagnosis: "Migraine",
-      medications: [
-        {
-          name: "Ibuprofen",
-          dosage: "200 mg",
-          frequency: "Twice a day",
-          duration: "7 days",
-        },
-        {
-          name: "Sumatriptan",
-          dosage: "50 mg",
-          frequency: "As needed",
-          duration: "Until relieved",
-        },
-      ],
-      notes: "Take medication with food. Stay hydrated and rest.",
+      id: "prescription-1", // unique identifier
     },
     {
       date: "2024-09-15",
       doctor: "Dr. Emily Davis",
       diagnosis: "Seasonal Allergy",
-      medications: [
-        {
-          name: "Cetirizine",
-          dosage: "10 mg",
-          frequency: "Once a day",
-          duration: "14 days",
-        },
-        {
-          name: "Fluticasone Nasal Spray",
-          dosage: "2 sprays",
-          frequency: "Twice a day",
-          duration: "10 days",
-        },
-      ],
-      notes: "Avoid allergens and use air purifiers.",
+      id: "prescription-2", // unique identifier
     },
+    // Add more prescriptions here
   ];
 
+  const handleView = (id: string) => {
+    navigate(`/prescription/${id}`);
+  };
+
   return (
-    <div className="mx-auto mt-8 ">
-      <h1 className="mb-6 text-2xl font-bold">Patient Prescription</h1>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          {/* Table head */}
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Doctor</th>
-              <th>Diagnosis</th>
-              <th>Medications</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {prescriptions.map((prescription, index) => (
-              <tr key={index}>
-                <td>{prescription.date}</td>
-                <td>{prescription.doctor}</td>
-                <td>{prescription.diagnosis}</td>
-                <td>
-                  <ul>
-                    {prescription.medications.map((medication, medIndex) => (
-                      <li key={medIndex}>
-                        <strong>{medication.name}</strong> - {medication.dosage}
-                        , {medication.frequency}, for {medication.duration}
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td>{prescription.notes}</td>
+    <div className="flex justify-center mt-10">
+      <div className="w-[935px] bg-white shadow rounded-lg">
+        <div className="p-4 border-b border-gray-200">
+          <h1 className="text-xl font-semibold text-gray-700">
+            Patient Prescription
+          </h1>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            {/* Table head */}
+            <thead>
+              <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {prescriptions.map((prescription, index) => (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <td>{prescription.date}</td>
+                  <td>{prescription.doctor}</td>
+                  <td>{prescription.diagnosis}</td>
+                  <td>
+                    <button
+                      onClick={() => handleView(prescription.id)}
+                      className="text-sm text-white bg-blue-500 btn btn-sm"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

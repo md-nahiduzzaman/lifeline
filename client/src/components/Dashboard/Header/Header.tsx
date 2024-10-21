@@ -1,9 +1,19 @@
-import { IoMdNotifications } from "react-icons/io";
+import { IoMdCart, IoMdNotifications } from "react-icons/io";
+import useAuth from "../../../hooks/useAuth";
 
 const Header = () => {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <div className="sticky top-0 z-30 p-4 py-2 bg-white border-b">
       <div className="flex items-center justify-end gap-2 pr-6 space-x-6">
+        {/* Cart Icon */}
+        <button className="btn">
+          <IoMdCart className="text-2xl" />
+          <div className="badge badge-secondary">+99</div>
+        </button>
+
         {/* Notification Icon */}
         <div className="text-2xl">
           <IoMdNotifications />
@@ -18,8 +28,11 @@ const Header = () => {
           >
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="User Avatar"
+                src={
+                  user?.photoURL ||
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
               />
             </div>
           </div>

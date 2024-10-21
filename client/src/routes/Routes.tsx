@@ -22,6 +22,7 @@ import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPr
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
 import HomeServices from "../pages/HomeServices/HomeServices";
 import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
+import OnlinePrescriptionDetails from "../pages/Dashboard/Patient/OnlinePrescriptionDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,15 +56,17 @@ const router = createBrowserRouter([
       {
         path: "drCard",
         element: <DrCart></DrCart>,
-      },{
-        path:'/home-service',
-        element:<HomeServices></HomeServices>
       },
       {
-        path:'/home-serviceDeatils/:id',
-        element:<HSCardDeatils></HSCardDeatils>,
-        loader:({params})=>fetch(`http://localhost:5000/serviceDs/${params.id}`)
-      }
+        path: "/home-service",
+        element: <HomeServices></HomeServices>,
+      },
+      {
+        path: "/home-serviceDeatils/:id",
+        element: <HSCardDeatils></HSCardDeatils>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/serviceDs/${params.id}`),
+      },
     ],
   },
   // { path: "/login", element: <Login /> },
@@ -88,29 +91,37 @@ const router = createBrowserRouter([
         path: "patient-record",
         element: <PatientHealthRecord />,
       },
+      {
+        path: "online-prescription",
+        element: <OnlinePrescriptionDetails />,
+      },
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",
         element: <DoctorAppointment />,
-      },{
-path:'doctorHome',
-element:<DoctorHome></DoctorHome>
-
-      },{
-        path:'AddprescriptionTb',
-        element:<AddPrescription></AddPrescription>
-      },{
-path:'/dashboard/added-prescription/:id',
-element:<AddedPresaipation></AddedPresaipation>,
-loader:({params})=>fetch(`http://localhost:5000/patient-deatils/${params.id}`)
-
-      } ,{
-        path:'/dashboard/prescriptionDeatils/:id',
-        element:<PrescriptionDeatils></PrescriptionDeatils>,
-        loader:({params})=>fetch(`http://localhost:5000/patients-deatils/${params.id}`)
-      }
-       // --------------------this is the asmin dshboard route arey -----------------------------------
-      ,{
+      },
+      {
+        path: "doctorHome",
+        element: <DoctorHome></DoctorHome>,
+      },
+      {
+        path: "AddprescriptionTb",
+        element: <AddPrescription></AddPrescription>,
+      },
+      {
+        path: "/dashboard/added-prescription/:id",
+        element: <AddedPresaipation></AddedPresaipation>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/patient-deatils/${params.id}`),
+      },
+      {
+        path: "/dashboard/prescriptionDeatils/:id",
+        element: <PrescriptionDeatils></PrescriptionDeatils>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/patients-deatils/${params.id}`),
+      },
+      // --------------------this is the asmin dshboard route arey -----------------------------------
+      {
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
