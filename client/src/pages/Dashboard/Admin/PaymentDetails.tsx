@@ -58,7 +58,7 @@ const PaymentDetails = () => {
                     <p className="w-[130px] text-center font-medium ml-16">{info.price}$</p>
                     <p className="w-[160px] text-center font-medium">{info.date}</p>
                     <p className="w-[180px] text-center font-medium">{info.time}</p>
-                    <p className="w-[170px] text-[17px] text-center font-medium text-green-400">{info.paymentIntent.status}</p>
+                    <p className="w-[170px] text-[17px] text-center font-medium text-green-400">{info.paymentIntent.status}</p> 
                   </div>)
                 }
               </div>
