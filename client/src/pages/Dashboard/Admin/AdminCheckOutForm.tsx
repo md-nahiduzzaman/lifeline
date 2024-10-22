@@ -58,8 +58,8 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
                 payment_method: {
                     card: card,
                     billing_details: {
-                        email: user.email || 'anonymous',
-                        name: user.displayName || 'anonymous'
+                        email: user.email || 'nayemshahadat581@gmail.com',
+                        name: user.displayName || 'shahadat'
                     }
                 }
             }

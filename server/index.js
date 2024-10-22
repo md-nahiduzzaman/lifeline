@@ -4,11 +4,26 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const nodemailer = require('nodemailer');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+// socket.io
+const { createServer } = require('http');
+const { Server } = require("socket.io"); 
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
+const server = createServer(app); 
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://lifeline-omega.vercel.app",
+      "http://localhost:5175"
+    ],
+    credentials: true,
+  }
+});
 
 app.use(
   cors({
@@ -21,9 +36,22 @@ app.use(
     credentials: true,
   })
 );
+
+io.on("connection", (socket) => {
+  console.log("A user connected: " + socket.id);
+
+  socket.on("chat message", (msg) => {
+    console.log("Message received: ", msg);
+    io.emit("chat message", msg);  // Broadcast to all connected clients
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected: " + socket.id);
+  });
+});
 app.use(express.json());
 app.use(cookieParser());
-console.log("sfsdfs", process.env.DB_USER)
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.r6s2z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
@@ -35,7 +63,6 @@ const client = new MongoClient(uri, {
   },
 });
 
-
 // Nodemailer: if admin change any data of a doctor an email
 // will go automatically to the doctor
 const transporter = nodemailer.createTransport({
@@ -46,6 +73,7 @@ const transporter = nodemailer.createTransport({
   },
 
 });
+
 
 async function run() {
   try {
@@ -359,6 +387,7 @@ app.get("/", (req, res) => {
   res.send("lifeline server is Running");
 });
 
-app.listen(port, () => {
-  console.log(`lifeline server is running on port: ${port}`);
+server.listen(port, () => {
+  console.log(`Lifeline server is running on port: ${port}`);
 });
+    
