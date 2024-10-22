@@ -10,7 +10,7 @@ type Doctor = {
   availability: string;
   rating: number;
   reviews: number;
-  image: string;
+image_url: string;
 };
 
 interface DrCardProps {
@@ -30,7 +30,7 @@ const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
       {/* Doctor Image */}
       <div className="w-1/3">
         <img
-          src={doctor.image} // Using the doctor image prop
+          src={doctor?.image_url} // Using the doctor image prop
           alt={`Dr. ${doctor.name}`}
           className="object-cover w-full h-full rounded-l-lg"
         />

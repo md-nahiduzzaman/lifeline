@@ -175,21 +175,16 @@ async function run() {
 
     // await client.connect();
     // Send a ping to confirm a successful connection
-
-    // --------------------------------this is the doctort and user api ---------------------------------------
-
-    // app.get("/users", async (req, res) => {
-    //   const role = req.query.role || "doctor";
-    //   try {
-    //     const result = await userCollection.find({ role }).toArray();
-    //     res.send(result);
-    //   } catch (error) {
-    //     console.error("Error fetching users:", error);
-    //     res.status(500).send({ message: error.message });
-    //   }
-    // });
-
-
+    app.get("/doctors-all", async (req, res) => {
+      const role = 'doctor'
+      try {
+        const result = await userCollection.find({ role }).toArray();
+        res.send(result);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).send({ message: error.message });
+      }
+    });
     // ----------------this is the doctor handile api section ----------------------------------------
     app.get('/apppionment-request', async (req, res) => {
       const email = { doctorEmail: req.query.email }
