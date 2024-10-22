@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
+import { useContext } from "react"
+import { AuthContext } from "../../../providers/AuthProvider"
 
 const PaymentHistory = () => {
-    const email='diana.prince@example.com'
+   const{user}=useContext(AuthContext)
     const axiosCommon=useAxiosCommon()
 const {data}=useQuery({
     queryKey:['payment-history'],
     queryFn:async()=>{
-        const {data}=await axiosCommon.get(`/UP-history?email=${email}`)
+        const {data}=await axiosCommon.get(`/UP-history?email=${user.email}`)
         return data
     }
 })

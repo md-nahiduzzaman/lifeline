@@ -5,7 +5,7 @@ import Header from "../components/Dashboard/Header/Header";
 const DashboardLayout = () => {
   return (
     <>
-      <div>
+      <div className="font-custom">
         {/* sidebar */}
         <Sidebar />
         {/* main content */}

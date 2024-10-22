@@ -12,7 +12,7 @@ const AboutBanner = () => {
     }}
   >
     <div
-      className='absolute inset-0 bg-[rgba(6,182,212,0.8)] grid justify-center items-center'
+      className='absolute inset-0 bg-[rgba(35,8,90,0.4)] grid justify-center items-center'
     >
      <h2 className='text-5xl font-extrabold text-white'>About Us</h2>
     </div>

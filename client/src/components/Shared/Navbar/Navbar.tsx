@@ -4,33 +4,33 @@ const Navbar = () => {
   const navelink = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/signup"}>Sign Up</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>
       </li>
       <li>
-        <NavLink to={"/login"}>Login</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
       </li>
       <li>
-        <NavLink to={'/solutions'}>Solutions</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
       </li>
       <li>
-        <NavLink to={"/home-service"}>Home Service</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/home-service"}>Home Service</NavLink>
       </li>
       <li>
-        <NavLink to={"/package"}>Ours Package</NavLink>{" "}
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/package"}>Ours Package</NavLink>{" "}
       </li>
       <li>
-        <NavLink to={"/about"}>About</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/about"}>About</NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard/doctorHome"}>Dashboard</NavLink>
+        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/dashboard/doctorHome"}>Dashboard</NavLink>
       </li>
     </>
   );
   return (
-    <div className="bg-[#ECFEFF] shadow-lg z-10 fixed mx-auto w-full  h-16">
+    <div className="bg-[#00953B] font-custom shadow-lg z-10 fixed mx-auto w-full text-white h-16">
       <div className="navbar max-w-screen-xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -60,12 +60,12 @@ const Navbar = () => {
           <a className="btn btn-ghost text-xl font-bold ">Lifeline</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-8 font-semibold items-center">
+          <ul className="menu-horizontal px-1 gap-12 font-semibold items-center">
             {navelink}
           </ul>
         </div>
         <div className="navbar-end">
-          <a href="/drCart" className="btn bg-[#06B6D4] text-white">Appointment</a>
+          <a href="/drCart" className="btn border-none bg-[#23085A] text-white">Appointment</a>
         </div>
       </div>
     </div>

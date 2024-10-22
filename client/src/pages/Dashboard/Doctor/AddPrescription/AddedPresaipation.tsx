@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, {useState } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+
 interface presaipationProps{
      medicationName:string;
     dosage:string;

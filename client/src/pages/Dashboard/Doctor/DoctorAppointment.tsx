@@ -1,8 +1,9 @@
 
-import {useState } from "react"
+import {useContext, useState } from "react"
 import DrAppointmenttable from "./DrAppointmenttable"
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 interface patients{
   _id: string;    
@@ -20,16 +21,16 @@ interface patients{
 const DoctorAppointment = () => {
   const axiosCommon=useAxiosCommon()
 const [appointment,setAppointment]=useState<patients[]>([])
-const email='daniel.harris@hospital.com'
+const {user}=useContext(AuthContext)
 const {data,refetch}=useQuery({queryKey:['approve'],
   queryFn:async()=>{
-    const res=await axiosCommon.get(`/apppionment-request?email=${email}`)
+    const res=await axiosCommon.get(`/apppionment-request?email=${user.email}`)
     setAppointment(res.data)
     return res.data
   }
 
 })
-console.log(data)
+console.log(data,user.email)
 
 const handileClickApprove=(_id:string):void=>{
 console.log(_id)

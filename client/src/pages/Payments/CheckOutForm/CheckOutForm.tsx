@@ -1,14 +1,16 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 const CheckOutForm:React.FC<any> = ({price,duration,packageName}) => {
     const stripe=useStripe()
     const elements=useElements()
     const [error,setError]=useState<any> ('')
     const axiosCommon=useAxiosCommon()
     const [clientSecret, setClientSecret] = useState("");
+    const {user}=useContext(AuthContext)
 const location=useLocation()
 const navigation=useNavigate()
     useEffect(()=>{
@@ -77,11 +79,13 @@ console.log('confirm error message',confirmError)
         email,
         number,
         address,
-        date:new Date,
+        date:new Date(),
         duration,
         packageName,
         price,
-        transactionId:paymentIntent.id
+        transactionId:paymentIntent.id,
+        userEmail:user.email,
+userName:user.displayName
        }
 
 axiosCommon.post('/payments-history',paymentInfo).then(res=>{

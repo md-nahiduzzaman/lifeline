@@ -5,7 +5,7 @@ import Testmonial from "./Testmonial/Testmonial"
 
 const About = () => {
   return (
-    <div>
+    <div className="font-custom">
 <AboutBanner></AboutBanner>
     <AboutCompany></AboutCompany>
     <AboutCard></AboutCard>

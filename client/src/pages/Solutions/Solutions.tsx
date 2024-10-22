@@ -6,7 +6,7 @@ import SolutionTestimonials from "./SolutionTestimonials/SolutionTestimonials"
 
 const Solutions = () => {
   return (
-    <div>
+    <div className="font-custom">
    <SolutionsBanner></SolutionsBanner>
    <SolutionAbout></SolutionAbout>
    <SolutionCard></SolutionCard>

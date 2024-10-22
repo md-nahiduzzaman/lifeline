@@ -331,7 +331,7 @@ app.post('/payments-history',async(req,res)=>{
 })
 
 app.get('/UP-history',async(req,res)=>{
-  const query={email:req.query.email}
+  const query={userEmail:req.query.email}
 const result=await paymentHistoryCollection.find(query).toArray()
 res.send(result)
 })

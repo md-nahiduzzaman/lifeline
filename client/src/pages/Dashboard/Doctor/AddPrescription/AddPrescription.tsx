@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AddPresaipationTb from "./AddPresaipationTb";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import { AuthContext } from "../../../../providers/AuthProvider";
 interface patients{
     _id: string;    
     name: string;       
@@ -17,10 +18,10 @@ interface patients{
 const AddPrescription = () => {
     const [appointment,setAppointment]=useState<patients[]>([])
     const axiosCommon=useAxiosCommon()
-const doctor='daniel.harris@hospital.com'
+const {user}=useContext(AuthContext)
 console.log(appointment)
 useEffect(()=>{
-axiosCommon.get(`/approve-appionment?email=${doctor}`).then(res=>{
+axiosCommon.get(`/approve-appionment?email=${user?.email}`).then(res=>{
   setAppointment(res.data)
   console.log(res.data)
 }).catch(error=>{

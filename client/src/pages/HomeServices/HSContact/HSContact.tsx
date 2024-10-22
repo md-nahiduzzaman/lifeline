@@ -38,7 +38,7 @@ const HSContact :React.FC = () => {
   };
   console.log(sendMessage)
   return (
-    <div className="my-[110px] bg-[#ECFEFF] ">
+    <div className="my-[110px] bg-[#23085A] text-white py-10 ">
     <div className=" rounded-lg lg:p-12 p-3  max-w-screen-xl mx-auto">
       <h2 className="text-xl font-bold">Get in Touch with Us</h2>
       <p className=" lg:w-2/3 mt-3">
@@ -81,7 +81,7 @@ const HSContact :React.FC = () => {
 <p className='font-bold'>{sendMessage}</p>
               <button
                 type="submit"
-                className="btn mt-4  bg-[#06B6D4]  text-white border-none"
+                className="btn mt-4  bg-[#5dEB4B]  text-white border-none"
               >
                 Send message
               </button>
