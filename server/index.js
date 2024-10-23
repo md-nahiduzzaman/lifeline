@@ -24,7 +24,7 @@ const io = new Server(server, {
     credentials: true,
   }
 });
-
+console.log(io)
 app.use(
   cors({
     origin: [
