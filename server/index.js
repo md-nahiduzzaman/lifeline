@@ -37,18 +37,7 @@ app.use(
   })
 );
 
-io.on("connection", (socket) => {
-  console.log("A user connected: " + socket.id);
 
-  socket.on("chat message", (msg) => {
-    console.log("Message received: ", msg);
-    io.emit("chat message", msg);  // Broadcast to all connected clients
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected: " + socket.id);
-  });
-});
 app.use(express.json());
 app.use(cookieParser());
 
