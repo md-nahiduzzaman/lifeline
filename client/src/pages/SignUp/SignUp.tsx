@@ -72,9 +72,9 @@ const SignUp = () => {
   return (
     <div className="my-8 rounded-xl w-[98%] mx-auto 
     min-h-[75vh] flex justify-center items-center">
-      <div className="w-[94%] flex flex-wrap gap-5 justify-evenly rounded-xl mx-auto min-h-[62vh]">
+      <div className="w-[94%] flex flex-wrap gap-2 justify-center shadow-lg py-4 rounded-xl mx-auto min-h-[62vh]">
         <div 
-          className='bg-white shadow-lg rounded-lg p-2 w-[350x] md:w-[48%] lg:w-[31%]'>
+          className='bg-white rounded-lg p-2 w-[350x] md:w-[48%] lg:w-[31%]'>
 
           <img src={logo} className='w-[40px] h-[40px] block mx-auto mb-2' alt="" />
 

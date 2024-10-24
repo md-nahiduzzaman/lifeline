@@ -32,6 +32,8 @@ import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
 import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
 import PaymentDetails from "../pages/Dashboard/Admin/PaymentDetails";
+import Message from "../pages/Dashboard/Admin/Message";
+import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -138,10 +140,7 @@ const router = createBrowserRouter([
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
-      {
-        path: "admin-messages",
-        element: <AdminMessages />,
-      },
+     
       {
         path: 'admin-doctors',
         element: <AdminDoctors></AdminDoctors>
@@ -173,6 +172,20 @@ const router = createBrowserRouter([
   {
     path: '/room/:id',
     element: <VideoChatsPages></VideoChatsPages>
+  },
+  {
+    path: '/message',
+    element: <Message></Message>,
+    children: [
+      {
+       path:'/message',
+       element:<AdminMessages></AdminMessages>
+      },
+      {
+          path:'/message/:id',
+          element:<IndividualMessage></IndividualMessage>
+      }
+    ]
   }
 ]);
 

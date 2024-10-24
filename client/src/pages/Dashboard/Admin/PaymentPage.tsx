@@ -29,7 +29,7 @@ const PaymentPage = () => {
                     <div>
                         <img src={singleData.image_url} className='w-[75px] block mx-auto h-[75px] rounded-[50%]' alt="" />
                     </div>
-                    <div className='p-2 border-2 border-black rounded-md'>
+                    <div className='p-2 rounded-md'>
                         <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Name: {singleData.name}</h2>
                         <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Email: {singleData.email}</h2>
                         <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Role: Doctor</h2>
