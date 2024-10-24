@@ -31,6 +31,7 @@ import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
 import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
+import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -102,10 +103,14 @@ loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
         element: <PatientHealthRecord />,
       },
       {
-
         path:'user-payment-history',
         element:<PaymentHistory></PaymentHistory>
       },
+      {
+        path:'my-appointment',
+        element:<MyAppointment></MyAppointment>
+      }
+      ,
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",
@@ -121,12 +126,12 @@ loader:({params})=>fetch(`http://localhost:5000/package-price/${params.id}`)
       },{
 path:'/dashboard/added-prescription/:id',
 element:<AddedPresaipation></AddedPresaipation>,
-loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${params.id}`)
+loader:({params})=>fetch(`http://localhost:5000/patient-deatils/${params.id}`)
 
       } ,{
         path:'/dashboard/prescriptionDeatils/:id',
         element:<PrescriptionDeatils></PrescriptionDeatils>,
-        loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
+        loader:({params})=>fetch(`http://localhost:5000/patients-deatils/${params.id}`)
       },
       {
 path:'/dashboard/video-chats',

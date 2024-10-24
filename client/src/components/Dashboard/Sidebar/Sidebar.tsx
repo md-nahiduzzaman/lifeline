@@ -4,8 +4,10 @@ import { FaUser } from "react-icons/fa6";
 import PatientMenu from "./Menu/PatientMenu";
 import DoctorMenu from "./Menu/DoctorMenu";
 import AdminMenu from "./Menu/AdminMenu";
+import userRole from "../../../hooks/useRole";
 
 const Sidebar = () => {
+  const{data,refetch}=userRole()as any
   return (
     <div>
       {/* Sidebar */}
@@ -25,25 +27,48 @@ const Sidebar = () => {
           {/* nav item */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
-              <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
+
+             
+              {
+              data?.role==='doctor'&&<>
+                 <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Overview
               </p>
               <MenuItem label="Statistics" address="/dashboard/doctorHome" icon={FaUser} />
               <hr className="mt-6 mb-6" />
-              <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
+              </>
+            }
+
+            {
+              data?.role==='user'&&<>
+                <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Patient Panel
               </p>
               <PatientMenu />
-              <hr className="mt-6 mb-6" />
-              <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
+           
+              </>
+            }
+            {
+              data?.role==='doctor'&&<>
+                <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Doctor Panel
               </p>
               <DoctorMenu />
-              <hr className="mt-6 mb-6" />
-              <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
+            
+              </>
+            }
+             
+            {
+              data?.role==='admin'&&<>
+               <p className="text-xs text-[#041e49b3] pb-3.5 px-4 font-medium">
                 Admin Panel
               </p>
               <AdminMenu />
+              </>
+            }
+             
+             
+             
             </nav>
           </div>
         </div>

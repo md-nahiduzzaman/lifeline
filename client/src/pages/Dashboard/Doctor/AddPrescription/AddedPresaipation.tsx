@@ -11,11 +11,11 @@ interface presaipationProps{
 
 interface PatientInfo {
   img: string;
-  name: string;
-  email: string;
-  birthdate: number;
+ patientName: string;
+  patientEmail: string;
+  birth: number;
   gender: string;
-  number: string;
+  phone: string;
   address: string;
   blood: string;
   pressure: string;
@@ -24,11 +24,13 @@ interface PatientInfo {
   admittedDate: string;
   doctorEmail:string;
   doctorName:string;
+  message:string
 
 }
 const AddedPresaipation = () => {
   const navigate=useNavigate()
   const patientInfos=useLoaderData()as PatientInfo
+  console.log(patientInfos)
    const [presaipation,setPresaipation]=useState({
     medicationName:'',
     dosage:'',
@@ -47,19 +49,19 @@ e.preventDefault()
 setPresaipationData([...presaipationData,presaipation])
 
     }
-const {img,name,email,birthdate,gender,number,address,doctorName,blood,doctorEmail,pressure,pushRate,weight,admittedDate}= patientInfos
+const {img, patientName, patientEmail,message,birth,gender,phone,address,doctorName,blood,doctorEmail,pressure,pushRate,weight,admittedDate}= patientInfos
 
 const handilePresaipationSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
 e.preventDefault()
 const presaipationInfo={
-  patientName:name,
-  patientEmail:email,
+  patientName:patientName,
+  patientEmail:patientEmail,
   doctorEmail,
   doctorName,
   medicineDeatils:presaipationData,
-  age:birthdate,
+  age:birth,
    gender:gender,
-   patientNumber:number,
+   patientNumber:phone,
    address:address,
    admittedDate:admittedDate,
    blood:blood,
@@ -80,7 +82,7 @@ navigate('/dashboard/AddprescriptionTb')
   console.log(error)
 })
 
-console.log(presaipationInfo)
+
 }
 
 
@@ -95,7 +97,7 @@ console.log(presaipationInfo)
   <h2 className="text-xl font-bold text-[#06B6D4]">Patient information</h2>
   </div>
  <div className="mt-6">
- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores perferendis quaerat nesciunt consectetur, deleniti sit. Quas autem ea totam, accusantium aperiam modi veniam explicabo. Doloremque necessitatibus culpa explicabo laboriosam et ratione eius quae ab est exercitationem, facilis, voluptate hic aut. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat necessitatibus labore amet mollitia quae ex</p>
+ <p>{message}</p>
  </div>
   </div>
   <div className="flex lg:w-1/2 gap-12">
@@ -112,15 +114,15 @@ console.log(presaipationInfo)
     <p className="mt-3">Address</p>
    </div>
    <div>
-   <p>{name} </p>
-   <p className="my-3">{birthdate}</p>
+   <p>{patientName} </p>
+   <p className="my-3">{birth}</p>
     <p>{gender}</p>
     <p className="my-3">{blood}</p>
     <p>{pressure}</p>
     <p className="my-3">{pushRate}</p>
     <p>{weight}</p>
-    <p className="my-3">{email}</p>
-    <p>{number}</p>
+    <p className="my-3">{patientEmail}</p>
+    <p>{phone}</p>
     <p className="mt-3">{address}</p>
    </div>
   </div>

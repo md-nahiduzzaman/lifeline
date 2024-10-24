@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
 import BarChat from "./BarChat"
 import useAxiosCommon from "../../../../hooks/useAxiosCommon"
+import { useContext } from "react"
+import { AuthContext } from "../../../../providers/AuthProvider"
 
 const DoctorHome = () => {
   const axiosCommon=useAxiosCommon()
+  const {user}=useContext(AuthContext)
 const {data}=useQuery({
   queryKey:['appionmentslength'],
   queryFn:async()=>{
-const {data}=await axiosCommon.get('/appionment-today')
+const {data}=await axiosCommon.get(`/appionment-today?email=${user?.email}`)
 return data
   }
 })

@@ -7,15 +7,17 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 interface patients{
   _id: string;    
-  name: string;       
+patientName: string;       
   gender: string;     
-  number: string;    
+ phone: string;    
   address: string;    
   doctor: string;     
-  admittedDate: string; 
+  appiontmentDate: string; 
   status: string;
-  email:string;
+ patientEmail:string;
   img:string;
+  selectedTimeSlot:string;
+
 }
 
 const DoctorAppointment = () => {
@@ -24,13 +26,13 @@ const [appointment,setAppointment]=useState<patients[]>([])
 const {user}=useContext(AuthContext)
 const {data,refetch}=useQuery({queryKey:['approve'],
   queryFn:async()=>{
-    const res=await axiosCommon.get(`/apppionment-request?email=${user.email}`)
-    setAppointment(res.data)
+    const res=await axiosCommon.get(`/apppionment-request?email=${user?.email}`)
+    setAppointment(res?.data)
     return res.data
   }
 
 })
-console.log(data,user.email)
+console.log(data)
 
 const handileClickApprove=(_id:string):void=>{
 console.log(_id)
@@ -95,7 +97,13 @@ console.log(_id)
                   scope="col"
                   className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
-                 Date & Time
+                 Date 
+                </th>
+                <th
+                  scope="col"
+                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
+                >
+                 Time
                 </th>
 
                 <th

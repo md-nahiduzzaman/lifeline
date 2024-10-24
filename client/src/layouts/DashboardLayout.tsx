@@ -11,7 +11,9 @@ const DashboardLayout = () => {
         {/* main content */}
         <div className="bg-[#FAFBFF] min-h-screen">
           {/* sticky header */}
-          <Header />
+        <div className="h-16">
+        <Header />
+        </div>
           {/* dynamic content */}
           <div className="flex-1 md:ml-64">
             <div className="p-5">

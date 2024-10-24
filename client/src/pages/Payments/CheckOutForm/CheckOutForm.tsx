@@ -85,12 +85,15 @@ console.log('confirm error message',confirmError)
         price,
         transactionId:paymentIntent.id,
         userEmail:user.email,
-userName:user.displayName
+userName:user.displayName,
+status:'subscribe'
        }
-
 axiosCommon.post('/payments-history',paymentInfo).then(res=>{
   console.log(res.data)
   if(res.data.insertedId){
+axiosCommon.patch(`/user-status-upadate?email=${user?.email}`).then(res=>{
+  console.log(res.data)
+})
     Swal.fire({
       title: "Good job ",
       text: "payment success fullly done",
@@ -149,7 +152,7 @@ navigation(location.state|| '/')
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}
         </div>
-        <button  className="w-full mt-4 bg-blue-500 text-white font-semibold py-3 rounded-md hover:bg-blue-600 transition" type="submit" disabled={!stripe || !elements}>
+        <button  className="w-full mt-4 bg-[#23085A] text-white font-semibold py-3 rounded-md hover:bg-[#23085A] transition" type="submit" disabled={!stripe || !elements}>
     Pay Now
         </button>
       </form>

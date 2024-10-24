@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import BookAppointmentModal from "../Modal/BookAppointmentModal";
+import { useNavigate } from "react-router-dom";
+import userRole from "../../../hooks/useRole";
 
 // Define the type for doctor prop
 type Doctor = {
@@ -11,6 +13,7 @@ type Doctor = {
   rating: number;
   reviews: number;
 image_url: string;
+email:string
 };
 
 interface DrCardProps {
@@ -18,8 +21,19 @@ interface DrCardProps {
 }
 
 const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
+const navigation=useNavigate()
   const [isOpen, setIsOpen] = useState<boolean>(false);
+const {data,refetch}=userRole()
 
+  const handileClick=()=>{
+if(data?.status==='subscribe'){
+  setIsOpen(true)
+
+}else{
+ return navigation('/package')
+}
+   
+  }
   // Close modal function
   const closeModal = () => {
     setIsOpen(false);
@@ -70,7 +84,7 @@ const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
         {/* Action Buttons */}
         <div className="flex mt-4 space-x-2">
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={handileClick}
             className="px-4 py-2 text-white bg-blue-500 rounded-lg"
           >
             Get Appointment
@@ -86,7 +100,9 @@ const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
       <BookAppointmentModal
         isOpen={isOpen}
         closeModal={closeModal}
-        bookingInfo={doctor.name}
+        doctorName={doctor.name}
+        doctorEmail={doctor.email}
+        doctorImage={doctor.image_url}
       />
     </div>
   );

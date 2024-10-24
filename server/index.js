@@ -246,7 +246,7 @@ async function run() {
     })
 
     app.get('/show-prescription', async (req, res) => {
-      const query = { patientEmail: req.query.email, doctorEmail: req.query.dremail }
+      const query = { patientEmail:req.query.email, doctorEmail:req.query.dremail }
 
       const result = await presaipationCollection.findOne(query)
       res.send(result)
@@ -255,21 +255,22 @@ async function run() {
     app.get('/appionment-today', async (req, res) => {
       const today = new Date()
       today.setHours(0, 0, 0, 0)
-
       const tomorrow = new Date()
-
       tomorrow.setHours(24, 0, 0, 0)
 
-      const todayAppionments = await appointmentCollection.countDocuments({
-        admittedDate: { $gte: today, $lt: tomorrow }
-      })
+     
+const query = {
+  doctorEmail: req.query.email,
+  date: { $gte: today, $lt: tomorrow }
+};
 
+      const todayAppionments = await appointmentCollection.countDocuments(query)
 
-      const pending = { status: "pending" }
+      const pending = {status:'pending',doctorEmail:req.query.email}
 
       const pendingappionment = await appointmentCollection.countDocuments(pending)
 
-      const allAppionments = await appointmentCollection.estimatedDocumentCount()
+      const allAppionments = await appointmentCollection.countDocuments({doctorEmail: req.query.email})
 
       res.send({ todayAp: todayAppionments, pendingAp: pendingappionment, allAp: allAppionments })
     })
@@ -330,7 +331,33 @@ app.get('/UP-history',async(req,res)=>{
 const result=await paymentHistoryCollection.find(query).toArray()
 res.send(result)
 })
-    // await client.db("admin").command({ ping: 1 });
+  app.post('/added-appionments',async(req,res)=>{
+const patientInfo=req.body
+const result=await appointmentCollection.insertOne(patientInfo)
+res.send(result)
+  })
+
+  app.get('/user-role',async(req,res)=>{
+    const query={email:req.query.email}
+    const result= await userCollection.findOne(query)
+    if(!result){
+return res.send({})
+    }
+    res.send(result)
+  })
+
+  app.patch('/user-status-upadate',async(req,res)=>{
+    const email=req.query.email
+    const query={email:email}
+    console.log(query)
+    const upadateDc={
+      $set:{status:'subscribe'}
+    }
+    const result=await userCollection.updateOne(query,upadateDc)
+    console.log(result)
+    res.send(result)
+  })
+// await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );

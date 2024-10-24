@@ -11,7 +11,7 @@ const PKBanner = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative ">
         <h1 className="text-4xl md:text-5xl text-white font-bold">
           Choose Your Healthcare Plan
         </h1>
