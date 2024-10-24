@@ -4,13 +4,27 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const nodemailer = require('nodemailer');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+// socket.io
+const { createServer } = require('http');
+const { Server } = require("socket.io"); 
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
-
 const app = express();
 const port = process.env.PORT || 5000;
-
+const server = createServer(app); 
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://lifeline-omega.vercel.app",
+      "http://localhost:5175"
+    ],
+    credentials: true,
+  }
+});
+console.log(io)
 app.use(
   cors({
     origin: [
@@ -22,9 +36,11 @@ app.use(
     credentials: true,
   })
 );
+
+
 app.use(express.json());
 app.use(cookieParser());
-console.log("sfsdfs", process.env.DB_USER)
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.r6s2z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
@@ -35,7 +51,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
 
 // Nodemailer: if admin change any data of a doctor an email
 // will go automatically to the doctor
@@ -48,9 +63,20 @@ const transporter = nodemailer.createTransport({
 
 });
 
+
 async function run() {
   try {
+    //  it is Sanim's collection
+    const database = client.db("lifeline");
+    const appointmentCollection = database.collection("Appointment");
+    const presaipationCollection = database.collection("Presaipation");
+    const HservoceCardCollection = database.collection("Hservice-card");
+    const HSBookingCollection = database.collection("HS-Booking");
+    const SerivcesCollection = database.collection("service-card");
+    const paymentHistoryCollection = database.collection("payment-history");
+    // end of sanim collection
 
+    const adminHistoryCollection=client.db("lifeline").collection("doctor-payment")
     const userCollection = client.db("lifeline").collection("users");
     const bedCollection = client.db("lifeline").collection("beds");
     app.get("/users", async (req, res) => {
@@ -89,6 +115,24 @@ async function run() {
        }
       const result=await bedCollection.updateOne(query,status,options)
       res.send(result)
+    })
+
+    
+    app.post('/doctor-payment', async (req,res)=>{
+         const info=req.body;
+         const result=await adminHistoryCollection.insertOne(info)
+         res.send(result)
+    })
+   
+
+    app.get('/get_doctor_payment/:email',async (req,res)=>{
+         const email=req.params;
+         
+         const query={email:email.email}
+         
+         const result=await adminHistoryCollection.find(query).toArray()
+      
+         res.send(result)
     })
 
 
@@ -165,13 +209,7 @@ async function run() {
 
     // Connect the client to the server	(optional starting in v4.7)
     // const userCollection = client.db("lifeline").collection("users");
-    const database = client.db("lifeline");
-    const appointmentCollection = database.collection("Appointment");
-    const presaipationCollection = database.collection("Presaipation");
-    const HservoceCardCollection = database.collection("Hservice-card");
-    const HSBookingCollection = database.collection("HS-Booking");
-    const SerivcesCollection = database.collection("service-card");
-    const paymentHistoryCollection = database.collection("payment-history");
+
 
     // await client.connect();
     // Send a ping to confirm a successful connection
@@ -310,6 +348,7 @@ app.get('/package-price/:id',async(req,res)=>{
 app.post("/create-payment-intent", async (req, res) => {
   const {price} = req.body;
   const amount=parseInt(price*100)
+  
   const paymentIntent = await stripe.paymentIntents.create({
     amount:amount,
     currency: "usd",
@@ -371,6 +410,7 @@ app.get("/", (req, res) => {
   res.send("lifeline server is Running");
 });
 
-app.listen(port, () => {
-  console.log(`lifeline server is running on port: ${port}`);
+server.listen(port, () => {
+  console.log(`Lifeline server is running on port: ${port}`);
 });
+    

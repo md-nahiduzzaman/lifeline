@@ -36,7 +36,7 @@ const medicin=data?.medicineDeatils
     <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
      <h2 className="text-3xl font-bold text-[#06B6D4] text-center">Lifeline</h2>
 <p className="mt-4 text-xl font-bold">Lifeline Health Prescriptions</p>
-<p className="mt-4">{data.instructions} </p>
+<p className="mt-4">{data?.instructions} </p>
    <div>
     <table className="w-full mt-6">
       <tbody>

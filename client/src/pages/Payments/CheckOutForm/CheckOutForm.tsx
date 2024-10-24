@@ -24,52 +24,52 @@ const navigation=useNavigate()
     const handleSubmit =async(event:React.FormEvent<HTMLFormElement>)=> {
 event.preventDefault()
 
-const targets=event.target as any
-const fullNmae=targets.fullName.value
-const email=targets.email.value
-const number=targets.phone.value
-const address=targets.address.value
-if(!stripe || !elements){
-    return
-}
-
-const card=elements.getElement(CardElement)
-
-if(card===null){
-    return
-}
-
-const {error,paymentMethod}=await stripe.createPaymentMethod({
-    type:'card',
-    card
-})
-
-if(error){
-    console.log('payment error ',error)
-    setError(error.message)
-
-}else{
-    console.log('payment method',paymentMethod)
-    setError("")
-}
-
-//------------ confran payments ------------------
-
-const {paymentIntent,error:confirmError}=await stripe.confirmCardPayment(clientSecret,{
-    payment_method:{
- card:card,
-billing_details:{
-  name:fullNmae ,
-    email:email,
-    phone:number,
-    address:address,
-}
+    const targets = event.target as any
+    const fullNmae = targets.fullName.value
+    const email = targets.email.value
+    const number = targets.phone.value
+    const address = targets.address.value
+    if (!stripe || !elements) {
+      return
     }
-})
+
+    const card = elements.getElement(CardElement)
+
+    if (card === null) {
+      return
+    }
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card
+    })
+
+    if (error) {
+      console.log('payment error ', error)
+      setError(error.message)
+
+    } else {
+      console.log('payment method', paymentMethod)
+      setError("")
+    }
+
+    //------------ confran payments ------------------
+
+    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card,
+        billing_details: {
+          name: fullNmae,
+          email: email,
+          phone: number,
+          address: address,
+        }
+      }
+    })
 
 
-if(confirmError){
-console.log('confirm error message',confirmError)
+    if (confirmError) {
+      console.log('confirm error message', confirmError)
 
 }else{
     if(paymentIntent.status==='succeeded'){
@@ -110,7 +110,7 @@ navigation(location.state|| '/')
     }
   return (
     <div className="w-full md:w-1/2 lg:w-[40%] lg:p-10 mx-auto  p-3 bg-[#fbf7f0]">
-       <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name</label>
           <input type="text" name="fullName" id="name" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your full name" required />
@@ -133,7 +133,7 @@ navigation(location.state|| '/')
 
         {/* Payment Information */}
         <h3 className="text-lg font-semibold mb-2">Payment Details</h3>
-<p className="mb-3">Payment amount : {price}$ </p>
+        <p className="mb-3">Payment amount : {price}$ </p>
         <div className="">
           <label htmlFor="card-element" className="block text-gray-700 font-medium mb-2">Credit or Debit Card</label>
           <div className="w-full px-4 py-2 border border-gray-300 rounded-md">

@@ -14,6 +14,9 @@ import "swiper/css/navigation";
 import bg from '../../assets/images/new2.avif'
 import bg1 from '../../assets/images/new.avif'
 import bg2 from '../../assets/images/bg3.webp'
+import gog from '../../assets/images/google2.png'
+import face from '../../assets/images/facebook.png'
+
 const Login = () => {
   const { signIn, user } = useContext(AuthContext)
   console.log(signIn)
@@ -58,8 +61,8 @@ const bannerStyle3 = {
         <button className="text-xl font-medium text-white bg-black
           px-3 rounded-3xl h-[45px]">Get Intouch</button>
       </div>
-      <div className="flex flex-wrap gap-4 justify-center p-2 shadow-2xl rounded-xl">
-        <div className="md:w-[700px] w-[360px]">
+      <div className="flex flex-wrap gap-4  justify-center p-2 rounded-xl">
+        <div className="md:w-[650px] w-[360px]">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -103,14 +106,14 @@ const bannerStyle3 = {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="w-[360px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div className="w-[360px] md:w-[400px] lg:w-[440px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="px-6 py-4">
 
             <div><FaClinicMedical className="block mx-auto text-4xl text-[#06B6D4]"></FaClinicMedical></div>
 
             <p className="mt-1 text-center text-2xl  text-black font-medium dark:text-gray-400 ">Login or create account</p>
 
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className=''>
               <div className="w-full mt-4">
                 <input name="email" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="email" placeholder="Email Address" aria-label="Email Address" />
               </div>
@@ -120,19 +123,22 @@ const bannerStyle3 = {
               </div>
 
               <div className="flex items-center justify-between mt-4">
-                <a href="#" className="text-sm text-gray-600 dark:text-gray-200 hover:text-gray-500">Forget Password?</a>
+                
 
-                <button type="submit" className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#06B6D4] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button type="submit" className="w-full block mx-auto py-2 text-[16px] font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#06B6D4] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   Sign In
                 </button>
               </div>
             </form>
           </div>
 
-          <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
+          <div className="flex items-center justify-center py-5 text-center bg-gray-50 dark:bg-gray-700">
             <Link className="font-medium text-black" to={'/signup'}>Don't have an account?</Link>
+          </div>
 
-
+          <div className='p-3 flex justify-evenly mt-1'>
+              <button><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
+              <button><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
           </div>
         </div>
       </div>
