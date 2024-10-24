@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const {user}=useContext(AuthContext)as any
-  const {data,refetch}=userRole()as any
+  const {data}=userRole()as any
   const navelink = (
     <>
       <li>

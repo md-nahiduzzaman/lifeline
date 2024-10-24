@@ -7,14 +7,14 @@ import { useQuery } from "@tanstack/react-query"
 const userRole=()=>{
 const {user}=useContext(AuthContext)
 const axiosCommon=useAxiosCommon()
-const {data,refetch}=useQuery({
+const {data}=useQuery({
     queryKey:[user?.email,'users'],
     queryFn:async()=>{
         const {data}=await axiosCommon.get(`/user-role?email=${user?.email}`)
         return data
     }
 })
-return{data,refetch}
+return{data}
 
 }
 
