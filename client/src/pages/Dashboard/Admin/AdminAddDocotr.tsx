@@ -69,17 +69,17 @@ const AdminAddDocotr = () => {
 
   }
   return (
-    <div className="my-6 border-2 border-black">
+    <div className="my-6 border-2 border-black py-4">
       <div>
         <p className="my-2 text-center">Warning: Editing may cause unexpected changes. Proceed with caution
           <span className="text-red-400 lg:hidden"> !</span></p>
 
       </div>
-      <section className="max-w-4xl p-6 mx-auto bg-[#fbf7f0] rounded-md shadow-md dark:bg-gray-800">
+      <section className="max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
         <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1  gap-6 mt-4 sm:grid-cols-2">
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">Name</label>

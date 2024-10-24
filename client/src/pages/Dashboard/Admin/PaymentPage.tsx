@@ -2,43 +2,82 @@
 import { useLoaderData } from 'react-router-dom'
 import logo from '../../../assets/images/Stripe-Payment-Logo.png'
 import { useState } from 'react'
+import './style.css'
+import { FaPlus } from 'react-icons/fa6'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import AdminCheckOutForm from './AdminCheckOutForm'
+
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GETWAY);
 
 const PaymentPage = () => {
     const singleData: any = useLoaderData()
     console.log(singleData)
     const [amount, setAmount] = useState(0)
-    console.log("it is amount",amount)
+    const [modal, setModal] = useState(false)
+    console.log("it is amount", amount)
+    const handleChange = () => setModal(true)
+    console.log(modal)
     return (
         <div>
             <div className='mb-8'>
                 <img src={logo} className='w-[220px] h-[145px] block mx-auto' alt="" />
             </div>
-            <div className='relative w-[350px] mx-auto min-h-[60vh] rounded-xl bg-white shadow-xl'>
-                <div>
-                    <img src={singleData.image_url} className='w-[75px] h-[75px] rounded-[50%] absolute -top-5 -left-3' alt="" />
-                </div>
-                <div className='absolute top-[75px] left-4'>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Name: {singleData.name}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Email: {singleData.email}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Role: Doctor</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Department: {singleData.department}</h2>
-                    <h2 className='text-[17px] font-medium my-3 text-gray-500'>Reg_No: {singleData.reg_no}</h2>
+            <div>
 
+                <div className='w-[360px] md:w-[390px] mx-auto min-h-[66vh] rounded-xl bg-white shadow-xl p-3'>
                     <div>
-                        <h1 className='text-gray-500'>Amount: </h1>
-                        <form action="" onSubmit={(e: any) => {
-                            e.preventDefault()
-                            setAmount(e.target.amount.value)
-                        }}>
-                            <div className='flex items-center'>
-                                <input placeholder='Fill The Box' type="number" className='pl-2 rounded-l-md border-2 h-[40px] border-black' name="amount" />
-                                <button type='submit' className='bg-blue-400 rounded-r-md w-[55px] h-[40px] text-xl font-medium '>Ok</button>
-                            </div>
-                        </form>
+                        <img src={singleData.image_url} className='w-[75px] block mx-auto h-[75px] rounded-[50%]' alt="" />
                     </div>
-                    <button className='px-3 py-2 rounded-lg text-[17px] font-medium mt-3 bg-blue-400'>Proceed Payment</button>
-                </div>
+                    <div className='p-2 rounded-md'>
+                        <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Name: {singleData.name}</h2>
+                        <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Email: {singleData.email}</h2>
+                        <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Role: Doctor</h2>
+                        <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Department: {singleData.department}</h2>
+                        <h2 className='rounded-md border-2 border-black text-[17px] font-medium my-4 text-gray-500 p-1'>Reg_No: {singleData.reg_no}</h2>
 
+                        <div>
+                            <h1 className='text-gray-500'>Amount: </h1>
+                            <form action="" onSubmit={(e: any) => {
+                                e.preventDefault()
+                                setAmount(e.target.amount.value)
+                            }}>
+                                <div className='flex items-center'>
+                                    <input placeholder='Fill The Box' type="number" className='h-[35px] pl-2 rounded-l-md w-[280px] md:w-[300px] border-2 border-black' name="amount" />
+                                    <button type='submit' className='bg-blue-500 rounded-r-md w-[55px] h-[35px] text-xl font-medium '>Ok</button>
+                                </div>
+                            </form>
+                        </div>
+                        <button disabled={!amount} onClick={handleChange} className='px-3 py-2 w-full rounded-lg text-[17px] font-medium mt-5 bg-blue-500'>Proceed Payment</button>
+                        {
+                            modal && (
+                                <div className="mo relative">
+                                    <div className="over"></div>
+                                    <div className='mo-con '>
+                                        {
+                                            amount && (
+                                                <Elements stripe={stripePromise}>
+                                                    <AdminCheckOutForm
+                                                     price={amount} name={singleData.name} email={singleData.email}>
+
+                                                     </AdminCheckOutForm>
+                                                </Elements>
+                                            )
+                                        }
+                                        <button  onClick={() => {
+                                            setModal(false)
+                                        }}>
+                                            <FaPlus className='bg-red-300 rounded-[50%] text-3xl -top-3 -right-3 rotate-45 absolute text-black'></FaPlus>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            )
+                        }
+
+                    </div>
+                </div>
             </div>
         </div>
     )
