@@ -19,7 +19,9 @@ const io = new Server(server, {
       "http://localhost:5173",
       "http://localhost:5174",
       "https://lifeline-omega.vercel.app",
-      "http://localhost:5175"
+      "http://localhost:5175",
+      "https://hospital-management-4e9fc.web.app"
+
     ],
     credentials: true,
   }
@@ -31,7 +33,8 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://lifeline-omega.vercel.app",
-      "http://localhost:5175"
+      "http://localhost:5175",
+      "https://hospital-management-4e9fc.web.app"
     ],
     credentials: true,
   })
