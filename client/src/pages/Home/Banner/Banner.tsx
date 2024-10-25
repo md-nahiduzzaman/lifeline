@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 const Banner = () => {
   return (
-    <div className="bg-[#ECFEFF] ">
+    <div className="">
       <>
         <Swiper
           spaceBetween={30}
@@ -31,7 +31,7 @@ const Banner = () => {
                 />
               </div>
               <div className="lg:w-1/2 leading-normal">
-                <h2 className=" text-3xl lg:text-6xl font-bold ">
+                <h2 className=" text-3xl lg:text-6xl text-[#23085A] font-bold ">
                   Easy way to <br /> achieve customer satisfaction
                 </h2>
                 <p className="mt-9 leading-normal">
@@ -43,7 +43,7 @@ const Banner = () => {
                   officia consequuntur distinctio magnam est nulla ex veritatis
                   eveniet! Magni quidem alias aperiam non vel.
                 </p>
-                <button className="btn mt-8 btn-primary text-white">
+                <button className="btn mt-8 bg-[#23085A] text-white">
                   Book Now
                 </button>
               </div>
@@ -60,7 +60,7 @@ const Banner = () => {
                 />
               </div>
               <div className="lg:w-1/2 leading-normal">
-                <h2 className="text-3xl lg:text-6xl  font-bold ">
+                <h2 className="text-3xl lg:text-6xl text-[#23085A]  font-bold ">
                   Easy way to <br /> achieve customer satisfaction
                 </h2>
                 <p className="mt-9 leading-normal">
@@ -72,7 +72,7 @@ const Banner = () => {
                   officia consequuntur distinctio magnam est nulla ex veritatis
                   eveniet! Magni quidem alias aperiam non vel.
                 </p>
-                <button className="btn mt-8  btn-primary text-white">
+                <button className="btn mt-8 bg-[#23085A] text-white">
                   Book Now
                 </button>
               </div>
@@ -89,7 +89,7 @@ const Banner = () => {
                 />
               </div>
               <div className="lg:w-1/2 leading-normal">
-                <h2 className="text-3xl lg:text-6xl  font-bold  ">
+                <h2 className="text-3xl lg:text-6xl text-[#23085A] font-bold  ">
                   Easy way to <br /> achieve customer satisfaction
                 </h2>
                 <p className="mt-9 leading-normal">
@@ -101,7 +101,7 @@ const Banner = () => {
                   officia consequuntur distinctio magnam est nulla ex veritatis
                   eveniet! Magni quidem alias aperiam non vel.
                 </p>
-                <button className="btn mt-8  btn-primary text-white">
+                <button className="btn mt-8  bg-[#23085A] text-white">
                   Book Now
                 </button>
               </div>
@@ -118,7 +118,7 @@ const Banner = () => {
                 />
               </div>
               <div className="lg:w-1/2 leading-normal">
-                <h2 className="text-3xl lg:text-6xl  font-bold ">
+                <h2 className="text-3xl lg:text-6xl text-[#23085A] font-bold ">
                   Easy way to <br /> achieve customer satisfaction
                 </h2>
                 <p className="mt-9 leading-normal">
@@ -130,7 +130,7 @@ const Banner = () => {
                   officia consequuntur distinctio magnam est nulla ex veritatis
                   eveniet! Magni quidem alias aperiam non vel.
                 </p>
-                <button className="btn mt-8  btn-primary text-white">
+                <button className="btn mt-8  bg-[#23085A] text-white">
                   Book Now
                 </button>
               </div>

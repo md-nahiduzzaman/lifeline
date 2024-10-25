@@ -1,30 +1,33 @@
 
-import {useState } from "react"
+import {useContext, useState } from "react"
 import DrAppointmenttable from "./DrAppointmenttable"
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 interface patients{
   _id: string;    
-  name: string;       
+patientName: string;       
   gender: string;     
-  number: string;    
+ phone: string;    
   address: string;    
   doctor: string;     
-  admittedDate: string; 
+  appiontmentDate: string; 
   status: string;
-  email:string;
+ patientEmail:string;
   img:string;
+  selectedTimeSlot:string;
+
 }
 
 const DoctorAppointment = () => {
   const axiosCommon=useAxiosCommon()
 const [appointment,setAppointment]=useState<patients[]>([])
-const email='daniel.harris@hospital.com'
+const {user}=useContext(AuthContext)
 const {data,refetch}=useQuery({queryKey:['approve'],
   queryFn:async()=>{
-    const res=await axiosCommon.get(`/apppionment-request?email=${email}`)
-    setAppointment(res.data)
+    const res=await axiosCommon.get(`/apppionment-request?email=${user?.email}`)
+    setAppointment(res?.data)
     return res.data
   }
 
@@ -94,7 +97,13 @@ console.log(_id)
                   scope="col"
                   className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
-                 Date & Time
+                 Date 
+                </th>
+                <th
+                  scope="col"
+                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
+                >
+                 Time
                 </th>
 
                 <th

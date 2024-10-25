@@ -12,7 +12,7 @@ const ServiceCart:React.FC<any> = ({card}) => {
     />
 
     <div className="px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h1>
+        <h1 className="text-xl font-semibold text-[#23085A]">{title}</h1>
 
         <p className="py-2 text-gray-700 dark:text-gray-400">
           {description}
@@ -23,8 +23,8 @@ const ServiceCart:React.FC<any> = ({card}) => {
 }
         </ul>
     </div>
-<div className="px-6 py-4">
-  <Link to={`/home-serviceDeatils/${_id}`}><button className="btn w-full bg-[#06B6D4] text-white">Booking Now</button></Link>
+<div className="px-6 pb-3">
+  <Link to={`/home-serviceDeatils/${_id}`}><button className="btn w-full bg-[#23085A] text-white">Booking Now</button></Link>
 </div>
    
 </div>

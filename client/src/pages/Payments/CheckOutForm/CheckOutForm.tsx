@@ -1,26 +1,28 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from "react-router-dom";
-const CheckOutForm: React.FC<any> = ({ price, duration, packageName }) => {
-  const stripe = useStripe()
-  const elements = useElements()
-  const [error, setError] = useState<any>('')
-  const axiosCommon = useAxiosCommon()
-  const [clientSecret, setClientSecret] = useState("");
-  const location = useLocation()
-  const navigation = useNavigate()
-  useEffect(() => {
-    axiosCommon.post('/create-payment-intent', { price }).then(res => {
-      console.log(res.data)
-      setClientSecret(res.data.clientSecret)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [axiosCommon])
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+import { AuthContext } from "../../../providers/AuthProvider";
+const CheckOutForm:React.FC<any> = ({price,duration,packageName}) => {
+    const stripe=useStripe()
+    const elements=useElements()
+    const [error,setError]=useState<any> ('')
+    const axiosCommon=useAxiosCommon()
+    const [clientSecret, setClientSecret] = useState("");
+    const {user}=useContext(AuthContext)
+const location=useLocation()
+const navigation=useNavigate()
+    useEffect(()=>{
+        axiosCommon.post('/create-payment-intent',{price}).then(res=>{
+            console.log(res.data)
+            setClientSecret(res.data.clientSecret)
+        }).catch(error=>{
+            console.log(error)
+        })
+    },[axiosCommon])
+    const handleSubmit =async(event:React.FormEvent<HTMLFormElement>)=> {
+event.preventDefault()
 
     const targets = event.target as any
     const fullNmae = targets.fullName.value
@@ -69,38 +71,43 @@ const CheckOutForm: React.FC<any> = ({ price, duration, packageName }) => {
     if (confirmError) {
       console.log('confirm error message', confirmError)
 
-    } else {
-      if (paymentIntent.status === 'succeeded') {
-        console.log('success intent fully done', paymentIntent)
-        const paymentInfo = {
-          fullNmae,
-          email,
-          number,
-          address,
-          date: new Date,
-          duration,
-          packageName,
-          price,
-          transactionId: paymentIntent.id
-        }
-
-        axiosCommon.post('/payments-history', paymentInfo).then(res => {
-          console.log(res.data)
-          if (res.data.insertedId) {
-            Swal.fire({
-              title: "Good job ",
-              text: "payment success fullly done",
-              icon: "success"
-            });
-            navigation(location.state || '/')
-          }
-        }).catch(error => {
-          console.log(error)
-        })
-      }
-
-    }
+}else{
+    if(paymentIntent.status==='succeeded'){
+        console.log('success intent fully done',paymentIntent)
+       const paymentInfo ={
+        fullNmae,
+        email,
+        number,
+        address,
+        date:new Date(),
+        duration,
+        packageName,
+        price,
+        transactionId:paymentIntent.id,
+        userEmail:user.email,
+userName:user.displayName,
+status:'subscribe'
+       }
+axiosCommon.post('/payments-history',paymentInfo).then(res=>{
+  console.log(res.data)
+  if(res.data.insertedId){
+axiosCommon.patch(`/user-status-upadate?email=${user?.email}`).then(res=>{
+  console.log(res.data)
+})
+    Swal.fire({
+      title: "Good job ",
+      text: "payment success fullly done",
+      icon: "success"
+    });
+navigation(location.state|| '/')
   }
+}).catch(error=>{
+  console.log(error)
+})
+    }
+    
+}
+    }
   return (
     <div className="w-full md:w-1/2 lg:w-[40%] lg:p-10 mx-auto  p-3 bg-[#fbf7f0]">
       <form onSubmit={handleSubmit}>
@@ -145,8 +152,8 @@ const CheckOutForm: React.FC<any> = ({ price, duration, packageName }) => {
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}
         </div>
-        <button className="w-full mt-4 bg-blue-500 text-white font-semibold py-3 rounded-md hover:bg-blue-600 transition" type="submit" disabled={!stripe || !elements}>
-          Pay Now
+        <button  className="w-full mt-4 bg-[#23085A] text-white font-semibold py-3 rounded-md hover:bg-[#23085A] transition" type="submit" disabled={!stripe || !elements}>
+    Pay Now
         </button>
       </form>
     </div>

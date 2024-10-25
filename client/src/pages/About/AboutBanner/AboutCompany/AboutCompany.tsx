@@ -2,7 +2,7 @@ import { FaArrowTrendUp } from 'react-icons/fa6'
 import image1 from '..//..//..//../assets/images/doctorAbout.jpg'
 const AboutCompany = () => {
   return (
-   <div className='my-[120px] bg-[#ECFEFF] py-12 lg:py-36 px-2'>
+   <div className='my-[120px] bg-[#23085A] text-white py-8 lg:py-14 px-2'>
      <div className=" lg:flex  gap-7 max-w-screen-xl mx-auto">
       <div className='lg:w-1/2'>
 <img className='w-full h-full rounded-lg' src={image1} alt="" />

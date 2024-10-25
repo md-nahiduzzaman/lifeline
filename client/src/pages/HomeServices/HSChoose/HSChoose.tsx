@@ -34,10 +34,10 @@ const HSChoose = () => {
       ];
     
   return (
-    <div className="bg-[#fbf7f0] py-12">
+    <div className="bg-[#23085A] py-12 text-white">
      <div className=" lg:flex gap-6 max-w-screen-xl mx-auto h-full">
      <div className="lg:w-1/2">
-     <h2 className="text-xl font-bold text-[#06B6D4]">Why Choose us</h2>
+     <h2 className="text-xl font-bold text-[#5dEB4B]">Why Choose us</h2>
 <h2 className=" lg:text-4xl font-bold mt-2">Our Commitment to Quality, Care, and Convenience</h2>
      <p className="my-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea, unde id aliquam, rerum quas porro magni consequuntur et itaque nulla, libero recusandae perspiciatis excepturi modi? Dolorem ipsam minima assumenda qui?</p>
 <img className="w-full mt-6" src="https://srhospital.in/wp-content/uploads/2021/06/hospital1.jpg" alt="" />
@@ -51,7 +51,7 @@ const HSChoose = () => {
             className="flex flex-col items-center bg-white p-4 shadow-md rounded-lg dark:bg-gray-800"
           >
             <div className="text-5xl mb-4">{feature.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+            <h3 className="text-xl font-bold mb-2 text-[#23085A]">{feature.title}</h3>
             <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
           </div>
         ))}

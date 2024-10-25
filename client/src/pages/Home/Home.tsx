@@ -5,7 +5,7 @@ import Speciality from "./Speciality/Speciality";
 
 const Home = () => {
   return (
-    <div>
+    <div className="font-custom">
       {/* this is the banner section code-for-sanim */}
       <Banner></Banner>
       <Abouts></Abouts>

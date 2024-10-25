@@ -22,7 +22,7 @@ const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {
     </div>
 
     <div className="px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-800 dark:text-white">{service}</h1>
+        <h1 className="text-xl font-semibold text-[#23085A]">{service}</h1>
 
         <p className="py-2 text-gray-700 dark:text-gray-400">{description}</p>
 
@@ -35,7 +35,7 @@ const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {
          
         </div>
 
-        <button className="btn w-full mt-4 text-white bg-[#06B6D4]">View details</button>
+        <button className="btn w-full mt-4 text-white bg-[#23085A]">View details</button>
     </div>
 </div>
 

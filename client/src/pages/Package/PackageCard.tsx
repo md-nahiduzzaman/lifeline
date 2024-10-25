@@ -15,18 +15,18 @@ interface PackageCardProps {
 const PackageCard: React.FC<PackageCardProps> = ({ prices }) => {
   const { packageName, price, duration, servicesIncluded ,_id} = prices;
   return (
-    <div className="rounded-lg  shadow-lg grid items-end p-6 text-white bg-gradient-to-r from-[#06B6D4] to-[#3B82F6] transform transition-transform duration-300 hover:scale-105">
-     <h2 className="text-xl font-bold text-center">{packageName}</h2>
+    <div className="bg-white p-6 shadow-lg rounded-lg hover:shadow-2xl transition duration-300 grid items-end">
+     <h2 className="text-xl font-bold text-center text-[#23085A]">{packageName}</h2>
      <p className="my-6 text-center"><sup className="text-3xl">$</sup> <span className="text-6xl font-serif">{price}</span><sub className=" font-bold">{duration}</sub> </p>
      <hr />
 
-     <ul className="list-insid list-disc mt-3">
+     <ul className="text-gray-700 mb-6">
         {
-            servicesIncluded.map(list=><li className="my-2" key={list}>{list} </li>)
+            servicesIncluded.map(list=><li className="my-2 list-inside list-disc" key={list}>{list} </li>)
         }
      </ul>
 <Link to={`/payments/${_id}`}>
-<button className="btn border-none w-full mt-6 bg-[#1E3A8A] text-white">Subscribe now</button>
+<button className="btn border-none w-full mt-6 bg-[#23085A] text-white">Subscribe now</button>
 </Link>
     </div>
   )

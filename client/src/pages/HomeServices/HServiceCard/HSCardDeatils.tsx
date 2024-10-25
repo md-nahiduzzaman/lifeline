@@ -1,7 +1,8 @@
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { AuthContext } from "../../../providers/AuthProvider";
 interface FormData {
   fullName: string;
   email: string;
@@ -16,6 +17,7 @@ const HSCardDetails: React.FC = () => {
   const navigates=useNavigate()
   const axiosCommon=useAxiosCommon()
   const serviceData = useLoaderData() as any;
+  const {user}=useContext(AuthContext)
   console.log(serviceData);
 const {details}=serviceData
   const [formData, setFormData] = useState<FormData>({
@@ -40,8 +42,27 @@ const {details}=serviceData
   const handleSubmit =(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission (e.g., send the data to an API)
-    console.log(formData);
-    axiosCommon.post('/Booking-HS',formData).then(res=>{
+   const { fullName,
+    email,
+    phone,
+    address,
+    careType,
+    startDate,
+    notes}=formData as any 
+
+    const formDataInfo={ 
+      fullName,
+      email,
+      phone,
+      address,
+      careType,
+      startDate,
+      notes,
+      userEmail:user.email,
+      userName:user.displayName,
+      currentdate:new Date ()
+    }
+    axiosCommon.post('/Booking-HS',formDataInfo).then(res=>{
       console.log(res.data)
 
       if(res.data.insertedId){
@@ -54,14 +75,14 @@ navigates('/home-service')
 
   return (
     <div className="max-w-screen-xl mx-auto my-10 ">
-     <section className="lg:w-1/2 p-6 mx-auto bg-[#ECFEFF] rounded-md shadow-md dark:bg-gray-800">
-      <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Providers your deatils </h2>
+     <section className="lg:w-1/2 p-6 mx-auto bg-[#23085A] text-white rounded-md shadow-md dark:bg-gray-800">
+      <h2 className="text-lg font-semibold t capitalize ">Providers your deatils </h2>
 
       <form onSubmit={handleSubmit} >
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
           {/* Full Name Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="fullName">Full Name</label>
+            <label className="" htmlFor="fullName">Full Name</label>
             <input
               id="fullName"
               name="fullName"
@@ -74,7 +95,7 @@ navigates('/home-service')
 
           {/* Email Address Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="email">Email Address</label>
+            <label className="" htmlFor="email">Email Address</label>
             <input
               id="email"
               name="email"
@@ -87,7 +108,7 @@ navigates('/home-service')
 
           {/* Phone Number Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="phone">Phone Number</label>
+            <label className="" htmlFor="phone">Phone Number</label>
             <input
               id="phone"
               name="phone"
@@ -100,7 +121,7 @@ navigates('/home-service')
 
           {/* Address Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="address">Address</label>
+            <label className="" htmlFor="address">Address</label>
             <input
               id="address"
               name="address"
@@ -113,7 +134,7 @@ navigates('/home-service')
 
           {/* Care Type Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="careType">Care Type Needed</label>
+            <label className="" htmlFor="careType">Care Type Needed</label>
             <select
               id="careType"
               name="careType"
@@ -132,7 +153,7 @@ navigates('/home-service')
 
           {/* Start Date Input */}
           <div>
-            <label className="text-gray-700 dark:text-gray-200" htmlFor="startDate">Preferred Start Date</label>
+            <label className="" htmlFor="startDate">Preferred Start Date</label>
             <input
               id="startDate"
               name="startDate"
@@ -147,7 +168,7 @@ navigates('/home-service')
           
         </div>
         <div className="w-full mt-6">
-  <label htmlFor="description" className="block text-sm text-gray-500 dark:text-gray-300">
+  <label htmlFor="description" className="block text-sm">
     Description
   </label>
 
@@ -163,7 +184,7 @@ navigates('/home-service')
         <div className="flex justify-end mt-6">
           <button
             type="submit"
-            className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#06B6D4] rounded-md hover:bg-[#06B6D4]focus:outline-none focus:bg-[#06B6D4]"
+            className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#5dEB4B] rounded-md hover:bg-[#06B6D4]focus:outline-none focus:bg-[#06B6D4]"
           >
             Submit
           </button>
