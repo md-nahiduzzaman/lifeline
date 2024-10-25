@@ -23,7 +23,7 @@ interface DrCardProps {
 const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
 const navigation=useNavigate()
   const [isOpen, setIsOpen] = useState<boolean>(false);
-const {data,refetch}=userRole()
+const {data}=userRole()
 
   const handileClick=()=>{
 if(data?.status==='subscribe'){
