@@ -19,7 +19,7 @@ const IndividualMessage=()=>{
                 <FaPhone className="text-xl text-black"></FaPhone>
             </div>
             
-
+        
         </div>
     )
 }
