@@ -2,7 +2,7 @@
 const SolutionAbout = () => {
   return (
     <div className="">
-       <div className="my-[120px] bg-[#ECFEFF] lg:py-32">
+       <div className="my-[120px] bg-[#23085A] lg:py-12 py-8 text-white">
       <div className="hero min-h-screenbg-base-200">
         <div className="hero-content  flex-col lg:flex-row">
           <div className=" lg:w-1/2 md:w-full h-full">
@@ -21,8 +21,8 @@ const SolutionAbout = () => {
           </div>
 
           <div className="lg:w-1/2 md:-full ">
-            <h2 className="text-xl font-bold text-[#06B6D4]">Solutions for Lifeline</h2>
-            <h1 className="text-3xl lg:text-5xl  font-bold mt-4 leading-normal">
+            <h2 className="text-xl font-bold  text-[#5dEB4B]">Solutions for Lifeline</h2>
+            <h1 className="text-3xl lg:text-5xl  font-bold mt-4 leading-normal ">
             Empowering Healthcare Providers with Innovative Solutions
             </h1>
             <p className="py-6 mt-7">
@@ -36,7 +36,7 @@ const SolutionAbout = () => {
               humour, or randomised words which don't look even slightly
               believable.
             </p>
-            <button className="btn bg-[#06B6D4] text-white mt-8">
+            <button className="btn bg-[#5dEB4B] border-none text-white mt-8">
               Get More Info
             </button>
           </div>

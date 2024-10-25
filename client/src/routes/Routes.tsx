@@ -25,6 +25,16 @@ import AddedPresaipation from "../pages/Dashboard/Doctor/AddPrescription/AddedPr
 import PrescriptionDeatils from "../pages/Dashboard/Doctor/AddPrescription/PrescriptionDeatils";
 import HomeServices from "../pages/HomeServices/HomeServices";
 import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
+import VideoChats from "../pages/VidoChats/VideoChats";
+import VideoChatsPages from "../pages/VidoChats/VideoChatsPages";
+import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
+import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
+import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
+import PaymentDetails from "../pages/Dashboard/Admin/PaymentDetails";
+import Message from "../pages/Dashboard/Admin/Message";
+import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
+import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
+import Payments from "../pages/Payments/Payments";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +45,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-    {
+      {
         path: "/signup",
         element: <SignUp />,
       },
@@ -64,11 +74,14 @@ const router = createBrowserRouter([
         element: <HomeServices />,
       },
       {
-        path: "/home-serviceDeatils/:id", // Adding dynamic route from development branch
-        element: <HSCardDeatils />,
-        loader: ({ params }) =>
-          fetch(`https://lifeline-server.vercel.app/serviceDs/${params.id}`),
-      },
+        path: '/home-serviceDeatils/:id',
+        element: <HSCardDeatils></HSCardDeatils>,
+        loader: ({ params }) => fetch(`http://localhost:5000/serviceDs/${params.id}`)
+      }, {
+        path: '/payments/:id',
+        element:<Payments></Payments>,
+        loader: ({ params }) => fetch(`http://localhost:5000/package-price/${params.id}`)
+      }
     ],
   },
 
@@ -92,6 +105,15 @@ const router = createBrowserRouter([
         path: "patient-record",
         element: <PatientHealthRecord />,
       },
+      {
+        path:'user-payment-history',
+        element:<PaymentHistory></PaymentHistory>
+      },
+      {
+        path:'my-appointment',
+        element:<MyAppointment></MyAppointment>
+      }
+      ,
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",
@@ -101,29 +123,29 @@ const router = createBrowserRouter([
         element: <DoctorHome></DoctorHome>
 
 
-      },{
-        path:'AddprescriptionTb',
-        element:<AddPrescription></AddPrescription>
-      },{
-path:'/dashboard/added-prescription/:id',
-element:<AddedPresaipation></AddedPresaipation>,
-loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${params.id}`)
+      }, {
+        path: 'AddprescriptionTb',
+        element: <AddPrescription></AddPrescription>
+      }, {
+        path: '/dashboard/added-prescription/:id',
+        element: <AddedPresaipation></AddedPresaipation>,
+        loader: ({ params }) => fetch(`http://localhost:5000/patient-deatils/${params.id}`)
 
-      } ,{
-        path:'/dashboard/prescriptionDeatils/:id',
-        element:<PrescriptionDeatils></PrescriptionDeatils>,
-        loader:({params})=>fetch(`https://lifeline-server.vercel.app/patients-deatils/${params.id}`)
-
+      }, {
+        path: '/dashboard/prescriptionDeatils/:id',
+        element: <PrescriptionDeatils></PrescriptionDeatils>,
+        loader: ({ params }) => fetch(`http://localhost:5000/patients-deatils/${params.id}`)
+      },
+      {
+        path: '/dashboard/video-chats',
+        element: <VideoChats></VideoChats>
       }
       // --------------------this is the asmin dshboard route arey -----------------------------------
       , {
         path: "admin-dashboard",
         element: <AdminDashboard />,
       },
-      {
-        path: "admin-messages",
-        element: <AdminMessages />,
-      },
+     
       {
         path: 'admin-doctors',
         element: <AdminDoctors></AdminDoctors>
@@ -133,12 +155,43 @@ loader:({params})=>fetch(`https://lifeline-server.vercel.app/patient-deatils/${p
         element: <Total_Bed></Total_Bed>
       },
       {
+        path: "admin-add-doctor",
+        element: <AdminAddDocotr></AdminAddDocotr>
+      },
+      {
+        path:'/dashboard/admin-doctors/payment_details/:email',
+        element:<PaymentDetails></PaymentDetails>
+      },
+      {
         path: '/dashboard/admin-doctors/admin-edit-doctors/:id',
         element: <AdminEditDoctors></AdminEditDoctors>,
+        loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
+      },
+      {
+        path: '/dashboard/admin-doctors/payment/:id',
+        element: <PaymentPage></PaymentPage>,
         loader: ({ params }) => fetch(`http://localhost:5000/admin/${params.id}`)
       }
     ],
   },
+  {
+    path: '/room/:id',
+    element: <VideoChatsPages></VideoChatsPages>
+  },
+  {
+    path: '/message',
+    element: <Message></Message>,
+    children: [
+      {
+       path:'/message',
+       element:<AdminMessages></AdminMessages>
+      },
+      {
+          path:'/message/:id',
+          element:<IndividualMessage></IndividualMessage>
+      }
+    ]
+  }
 ]);
 
 export default router;

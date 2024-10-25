@@ -2,24 +2,26 @@ import React from "react"
 
 interface patients{
     _id: string;    
-    name: string;       
+patientName: string;       
     gender: string;     
-    number: string;    
+    phone: string;    
     address: string;    
     doctor: string;     
-    admittedDate: string; 
+   appiontmentDate: string; 
     status: string;
-    email:string;
-    img:string
+    patientEmail:string;
+    img:string;
+    selectedTimeSlot:string;
+
   }
 interface patientProps{
     patient:patients;
 index:number,
-handileClickApprove:(_id: string)=>void,
+handileClickApprove:(_id:string)=>void,
 handileClickRjects:(_id:string)=>void
 }
 const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickApprove,handileClickRjects}) => {
-    const {name,email,admittedDate,number,status,_id,img}=patient
+    const {patientName,patientEmail,appiontmentDate,phone,status,_id,img,selectedTimeSlot}=patient
   return (
           <tr>
             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -36,7 +38,7 @@ const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickAp
                       />
                       <div>
                         <h2 className="font-medium text-gray-800 dark:text-white">
-                       {name}
+                       {patientName}
                         </h2>
                        
                       </div>
@@ -49,14 +51,17 @@ const DrAppointmenttable:React.FC<patientProps> = ({patient,index,handileClickAp
                 </td>
 
                 <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                 {email}
+                 {patientEmail}
                 </td>
 
                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                 {admittedDate}
+                 {appiontmentDate}
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                {number}
+                 {selectedTimeSlot}
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                {phone}
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                 {

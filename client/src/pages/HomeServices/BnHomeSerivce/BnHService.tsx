@@ -6,13 +6,13 @@ const BnHService = () => {
 <img className="w-full" src="https://citydoctor.ae/wp-content/uploads/2022/10/DOC-Intro-image.jpg" alt="" />
     </div>
     <div className="lg:w-1/2">
-    <p className="text-[#06B6D4] mb-2 font-bold">Home care</p>
-<h2 className='text-3xl lg:text-5xl font-bold lg:leading-normal'>Get Expert Medical <br /> Care at Your Home!</h2>
+    <p className=" mb-2 font-bold">Home care</p>
+<h2 className='text-3xl lg:text-5xl font-bold lg:leading-normal text-[#23085A]'>Get Expert Medical <br /> Care at Your Home!</h2>
 <p className="my-4">Experience Expert Medical Care from the Comfort of Your Home: Our Comprehensive Home Healthcare Services</p>
 
 <div className="flex gap-12 mt-8">
-    <button className="btn bg-[#06B6D4] text-white">Booking Now</button>
-    <button className="btn bg-transparent border border-[#06B6D4] text-[#06B6D4]">Learn More</button>
+    <button className="btn bg-[#23085A] text-white">Booking Now</button>
+    <button className="btn bg-transparent border border-[#23085A] text-[#23085A]">Learn More</button>
 </div>
     </div>
   </div>

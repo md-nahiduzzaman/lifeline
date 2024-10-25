@@ -10,20 +10,22 @@ interface patients{
   doctor: string;     
   admittedDate: string; 
   status: string;
-  email:string;
+  patientEmail:string;
   img:string;
+  pushRate:string;
 doctorName:string;
 doctorEmail:string;
+instructions:string;
 }
 const PrescriptionDeatils = () => {
   const axiosCommon=useAxiosCommon()
 const presInfo=useLoaderData()as patients
- const {email,doctorEmail}=presInfo
+ const {patientEmail,doctorEmail}=presInfo
 
 const {data}=useQuery({
   queryKey:['prescription'],
   queryFn:async()=>{
-const res=await axiosCommon.get(`/show-prescription?email=${email}&&dremail=${doctorEmail}`)
+const res=await axiosCommon.get(`/show-prescription?email=${patientEmail}&&dremail=${doctorEmail}`)
 
 return res.data
   }
@@ -34,7 +36,7 @@ const medicin=data?.medicineDeatils
     <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
      <h2 className="text-3xl font-bold text-[#06B6D4] text-center">Lifeline</h2>
 <p className="mt-4 text-xl font-bold">Lifeline Health Prescriptions</p>
-<p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos impedit repudiandae delectus omnis perspiciatis. Corrupti reprehenderit nam, consectetur natus tempora fugiat veniam placeat illum corporis, quo, expedita dolorem eum? Praesentium ex vitae ab odio dolor, saepe alias ipsum ipsa aliquam nihil necessitatibus consectetur deserunt, est rem quisquam cum dolore consequatur!</p>
+<p className="mt-4">{data?.instructions} </p>
    <div>
     <table className="w-full mt-6">
       <tbody>
@@ -47,8 +49,8 @@ const medicin=data?.medicineDeatils
 <tr className="border-t">
             <td className="p-2 font-semibold">Date of Birth:</td>
             <td className="p-2">{data?.age}</td>
-            <td className="p-2 font-semibold">Age:</td>
-            <td className="p-2">20 Year</td>
+            <td className="p-2 font-semibold">Push Rate:</td>
+            <td className="p-2">{data?.pushRate}</td>
             <td className="p-2 font-semibold">Sex:</td>
             <td className="p-2">{data?.gender}</td>
           </tr>

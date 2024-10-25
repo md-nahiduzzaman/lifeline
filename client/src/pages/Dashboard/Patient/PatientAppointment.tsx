@@ -93,7 +93,7 @@ const PatientAppointment = () => {
       </div>
 
       {/* Display Doctor Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
         {doctors.map((doctor: any) => (
           <DrCard key={doctor._id} doctor={doctor} />
         ))}

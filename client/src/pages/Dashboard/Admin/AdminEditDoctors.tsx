@@ -8,7 +8,7 @@ import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AdminEditDoctors = () => {
-    
+    console.log('testing')
     const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
     let photo:any='';
@@ -40,10 +40,11 @@ const AdminEditDoctors = () => {
         const long_des = value;   
 
         const form: any = new FormData(e.target)
+        console.log(form)
         const image2: any = form.get('image')
         const data: any = new FormData()
         data.append("image", image2)
-
+        
         fetch('https://api.imgbb.com/1/upload?key=58c258f947a2113010411cf51afd6eec', {
             method: 'POST',
             body: data,

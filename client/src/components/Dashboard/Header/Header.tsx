@@ -1,4 +1,5 @@
 import { IoMdNotifications } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -32,6 +33,9 @@ const Header = () => {
                 Profile
                 <span className="badge">New</span>
               </a>
+            </li>
+            <li>
+             <Link to={'/dashboard/video-chats'}>Join Calle</Link>
             </li>
             <li>
               <a>Settings</a>

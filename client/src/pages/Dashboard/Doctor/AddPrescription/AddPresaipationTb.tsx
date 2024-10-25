@@ -3,16 +3,17 @@ import { RxReader } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
 interface patients{
-    _id: string;    
-    name: string;       
+  _id: string;    
+  patientName: string;       
     gender: string;     
-    number: string;    
+   phone: string;    
     address: string;    
     doctor: string;     
-    admittedDate: string; 
+    appiontmentDate: string; 
     status: string;
-    email:string;
-    img:string
+   patientEmail:string;
+    img:string;
+    selectedTimeSlot:string;
   }
 interface patientProps{
     patient:patients;
@@ -20,7 +21,7 @@ index:number
 }
 
 const AddPresaipationTb:React.FC<patientProps> = ({patient,index}) => {
-    const {name,email,admittedDate,number,_id,img}=patient
+    const {patientName,patientEmail,appiontmentDate,phone,_id,img,selectedTimeSlot}=patient
   return (
     <tr>
     <td className="px-2 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -37,7 +38,7 @@ const AddPresaipationTb:React.FC<patientProps> = ({patient,index}) => {
               />
               <div>
                 <h2 className="font-medium text-gray-800 dark:text-white">
-               {name}
+               {patientName}
                 </h2>
                
               </div>
@@ -52,14 +53,17 @@ const AddPresaipationTb:React.FC<patientProps> = ({patient,index}) => {
    
         </td>
         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-         {email}
+         {patientEmail}
         </td>
 
         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-         {admittedDate}
+         {appiontmentDate}
         </td>
         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-        {number}
+         {selectedTimeSlot}
+        </td>
+        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+        {phone}
         </td>
         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
           <Link to={`/dashboard/added-prescription/${_id}`}>   <button className="flex p-2 items-center gap-1 bg-[#06B6D4] rounded-lg text-white"><IoIosAddCircleOutline className="text-xl " /> Add </button></Link>
