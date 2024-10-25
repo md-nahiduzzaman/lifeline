@@ -14,8 +14,8 @@ const Testmonial = () => {
      <>
           <div className='lg:w-1/2 '>
 <div>
-    <h2 className='font-bold text-xl text-[#06B6D4] lg:mt-0 mt-4'>OUR TESTIMONIALS</h2>
-    <p className=' text-4xl lg:text-6xl font-bold mt-3'>Our Happy Patients</p>
+    <h2 className='font-bold text-xl lg:mt-0 mt-4'>OUR TESTIMONIALS</h2>
+    <p className=' text-4xl lg:text-6xl font-bold mt-3 text-[#23085A]'>Our Happy Patients</p>
     <p className='my-4'>Professional without enterprisee-commerce. Uniquely happy clinets innovative technologies via team member. Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sapiente nisi velit molestias dolor  </p>
 </div>
 <Swiper
@@ -32,7 +32,7 @@ const Testmonial = () => {
         className="mySwiper mt-8"
       >
         <SwiperSlide>
-            <div className='p-6 lg:p-12 rounded-lg shadow-md bg-[#ECFEFF]'>
+            <div className='p-6 lg:p-12 rounded-lg shadow-md  bg-[#23085A] text-white'>
             <div className='flex items-center gap-2'>
                 <div className=''>
                 <div className="avatar m-2">
@@ -53,7 +53,7 @@ const Testmonial = () => {
             </div>
             </SwiperSlide>
         <SwiperSlide>
-            <div className='p-6 lg:p-12 rounded-lg shadow-md bg-[#ECFEFF]'>
+            <div className='p-6 lg:p-12 rounded-lg shadow-md  bg-[#23085A] text-white'>
             <div className='flex items-center gap-2'>
                 <div className=''>
                 <div className="avatar m-2">
@@ -74,7 +74,7 @@ const Testmonial = () => {
             </div>
             </SwiperSlide>
         <SwiperSlide>
-            <div className='p-6 lg:p-12 rounded-lg shadow-md bg-[#ECFEFF]'>
+            <div className='p-6 lg:p-12 rounded-lg shadow-md  bg-[#23085A] text-white'>
             <div className='flex items-center gap-2'>
                 <div className=''>
                 <div className="avatar m-2">
@@ -95,7 +95,7 @@ const Testmonial = () => {
             </div>
             </SwiperSlide>
         <SwiperSlide>
-            <div className='p-6 lg:p-12 rounded-lg shadow-md bg-[#ECFEFF]'>
+            <div className='p-6 lg:p-12 rounded-lg shadow-md  bg-[#23085A] text-white'>
             <div className='flex items-center gap-2'>
                 <div className=''>
                 <div className="avatar m-2">

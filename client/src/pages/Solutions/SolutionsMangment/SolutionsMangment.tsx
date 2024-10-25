@@ -1,7 +1,7 @@
 
 const SolutionsMangment = () => {
   return (
-    <div className="bg-[#ECFEFF] py-10">
+    <div className=" ">
       <section className="">
 
   <div className="container h-full flex flex-col gap-6 px-6 mx-auto space-y-6  lg:flex-row lg:items-center">
@@ -11,8 +11,8 @@ const SolutionsMangment = () => {
 
     <div className="w-full lg:w-1/2">
     <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-        <p className="text-xl font-bold text-[#06B6D4]">ONLINE APPOINMENT</p>
-    <h2 className="text-gray-700 capitalize dark:text-white mt-4 text-4xl font-bold">Make an Online Appoinemnt Booking For Treatment Patients</h2>
+        <p className="text-xl font-bold text-[#23085A]">ONLINE APPOINMENT</p>
+    <h2 className="text-[#23085A] capitalize  mt-4 text-4xl font-bold">Make an Online Appoinemnt Booking For Treatment Patients</h2>
 
     <form className="mt-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -66,7 +66,7 @@ const SolutionsMangment = () => {
 </div>
 
         <div className="flex justify-end mt-6">
-            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#06B6D4] rounded-md hover:bg-[#06B6D4] focus:outline-none focus:bg-gray-600">
+            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-[#23085A] rounded-md hover:bg-[#06B6D4] focus:outline-none focus:bg-gray-600">
               Send message
             </button>
         </div>

@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AddPresaipationTb from "./AddPresaipationTb";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import { AuthContext } from "../../../../providers/AuthProvider";
 interface patients{
-    _id: string;    
-    name: string;       
+  _id: string;    
+  patientName: string;       
     gender: string;     
-    number: string;    
+   phone: string;    
     address: string;    
     doctor: string;     
-    admittedDate: string; 
+    appiontmentDate: string; 
     status: string;
-    email:string;
-    img:string
+   patientEmail:string;
+    img:string;
+    selectedTimeSlot:string;
   }
   
 const AddPrescription = () => {
     const [appointment,setAppointment]=useState<patients[]>([])
     const axiosCommon=useAxiosCommon()
-const doctor='daniel.harris@hospital.com'
+const {user}=useContext(AuthContext)
 console.log(appointment)
 useEffect(()=>{
-axiosCommon.get(`/approve-appionment?email=${doctor}`).then(res=>{
+axiosCommon.get(`/approve-appionment?email=${user?.email}`).then(res=>{
   setAppointment(res.data)
   console.log(res.data)
 }).catch(error=>{
@@ -73,8 +75,15 @@ axiosCommon.get(`/approve-appionment?email=${doctor}`).then(res=>{
                   scope="col"
                   className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
                 >
-                 Date & Time
+                 Date 
                 </th>
+                <th
+                  scope="col"
+                  className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400"
+                >
+               Time
+                </th>
+            
 
                 <th
                   scope="col"

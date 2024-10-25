@@ -4,7 +4,7 @@ import Footer from "../components/Shared/Footer/Footer";
 
 const Main = () => {
   return (
-    <div>
+    <div className="font-custom">
      <div className="h-16">
      <Navbar />
      </div>

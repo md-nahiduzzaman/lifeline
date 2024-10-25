@@ -27,13 +27,14 @@ import HomeServices from "../pages/HomeServices/HomeServices";
 import HSCardDeatils from "../pages/HomeServices/HServiceCard/HSCardDeatils";
 import VideoChats from "../pages/VidoChats/VideoChats";
 import VideoChatsPages from "../pages/VidoChats/VideoChatsPages";
-import Payments from "../pages/Payments/Payments";
 import PaymentHistory from "../pages/Dashboard/Patient/PaymentHistory";
 import AdminAddDocotr from "../pages/Dashboard/Admin/AdminAddDocotr";
 import PaymentPage from "../pages/Dashboard/Admin/PaymentPage";
 import PaymentDetails from "../pages/Dashboard/Admin/PaymentDetails";
 import Message from "../pages/Dashboard/Admin/Message";
 import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
+import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
+import Payments from "../pages/Payments/Payments";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:5000/serviceDs/${params.id}`)
       }, {
         path: '/payments/:id',
-        element: <Payments></Payments>,
+        element:<Payments></Payments>,
         loader: ({ params }) => fetch(`http://localhost:5000/package-price/${params.id}`)
       }
     ],
@@ -105,10 +106,14 @@ const router = createBrowserRouter([
         element: <PatientHealthRecord />,
       },
       {
-
-        path: 'user-payment-history',
-        element: <PaymentHistory></PaymentHistory>
+        path:'user-payment-history',
+        element:<PaymentHistory></PaymentHistory>
       },
+      {
+        path:'my-appointment',
+        element:<MyAppointment></MyAppointment>
+      }
+      ,
       // --------------------this is the doctor dshboard route arey -----------------------------------
       {
         path: "doctor-appointment",

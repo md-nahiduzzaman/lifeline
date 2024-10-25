@@ -5,7 +5,7 @@ import HServiceCard from "./HServiceCard/HServiceCard"
 
 const HomeServices = () => {
   return (
-    <div>
+    <div className="font-custom">
         <BnHService></BnHService>
         <HServiceCard></HServiceCard>
         <HSChoose></HSChoose>
