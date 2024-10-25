@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import DrCard from "../../../components/Dashboard/Card/DrCard";
-import axios from "axios";
+
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const PatientAppointment = () => {
   const [doctors, setDoctors] = useState<any[]>([]);
-
+  const axiosCommon=useAxiosCommon()
   // Fetch doctors
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/users?role=doctor`
-        );
+        const response = await axiosCommon('/users?role=doctor')
         setDoctors(response.data);
       } catch (error) {
         console.error("Failed to fetch doctors", error);
