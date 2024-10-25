@@ -7,7 +7,7 @@ import AdminMenu from "./Menu/AdminMenu";
 import userRole from "../../../hooks/useRole";
 
 const Sidebar = () => {
-  const{data,refetch}=userRole()as any
+  const{data}=userRole()as any
   return (
     <div>
       {/* Sidebar */}
