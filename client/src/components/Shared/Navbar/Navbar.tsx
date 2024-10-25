@@ -11,12 +11,16 @@ const Navbar = () => {
       <li>
         <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
       </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>
-      </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
-      </li>
+     {
+      !user&& <li>
+      { <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>}
+     </li>
+     }
+     {
+      !user&& <li>
+      <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
+    </li>
+     }
       <li>
         <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
       </li>

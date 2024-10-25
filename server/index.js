@@ -295,7 +295,6 @@ async function run() {
       today.setHours(0, 0, 0, 0)
       const tomorrow = new Date()
       tomorrow.setHours(24, 0, 0, 0)
-
      
 const query = {
   doctorEmail: req.query.email,
