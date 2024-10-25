@@ -8,7 +8,7 @@ const PaymentDetails = () => {
   const [details, setDetails] = useState<any>([])
   console.log(email)
   useEffect(() => {
-    axios.get(`http://localhost:5000/get_doctor_payment/${email}`)
+    axios.get(`https://lifeline-rouge.vercel.app/get_doctor_payment/${email}`)
       .then(res => { console.log(res.data); setDetails(res.data) })
   }, [])
   console.log()

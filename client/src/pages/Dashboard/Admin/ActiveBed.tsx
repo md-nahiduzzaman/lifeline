@@ -7,7 +7,7 @@ const Total_Bed = () => {
     const [fixed, setFixed] = useState<String>('all')
     
     useEffect(() => {
-        fetch('http://localhost:5000/admin-all-bed')
+        fetch('https://lifeline-rouge.vercel.app/admin-all-bed')
             .then((res: any) => {
                 return res.json()
             })
@@ -26,7 +26,7 @@ const Total_Bed = () => {
 
     const handleChangeStatus=(id:any,condition:any)=>{
        console.log(id,condition)
-       axios.put(`http://localhost:5000/admin-change_status/${id}`,{condition})
+       axios.put(`https://lifeline-rouge.vercel.app/admin-change_status/${id}`,{condition})
        .then(res=>console.log(res.data))
     }
     return (

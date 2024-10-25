@@ -12,8 +12,8 @@ type Doctor = {
   availability: string;
   rating: number;
   reviews: number;
-image_url: string;
-email:string
+  image_url: string;
+  email: string
 };
 
 interface DrCardProps {
@@ -21,18 +21,18 @@ interface DrCardProps {
 }
 
 const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
-const navigation=useNavigate()
+  const navigation = useNavigate()
   const [isOpen, setIsOpen] = useState<boolean>(false);
-const {data}=userRole()
+  const { data } = userRole()
 
-  const handileClick=()=>{
-if(data?.status==='subscribe'){
-  setIsOpen(true)
+  const handileClick = () => {
+    if (data?.status === 'subscribe') {
+      setIsOpen(true)
 
-}else{
- return navigation('/package')
-}
-   
+    } else {
+      return navigation('/package')
+    }
+
   }
   // Close modal function
   const closeModal = () => {

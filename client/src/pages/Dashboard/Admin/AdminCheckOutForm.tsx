@@ -21,7 +21,7 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
     
     
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', { price })
+        axios.post('https://lifeline-rouge.vercel.app/create-payment-intent', { price })
             .then(res => {
                 console.log(res.data.clientSecret)
                 setClientSecret(res.data.clientSecret)
@@ -79,7 +79,7 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
                 }
                 console.log(info)
 
-                axios.post('http://localhost:5000/doctor-payment',info)
+                axios.post('https://lifeline-rouge.vercel.app/doctor-payment',info)
                 .then(res=>console.log(res.data))
             }
         }

@@ -8,7 +8,7 @@ const Message = () => {
     const [users, setUsers] = useState<any>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users')
+        axios.get('https://lifeline-rouge.vercel.app/users')
             .then(res => setUsers(res.data))
     }, [])
     return (
