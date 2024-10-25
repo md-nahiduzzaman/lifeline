@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import "../Calender/calenderCustomStyles.css";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import Swal from "sweetalert2";
 
 interface BookAppointmentModalProps {
   isOpen: boolean;
@@ -87,6 +88,14 @@ const {
 
   axiosCommon.post('/added-appionments',patientInfo).then(res=>{
     console.log(res.data)
+    if(res?.data?.insertedId){
+      Swal.fire({
+        title: "Good job ",
+        text: "Appointment success fullly done",
+        icon: "success"
+      });
+
+    }
   }).catch(error=>{
     console.log(error)
   })

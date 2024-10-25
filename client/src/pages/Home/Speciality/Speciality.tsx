@@ -4,7 +4,6 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import image1 from '..//..//..//assets/images/doctor1.png'
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import { useQuery } from '@tanstack/react-query';
 const Speciality = () => {
