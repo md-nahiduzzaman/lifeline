@@ -16,10 +16,10 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
+      "http://localhost:5173/",
+      "http://localhost:5174/",
       "https://lifeline-omega.vercel.app",
-      "http://localhost:5175",
+      "http://localhost:5175/",
       "https://hospital-management-4e9fc.web.app"
 
     ],
