@@ -13,6 +13,7 @@ const IndividualMessage = () => {
         axiosCommon.get(`/admin/${id}`)
             .then(res => setUser(res.data))
     }, [id])
+     
     return (
         <div className="h-[100vh] w-full flex flex-col">
             <div className="min-h-[50px] w-full border-[2px] border-gray-400 mx-auto bg-white p-2 px-4 flex justify-between items-center">
@@ -36,6 +37,7 @@ const IndividualMessage = () => {
                         velit ea, cum explicabo eos eligendi.
                        Cumque, delectus odit. Ipsam ad dignissimos nemo quaerat.
                 </div>
+                
             </div>
            <div className="w-full relative">
             <input type="text" name="message" placeholder="Message Start" className="pl-3 w-full h-[45px] 

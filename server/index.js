@@ -69,6 +69,8 @@ const transporter = nodemailer.createTransport({
 
 async function run() {
   try {
+
+    
     //  it is Sanim's collection
     const database = client.db("lifeline");
     const appointmentCollection = database.collection("Appointment");
@@ -78,7 +80,10 @@ async function run() {
     const SerivcesCollection = database.collection("service-card");
     const paymentHistoryCollection = database.collection("payment-history");
     // end of sanim collection
+    
 
+    // Here is socket data base
+    const messagesCollection=client.db("lifeline").collection("socket");
     const adminHistoryCollection=client.db("lifeline").collection("doctor-payment")
     const userCollection = client.db("lifeline").collection("users");
     const bedCollection = client.db("lifeline").collection("beds");
@@ -208,6 +213,56 @@ async function run() {
          const result=await userCollection.deleteOne(query)
          res.send(result)
     })
+
+
+    // here is message system with socket
+
+    io.on("connection", (socket) => {
+      console.log("User connected");
+    
+      // Listen for new messages from client
+      socket.on("sendMessage", async (messageData) => {
+        try {
+          const { Senderemail, reciverEmail, Message, time } = messageData;
+          const messageObject = { Senderemail, reciverEmail, Message, time: new Date(time) }; // Ensure time is a Date object
+    
+          await messagesCollection.insertOne(messageObject);
+    
+          io.emit("messageReceived", messageObject); // Emit message to all clients
+        } catch (error) {
+          console.error("Error saving message:", error);
+        }
+      });
+    
+      // Retrieve sorted messages
+      socket.on("getMessages", async ({ userEmail, contactEmail }) => {
+        try {
+          const query = {
+            $or: [
+              { Senderemail: userEmail, reciverEmail: contactEmail },
+              { Senderemail: contactEmail, reciverEmail: userEmail },
+            ],
+          };
+    
+          const messages = await messagesCollection
+            .find(query)
+            .sort({ time: 1 }) // Sort messages by time in ascending order
+            .toArray();
+    
+          socket.emit("messageHistory", messages); // Send sorted messages to requesting client
+        } catch (error) {
+          console.error("Error fetching messages:", error);
+        }
+      });
+    
+      socket.on("disconnect", () => {
+        console.log("User disconnected");
+      });
+    });
+    
+    
+
+    // here End of Admin collection
 
 
     // Connect the client to the server	(optional starting in v4.7)
