@@ -30,7 +30,7 @@ const Message = () => {
                         <NavLink
                             to={`/message/${info._id}`}
                             className={({ isActive }) =>
-                                `rounded-md w-full flex px-2 p-1 items-center text-[17px] font-medium ${isActive ? 'bg-gray-300' : ''}`
+                                `rounded-md w-full flex px-2 p-1 items-center text-[16px] font-medium ${isActive ? 'bg-gray-300' : ''}`
                             }
                         >
                             <img src={info.image_url} className="w-[45px] mr-3 h-[45px] rounded-[50%]" alt="" />

@@ -136,6 +136,7 @@ const router = createBrowserRouter([
         element: <PrescriptionDeatils></PrescriptionDeatils>,
         loader: ({ params }) => fetch(`https://lifeline-rouge.vercel.app/patients-deatils/${params.id}`)
       },
+      // https://lifeline-rouge.vercel.app
       {
         path: '/dashboard/video-chats',
         element: <VideoChats></VideoChats>
