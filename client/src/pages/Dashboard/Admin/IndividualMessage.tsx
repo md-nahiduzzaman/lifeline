@@ -29,7 +29,7 @@ const IndividualMessage = () => {
           } catch (error) {
             console.error("Failed to fetch messages:", error);
           }
-        }, 3000); 
+        }, 2000); 
       
         return () => clearInterval(interval); // Clean up on unmount
       }, [user,users]);
