@@ -4,15 +4,15 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const nodemailer = require('nodemailer');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-// socket.io
+
 const { createServer } = require('http');
-const { Server } = require("socket.io"); 
+const { Server } = require("socket.io");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
-const server = createServer(app); 
+const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
@@ -27,6 +27,7 @@ const io = new Server(server, {
   }
 });
 console.log(io)
+
 app.use(
   cors({
     origin: [
@@ -70,7 +71,7 @@ const transporter = nodemailer.createTransport({
 async function run() {
   try {
 
-    
+
     //  it is Sanim's collection
     const database = client.db("lifeline");
     const appointmentCollection = database.collection("Appointment");
@@ -80,11 +81,11 @@ async function run() {
     const SerivcesCollection = database.collection("service-card");
     const paymentHistoryCollection = database.collection("payment-history");
     // end of sanim collection
-    
+
 
     // Here is socket data base
-    const messagesCollection=client.db("lifeline").collection("socket");
-    const adminHistoryCollection=client.db("lifeline").collection("doctor-payment")
+    const messagesCollection = client.db("lifeline").collection("socket");
+    const adminHistoryCollection = client.db("lifeline").collection("doctor-payment")
     const userCollection = client.db("lifeline").collection("users");
     const bedCollection = client.db("lifeline").collection("beds");
     app.get("/users", async (req, res) => {
@@ -97,60 +98,60 @@ async function run() {
         res.status(500).send({ message: error.message });
       }
     });
-    
+
 
 
     // Admin routes start
 
-    app.post('/admin_add_doctor',async (req,res)=>{
-       const info=req.body;
-       console.log(info)
-       const result =await userCollection.insertOne(info)
-       res.send(result)
+    app.post('/admin_add_doctor', async (req, res) => {
+      const info = req.body;
+      console.log(info)
+      const result = await userCollection.insertOne(info)
+      res.send(result)
     })
-    app.put('/admin-change_status/:id', async (req,res)=>{
-       const id=req.params.id;
-       const query= {_id:new ObjectId(id)}
-       const data=req.body
-       console.log("is ",data.condition)
-       
-       const options={upsert:true}
+    app.put('/admin-change_status/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) }
+      const data = req.body
+      console.log("is ", data.condition)
 
-       const status={
-        $set:{
-           status:data.condition
+      const options = { upsert: true }
+
+      const status = {
+        $set: {
+          status: data.condition
         }
-       }
-      const result=await bedCollection.updateOne(query,status,options)
+      }
+      const result = await bedCollection.updateOne(query, status, options)
       res.send(result)
     })
 
-    
-    app.post('/doctor-payment', async (req,res)=>{
-         const info=req.body;
-         const result=await adminHistoryCollection.insertOne(info)
-         res.send(result)
-    })
-   
 
-    app.get('/get_doctor_payment/:email',async (req,res)=>{
-         const email=req.params;
-         
-         const query={email:email.email}
-         
-         const result=await adminHistoryCollection.find(query).toArray()
-      
-         res.send(result)
+    app.post('/doctor-payment', async (req, res) => {
+      const info = req.body;
+      const result = await adminHistoryCollection.insertOne(info)
+      res.send(result)
     })
 
 
-    app.get('/admin-all-bed',async (req,res)=>{
-        const result=await bedCollection.find().toArray()
-        res.send(result) 
+    app.get('/get_doctor_payment/:email', async (req, res) => {
+      const email = req.params;
+
+      const query = { email: email.email }
+
+      const result = await adminHistoryCollection.find(query).toArray()
+
+      res.send(result)
+    })
+
+
+    app.get('/admin-all-bed', async (req, res) => {
+      const result = await bedCollection.find().toArray()
+      res.send(result)
     })
     app.get('/admin/:id', async (req, res) => {
       const id = req.params.id;
-      console.log("it is id",id)
+      console.log("it is id", id)
       const query = { _id: new ObjectId(id) };
       const result = await userCollection.findOne(query)
       res.send(result)
@@ -205,63 +206,50 @@ async function run() {
     })
 
 
-    app.delete('/admin-delete-doctor/:id',async (req,res)=>{
-         const id=req.params.id;
+    app.delete('/admin-delete-doctor/:id', async (req, res) => {
+      const id = req.params.id;
 
-         const query= {_id:new ObjectId(id)}
+      const query = { _id: new ObjectId(id) }
 
-         const result=await userCollection.deleteOne(query)
-         res.send(result)
+      const result = await userCollection.deleteOne(query)
+      res.send(result)
     })
 
 
     // here is message system with socket
 
-    io.on("connection", (socket) => {
-      console.log("User connected");
     
-      // Listen for new messages from client
-      socket.on("sendMessage", async (messageData) => {
-        try {
-          const { Senderemail, reciverEmail, Message, time } = messageData;
-          const messageObject = { Senderemail, reciverEmail, Message, time: new Date(time) }; // Ensure time is a Date object
-          
-          await messagesCollection.insertOne(messageObject);
+    app.get('/messagecollection', async (req, res) => {
+      // Get sender and receiver email from query parameters
+      const { senderEmail, receiverEmail } = req.query;
     
-          io.emit("messageReceived", messageObject); // Emit message to all clients
-        } catch (error) {
-          console.error("Error saving message:", error);
-        }
-      });
-      
-      // Retrieve sorted messages
-      socket.on("getMessages", async ({ userEmail, contactEmail }) => {
-        try {
-          const query = {
-            $or: [
-              { Senderemail: userEmail, reciverEmail: contactEmail },
-              { Senderemail: contactEmail, reciverEmail: userEmail },
-            ],
-          };
+      try {
+        
+        const query = {
+          $or: [
+            { Senderemail: senderEmail, reciverEmail: receiverEmail },
+            { Senderemail: receiverEmail, reciverEmail: senderEmail },
+          ],
+        };
     
-          const messages = await messagesCollection
-            .find(query)
-            .sort({ time: 1 }) // Sort messages by time in ascending order
-            .toArray();
+        
+        const messages = await messagesCollection.find(query).sort({ time: 1 }).toArray();
     
-          socket.emit("messageHistory", messages); // Send sorted messages to requesting client
-        } catch (error) {
-          console.error("Error fetching messages:", error);
-        }
-      });
-    
-      socket.on("disconnect", () => {
-        console.log("User disconnected");
-      });
+        res.send(messages);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+        res.status(500).send({ message: "Failed to retrieve messages." });
+      }
     });
     
-    
 
+    app.post('/postMessage', async (req,res)=>{
+        const info=req.body;
+        
+       
+        const result= await messagesCollection.insertOne(info)
+        res.send(result)
+    })
     // here End of Admin collection
 
 
@@ -342,7 +330,7 @@ async function run() {
     })
 
     app.get('/show-prescription', async (req, res) => {
-      const query = { patientEmail:req.query.email, doctorEmail:req.query.dremail }
+      const query = { patientEmail: req.query.email, doctorEmail: req.query.dremail }
 
       const result = await presaipationCollection.findOne(query)
       res.send(result)
@@ -353,107 +341,107 @@ async function run() {
       today.setHours(0, 0, 0, 0)
       const tomorrow = new Date()
       tomorrow.setHours(24, 0, 0, 0)
-     
-const query = {
-  doctorEmail: req.query.email,
-  date: { $gte: today, $lt: tomorrow }
-};
+
+      const query = {
+        doctorEmail: req.query.email,
+        date: { $gte: today, $lt: tomorrow }
+      };
 
       const todayAppionments = await appointmentCollection.countDocuments(query)
 
-      const pending = {status:'pending',doctorEmail:req.query.email}
+      const pending = { status: 'pending', doctorEmail: req.query.email }
 
       const pendingappionment = await appointmentCollection.countDocuments(pending)
 
-      const allAppionments = await appointmentCollection.countDocuments({doctorEmail: req.query.email})
+      const allAppionments = await appointmentCollection.countDocuments({ doctorEmail: req.query.email })
 
       res.send({ todayAp: todayAppionments, pendingAp: pendingappionment, allAp: allAppionments })
     })
 
-app.get('/hsService-card',async(req,res)=>{
+    app.get('/hsService-card', async (req, res) => {
 
-const result=await HservoceCardCollection.find().toArray()
-res.send(result)
+      const result = await HservoceCardCollection.find().toArray()
+      res.send(result)
 
-})
+    })
 
-app.get('/serviceDs/:id',async(req,res)=>{
-const id=req.params.id
-const query={_id:new ObjectId(id)}
-const result=await HservoceCardCollection.findOne(query)
-res.send(result)
-})
+    app.get('/serviceDs/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await HservoceCardCollection.findOne(query)
+      res.send(result)
+    })
 
-app.post('/Booking-HS',async(req,res)=>{
-  const bookingInfo=req.body
-  const result=await HSBookingCollection.insertOne(bookingInfo)
-  res.send(result)
-})
-app.get('/services-cards',async(req,res)=>{
+    app.post('/Booking-HS', async (req, res) => {
+      const bookingInfo = req.body
+      const result = await HSBookingCollection.insertOne(bookingInfo)
+      res.send(result)
+    })
+    app.get('/services-cards', async (req, res) => {
 
-const result=await SerivcesCollection.find().toArray()
-res.send(result)
+      const result = await SerivcesCollection.find().toArray()
+      res.send(result)
 
-})
-app.get('/package-price/:id',async(req,res)=>{
-  const id=req.params.id
-  const query={_id:new ObjectId(id)}
-  const result=await SerivcesCollection.findOne(query)
-  res.send(result)
-})
+    })
+    app.get('/package-price/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await SerivcesCollection.findOne(query)
+      res.send(result)
+    })
 
-app.post("/create-payment-intent", async (req, res) => {
-  const {price} = req.body;
-  const amount=parseInt(price*100)
-  
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount:amount,
-    currency: "usd",
-    payment_method_types:['card']
-  })
+    app.post("/create-payment-intent", async (req, res) => {
+      const { price } = req.body;
+      const amount = parseInt(price * 100)
 
-  res.send({
-    clientSecret: paymentIntent.client_secret
-  })
-})
-app.post('/payments-history',async(req,res)=>{
-  const paymentInfo=req.body
-  const result=await paymentHistoryCollection.insertOne(paymentInfo)
-  res.send(result)
-})
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: "usd",
+        payment_method_types: ['card']
+      })
 
-app.get('/UP-history',async(req,res)=>{
-  const query={userEmail:req.query.email}
-const result=await paymentHistoryCollection.find(query).toArray()
-res.send(result)
-})
-  app.post('/added-appionments',async(req,res)=>{
-const patientInfo=req.body
-const result=await appointmentCollection.insertOne(patientInfo)
-res.send(result)
-  })
+      res.send({
+        clientSecret: paymentIntent.client_secret
+      })
+    })
+    app.post('/payments-history', async (req, res) => {
+      const paymentInfo = req.body
+      const result = await paymentHistoryCollection.insertOne(paymentInfo)
+      res.send(result)
+    })
 
-  app.get('/user-role',async(req,res)=>{
-    const query={email:req.query.email}
-    const result= await userCollection.findOne(query)
-    if(!result){
-return res.send({})
-    }
-    res.send(result)
-  })
+    app.get('/UP-history', async (req, res) => {
+      const query = { userEmail: req.query.email }
+      const result = await paymentHistoryCollection.find(query).toArray()
+      res.send(result)
+    })
+    app.post('/added-appionments', async (req, res) => {
+      const patientInfo = req.body
+      const result = await appointmentCollection.insertOne(patientInfo)
+      res.send(result)
+    })
 
-  app.patch('/user-status-upadate',async(req,res)=>{
-    const email=req.query.email
-    const query={email:email}
-    console.log(query)
-    const upadateDc={
-      $set:{status:'subscribe'}
-    }
-    const result=await userCollection.updateOne(query,upadateDc)
-    console.log(result)
-    res.send(result)
-  })
-// await client.db("admin").command({ ping: 1 });
+    app.get('/user-role', async (req, res) => {
+      const query = { email: req.query.email }
+      const result = await userCollection.findOne(query)
+      if (!result) {
+        return res.send({})
+      }
+      res.send(result)
+    })
+
+    app.patch('/user-status-upadate', async (req, res) => {
+      const email = req.query.email
+      const query = { email: email }
+      console.log(query)
+      const upadateDc = {
+        $set: { status: 'subscribe' }
+      }
+      const result = await userCollection.updateOne(query, upadateDc)
+      console.log(result)
+      res.send(result)
+    })
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
@@ -470,4 +458,3 @@ app.get("/", (req, res) => {
 server.listen(port, () => {
   console.log(`Lifeline server is running on port: ${port}`);
 });
-    
