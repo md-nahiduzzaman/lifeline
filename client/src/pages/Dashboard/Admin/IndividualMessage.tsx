@@ -19,21 +19,23 @@ const IndividualMessage = () => {
             .then(res => setUser(res.data))
     }, [id])
     
-   if(user&&users){
+   
     useEffect(() => {
+       if(user&&users){
         const interval = setInterval(async () => {
-          try {
-            const response = await fetch(`https://lifeline-rouge.vercel.app/messagecollection?senderEmail=${user.email}&receiverEmail=${users.email}`);
-            const data = await response.json();
-            setAllmessage(data) 
-          } catch (error) {
-            console.error("Failed to fetch messages:", error);
-          }
-        }, 2000); 
-      
-        return () => clearInterval(interval); // Clean up on unmount
+            try {
+              const response = await fetch(`https://lifeline-rouge.vercel.app/messagecollection?senderEmail=${user.email}&receiverEmail=${users.email}`);
+              const data = await response.json();
+              setAllmessage(data) 
+            } catch (error) {
+              console.error("Failed to fetch messages:", error);
+            }
+          }, 2000); 
+        
+          return () => clearInterval(interval); 
+       }
       }, [user,users]);
-   }
+   
    const sendMessage=()=>{
         const Senderemail=user.email;
         const reciverEmail=users.email;
