@@ -10,7 +10,7 @@ const IndividualMessage = () => {
     const { user } = useContext(AuthContext);
     const [messages, setMessages] = useState<any>([]);
     const [newMessage, setNewMessage] = useState<any>("");
-    
+
     const { id } = useParams()
     const axiosCommon = useAxiosCommon()
     const [users, setUser] = useState<any>({})
@@ -28,18 +28,18 @@ const IndividualMessage = () => {
                 setMessages(messageHistory); // Set sorted messages from history
             });
 
-            socket.on("messageReceived", (message:any) => {
-                setMessages((prevMessages:any) => [...prevMessages, message]); // Append new message to messages list
+            socket.on("messageReceived", (message: any) => {
+                setMessages((prevMessages: any) => [...prevMessages, message]); // Append new message to messages list
             });
 
             return () => {
                 socket.off("messageHistory");
                 socket.off("messageReceived");
-              };
-        }, [user.email,users.email])
+            };
+        }, [user.email, users.email])
     }
-  
-    const sendMessage=()=>{
+
+    const sendMessage = () => {
         if (!newMessage.trim()) return;
 
         const messageData = {
@@ -47,10 +47,10 @@ const IndividualMessage = () => {
             reciverEmail: users.email,
             Message: newMessage,
             time: new Date().toISOString(),
-          };
+        };
 
-          socket.emit("sendMessage", messageData);
-          setNewMessage("");
+        socket.emit("sendMessage", messageData);
+        setNewMessage("");
     }
     return (
         <div className="h-[100vh] w-full flex flex-col">
@@ -59,37 +59,31 @@ const IndividualMessage = () => {
                 <FaPhone className="text-xl text-black"></FaPhone>
             </div>
             <div className="flex-grow w-full overflow-y-auto bg-gray-200 p-3">
-                <div className="w-[350px] md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
-                    Lorem ipsum dolor sit, amet consectetur
-                    adipisicing elit. Sapiente id laudantium
-                    reiciendis a earum natus facilis ex consequatur
-                    iure minima in consequuntur quia nulla magni perferendis
-                    velit ea, cum explicabo eos eligendi.
-                    Cumque, delectus odit. Ipsam ad dignissimos nemo quaerat.
-                </div>
-                <div className="bg-[#dcf8c6] ml-auto w-[350px] md:w-[500px] rounded-md p-2">
-                    Lorem ipsum dolor sit, amet consectetur
-                    adipisicing elit. Sapiente id laudantium
-                    reiciendis a earum natus facilis ex consequatur
-                    iure minima in consequuntur quia nulla magni perferendis
-                    velit ea, cum explicabo eos eligendi.
-                    Cumque, delectus odit. Ipsam ad dignissimos nemo quaerat.
-                </div>
-              {
-                messages.map((info:any)=>{
-                    info.Senderemail===user?.email?(<div className="bg-[#dcf8c6] ml-auto w-[350px] md:w-[500px] rounded-md p-2">
-                        <h1 className="font-medium">You</h1>
-                        {info?.Message}
-                    </div>):(<div className="w-[350px] md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
-                        <h1 className="font-medium">{users?.name}</h1>
-                        {info?.Message}
-                    </div>)
-                })
-              }
+                
+               
+                {messages.length > 0 ? (
+                    messages.map((info: any, index: number) => (
+                        info.Senderemail === user?.email ? (
+                            <div key={index} className="bg-[#dcf8c6] ml-auto w-[350px] md:w-[500px] rounded-md p-2">
+                                <h1 className="font-medium">You</h1>
+                                {info?.Message}
+                            </div>
+                        ) : (
+                            <div key={index} className="w-[350px] md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
+                                <h1 className="font-medium">{users?.name}</h1>
+                                {info?.Message}
+                            </div>
+                        )
+                    ))
+                ) : (
+                    <div className="text-center text-gray-500 p-2">
+                        No messages to display.
+                    </div>
+                )}
 
             </div>
             <div className="w-full relative">
-                <input value={newMessage} onChange={(e)=>setNewMessage(e.target.value)} type="text" name="message" placeholder="Message Start" className="pl-3 w-full h-[45px] 
+                <input value={newMessage} onChange={(e) => setNewMessage(e.target.value)} type="text" name="message" placeholder="Message Start" className="pl-3 w-full h-[45px] 
             md:h-[55px] bg-white border-gray-400 border-[2px] " />
                 <button onClick={sendMessage} className="absolute right-0 top-3"><div className="p-2 right-0">
                     <FaPaperPlane className="text-gray-300 text-2xl rotate-45"></FaPaperPlane>
