@@ -225,7 +225,7 @@ async function run() {
         try {
           const { Senderemail, reciverEmail, Message, time } = messageData;
           const messageObject = { Senderemail, reciverEmail, Message, time: new Date(time) }; // Ensure time is a Date object
-    
+          
           await messagesCollection.insertOne(messageObject);
     
           io.emit("messageReceived", messageObject); // Emit message to all clients
@@ -233,7 +233,7 @@ async function run() {
           console.error("Error saving message:", error);
         }
       });
-    
+      
       // Retrieve sorted messages
       socket.on("getMessages", async ({ userEmail, contactEmail }) => {
         try {
