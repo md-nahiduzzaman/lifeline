@@ -44,12 +44,12 @@ const IndividualMessage = () => {
         arr1.push(id)
         setArr(arr1)
     }
-    const handleRemove=()=>{
-        let arr2:any = [];
-        setArr(arr2)
-    }
+
+    
+
     console.log("it is arr ", arr)
     const sendMessage = () => {
+        setArr([])
         const Senderemail = user.email;
         const reciverEmail = users.email;
         const time = new Date()
@@ -66,7 +66,7 @@ const IndividualMessage = () => {
     }
 
     const handleDelete = (id: any) => {
-
+        setArr([])
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -115,7 +115,11 @@ const IndividualMessage = () => {
                                             className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
                                             <button onClick={()=>{
-                                                handleRemove()
+                                                if(arr.length>0){
+                                                    setArr([])
+                                                    console.log(arr)
+                                                }
+                                                
                                             }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
                                             <button onClick={() => {
                                                 handleDelete(info._id)
@@ -140,7 +144,7 @@ const IndividualMessage = () => {
                                                 <button onClick={() => {
                                                     setBol(true)
                                                     setReply(`${info.messages}`);
-
+                                                    setArr([])
                                                 }} className="flex w-full justify-between items-center">
                                                     <FaReply></FaReply>
                                                     <span className="font-normal text-[15px]">Reply</span>
@@ -167,7 +171,11 @@ const IndividualMessage = () => {
                                             className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
                                             <button onClick={()=>{
-                                                handleRemove()
+                                                if(arr.length>0){
+                                                    setArr([])
+                                                    console.log(arr)
+                                                }
+                                                
                                             }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
                                             <button onClick={() => {
                                                 handleDelete(info._id)
@@ -193,7 +201,7 @@ const IndividualMessage = () => {
                                                     <button onClick={() => {
                                                         setBol(true)
                                                         setReply(`${info.messages}`);
-
+                                                        setArr([])
                                                     }} className="flex w-full justify-between items-center">
                                                         <FaReply></FaReply>
                                                         <span className="font-normal text-[15px]">Reply</span>
@@ -220,12 +228,12 @@ const IndividualMessage = () => {
 
             </div>
             <div className="w-full relative">
-                <div className={`${bol ? "absolute w-full bottom-14 bg-white opacity-70" : "hidden"}`}>{reply}
+                <div className={`${bol ? "absolute w-full bottom-14 bg-white pl-2 opacity-70" : "hidden"}`}>{reply}
                     <button onClick={()=>{
                         setReply("")
                         setBol(false)
                     }} className="w-[30px]">
-                        <FaPlus className="rotate-45 mt-2"></FaPlus>
+                        <FaPlus className="rotate-45 mt-3 ml-3"></FaPlus>
                     </button>
                 </div>
                 <input value={messages} onChange={(e: any) => setMessages(e.target.value)} type="text" name="message" placeholder="Message Start" className="pl-3 w-full h-[45px] 
