@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
 import { useContext, useEffect, useState } from "react"
 
-import { FaPaperPlane, FaPhone, FaReply } from "react-icons/fa6"
+import { FaPaperPlane, FaPhone, FaPlus, FaReply } from "react-icons/fa6"
 import { AuthContext } from "../../../providers/AuthProvider"
 import { FaEllipsisV, FaSave } from "react-icons/fa"
 import Swal from "sweetalert2"
@@ -15,6 +15,8 @@ const IndividualMessage = () => {
     const { id } = useParams()
     const axiosCommon = useAxiosCommon()
     const [users, setUser] = useState<any>({})
+    const [reply, setReply] = useState<String>('')
+    const [bol, setBol] = useState<Boolean>(false)
 
     useEffect(() => {
         axiosCommon.get(`/admin/${id}`)
@@ -42,6 +44,10 @@ const IndividualMessage = () => {
         arr1.push(id)
         setArr(arr1)
     }
+    const handleRemove=()=>{
+        let arr2:any = [];
+        setArr(arr2)
+    }
     console.log("it is arr ", arr)
     const sendMessage = () => {
         const Senderemail = user.email;
@@ -49,7 +55,7 @@ const IndividualMessage = () => {
         const time = new Date()
         const information = {
             Senderemail, reciverEmail,
-            time, messages
+            time, messages, reply
         }
 
         axiosCommon.post('/postMessage', information)
@@ -71,17 +77,17 @@ const IndividualMessage = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                
+
                 axiosCommon.delete(`/deleteMessage/${id}`)
-                .then(res=>{
-                    console.log(res.data)
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                })
-               
+                    .then(res => {
+                        console.log(res.data)
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    })
+
             }
         });
     }
@@ -106,8 +112,11 @@ const IndividualMessage = () => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[140px] absolute top-0 right-[50px] bg-white h-[160px] p-2" : "w-[140px] p-2 absolute bottom-7 right-[50px] bg-white h-[160px]") : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
+                                            <button onClick={()=>{
+                                                handleRemove()
+                                            }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
                                             <button onClick={() => {
                                                 handleDelete(info._id)
                                             }} className="w-full"> <div className="flex w-full items-center justify-between">
@@ -127,9 +136,15 @@ const IndividualMessage = () => {
                                                     </svg>
                                                     <span className="font-normal text-[15px]">Delete</span>
                                                 </div></button>
-                                            <div className="flex w-full items-center justify-between my-4">
-                                                <FaReply></FaReply>
-                                                <span className="font-normal text-[15px]">Reply</span>
+                                            <div className="flex w-full justify-between my-4 items-center">
+                                                <button onClick={() => {
+                                                    setBol(true)
+                                                    setReply(`${info.messages}`);
+
+                                                }} className="flex w-full justify-between items-center">
+                                                    <FaReply></FaReply>
+                                                    <span className="font-normal text-[15px]">Reply</span>
+                                                </button>
                                             </div>
                                             <button className="w-full"><div className="w-full flex items-center justify-between">
                                                 <FaSave></FaSave>
@@ -149,8 +164,11 @@ const IndividualMessage = () => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[140px] p-2 absolute top-0 right-[50px] bg-white h-[160px]" : "w-[140px] p-2 absolute bottom-7 right-[50px] bg-white h-[160px]") : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
+                                            <button onClick={()=>{
+                                                handleRemove()
+                                            }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
                                             <button onClick={() => {
                                                 handleDelete(info._id)
                                             }} className="w-full"> <div className="flex w-full justify-between items-center">
@@ -172,8 +190,14 @@ const IndividualMessage = () => {
                                                 </div></button>
                                             <button className="w-full">
                                                 <div className="flex w-full justify-between my-4 items-center">
-                                                    <FaReply></FaReply>
-                                                    <span className="font-normal text-[15px]">Reply</span>
+                                                    <button onClick={() => {
+                                                        setBol(true)
+                                                        setReply(`${info.messages}`);
+
+                                                    }} className="flex w-full justify-between items-center">
+                                                        <FaReply></FaReply>
+                                                        <span className="font-normal text-[15px]">Reply</span>
+                                                    </button>
                                                 </div>
                                             </button>
                                             <button className="w-full"><div className="w-full flex items-center justify-between">
@@ -194,14 +218,24 @@ const IndividualMessage = () => {
                     </div>
                 )}
 
-
             </div>
             <div className="w-full relative">
+                <div className={`${bol ? "absolute w-full bottom-14 bg-white opacity-70" : "hidden"}`}>{reply}
+                    <button onClick={()=>{
+                        setReply("")
+                        setBol(false)
+                    }} className="w-[30px]">
+                        <FaPlus className="rotate-45 mt-2"></FaPlus>
+                    </button>
+                </div>
                 <input value={messages} onChange={(e: any) => setMessages(e.target.value)} type="text" name="message" placeholder="Message Start" className="pl-3 w-full h-[45px] 
             md:h-[55px] bg-white border-gray-400 border-[2px] " />
-                <button onClick={sendMessage} className="absolute right-0 top-3"><div className="p-2 right-0">
-                    <FaPaperPlane className="text-gray-300 text-2xl rotate-45"></FaPaperPlane>
-                </div></button>
+                <button onClick={() => {
+                    sendMessage()
+                    setBol(false)
+                }} className="absolute right-0 top-3"><div className="p-2 right-0">
+                        <FaPaperPlane className="text-gray-300 text-2xl rotate-45"></FaPaperPlane>
+                    </div></button>
             </div>
         </div>
     )
