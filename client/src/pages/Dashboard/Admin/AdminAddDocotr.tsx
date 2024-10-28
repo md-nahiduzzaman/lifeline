@@ -1,7 +1,8 @@
-import axios from "axios";
+
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const AdminAddDocotr = () => {
-
+  const axiosCommon=useAxiosCommon()
   const handleSubmit = (e: any) => {
 
     e.preventDefault()
@@ -61,7 +62,7 @@ const AdminAddDocotr = () => {
             experience, visit_charge, description, short_description, schedule,
             department, total_patient_checkups, achievement, patient_reviews,image_url
           }
-          axios.post('https://lifeline-rouge.vercel.app/admin_add_doctor',objData)
+          axiosCommon.post('/admin_add_doctor',objData)
           .then(res=>console.log(res))
           .catch(err => console.error('Error:', err));
         }
