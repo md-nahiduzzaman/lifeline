@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
 import { useContext, useEffect, useState } from "react"
 
-import { FaPaperPlane, FaPhone } from "react-icons/fa6"
+import { FaPaperPlane, FaPhone, FaReply } from "react-icons/fa6"
 import { AuthContext } from "../../../providers/AuthProvider"
-import { FaEllipsisV } from "react-icons/fa"
+import { FaEllipsisV, FaSave } from "react-icons/fa"
 
 const IndividualMessage = () => {
     const [arr, setArr] = useState<any>([])
@@ -31,7 +31,7 @@ const IndividualMessage = () => {
                 } catch (error) {
                     console.error("Failed to fetch messages:", error);
                 }
-            }, 2000);
+            }, 1500);
 
             return () => clearInterval(interval);
         }
@@ -66,11 +66,11 @@ const IndividualMessage = () => {
                 </div>
                 <FaPhone className="text-xl text-black"></FaPhone>
             </div>
-            <div className="flex-grow w-full overflow-y-auto bg-gray-200 p-3">
+            <div className="flex-grow w-full overflow-y-auto bg-gray-100 p-3">
 
                 {allMesage.length > 0 ? (
                     allMesage.map((info: any, index: number) => (
-                    info.Senderemail === user?.email ? (
+                        info.Senderemail === user?.email ? (
                             <div key={index} className="bg-[#dcf8c6] my-2 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
                                 <div className="flex justify-between">
                                     <h1 className="font-medium text-[14px]">You</h1>
@@ -78,9 +78,33 @@ const IndividualMessage = () => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[180px] absolute top-2 right-[50px] bg-white h-[220px]" : "w-[180px] absolute bottom-7 right-[50px] bg-white h-[220px]") : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[140px] absolute top-0 right-[50px] bg-white h-[160px] p-2" : "w-[140px] p-2 absolute bottom-7 right-[50px] bg-white h-[160px]") : "hidden"}`}
                                         >
-                                            {/* Additional content can go here */}
+                                          <button className="w-full"> <div className="flex w-full justify-between">
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.5}
+                                                    stroke="currentColor"
+                                                    className="w-5 h-5 text-red-400 "
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                                    />
+                                                </svg>
+                                                <span className="font-normal text-[15px]">Delete</span>
+                                            </div></button>
+                                            <div className="flex w-full justify-between my-4">
+                                                <FaReply></FaReply>
+                                                <span className="font-normal text-[15px]">Reply</span>
+                                            </div>
+                                            <button className="w-full"><div className="w-full flex justify-between">
+                                                <FaSave></FaSave>
+                                                <span className="font-normal text-[15px]">Save</span>
+                                            </div></button>
                                         </div>
                                         <FaEllipsisV />
                                     </button>
@@ -95,9 +119,35 @@ const IndividualMessage = () => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[180px] absolute top-2 right-[50px] bg-white h-[220px]" : "w-[180px] absolute bottom-7 right-[50px] bg-white h-[220px]") : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? (index >= 0 && index <= 2 ? "w-[140px] p-2 absolute top-0 right-[50px] bg-white h-[160px]" : "w-[140px] p-2 absolute bottom-7 right-[50px] bg-white h-[160px]") : "hidden"}`}
                                         >
-                                            {/* Additional content can go here */}
+                                           <button className="w-full"> <div className="flex w-full justify-between">
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.5}
+                                                    stroke="currentColor"
+                                                    className="w-5 h-5 text-red-400"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                                    />
+                                                </svg>
+                                                <span className="font-normal text-[15px]">Delete</span>
+                                            </div></button>
+                                            <button className="w-full">
+                                            <div className="flex w-full justify-between my-4">
+                                                <FaReply></FaReply>
+                                                <span className="font-normal text-[15px]">Reply</span>
+                                            </div>
+                                            </button>
+                                            <button className="w-full"><div className="w-full flex justify-between">
+                                                <FaSave></FaSave>
+                                                <span className="font-normal text-[15px]">Save</span>
+                                            </div></button>
                                         </div>
                                         <FaEllipsisV />
                                     </button>
