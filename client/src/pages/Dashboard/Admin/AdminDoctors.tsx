@@ -1,16 +1,17 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react"
 import { FaInfoCircle } from "react-icons/fa"
 import { FaMoneyBill } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 const AdminDoctors = () => {
     const [docotrs, setDoctors] = useState([])
-    // ok done
+    const axiosCommon=useAxiosCommon()
     useEffect(() => {
 
-        axios.get('https://lifeline-rouge.vercel.app/users')
+        axiosCommon.get('/users')
             .then((response) => {
                 setDoctors(response.data);
             })
@@ -35,7 +36,7 @@ const AdminDoctors = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`https://lifeline-rouge.vercel.app/admin-delete-doctor/${id}`)
+                axiosCommon.delete(`/admin-delete-doctor/${id}`)
                     .then((res) => {
                         console.log(res.data)
                         Swal.fire({
@@ -43,7 +44,7 @@ const AdminDoctors = () => {
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
-                        axios.get('https://lifeline-rouge.vercel.app/users')
+                        axiosCommon.get('/users')
                             .then((response) => {
                                 setDoctors(response.data);
                             })

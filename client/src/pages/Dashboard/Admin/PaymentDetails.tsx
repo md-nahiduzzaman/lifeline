@@ -1,14 +1,16 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import img from '../../../assets/images/Stripe-Payment-Logo.png'
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 const PaymentDetails = () => {
+  const axiosCommon=useAxiosCommon()
   const { email } = useParams()
   const [details, setDetails] = useState<any>([])
   console.log(email)
   useEffect(() => {
-    axios.get(`https://lifeline-rouge.vercel.app/get_doctor_payment/${email}`)
+    axiosCommon.get(`/get_doctor_payment/${email}`)
       .then(res => { console.log(res.data); setDetails(res.data) })
   }, [])
   console.log()

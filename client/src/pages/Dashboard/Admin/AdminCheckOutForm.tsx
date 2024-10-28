@@ -1,8 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
-import axios from "axios";
+
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 interface AdminCheckOutFormProps {
     price: number,
     name: string,
@@ -10,7 +11,7 @@ interface AdminCheckOutFormProps {
 }
 
 const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email }) => {
-
+    const axiosCommon=useAxiosCommon()
     const { user } = useContext(AuthContext)
     console.log(user)
     const stripe = useStripe()
@@ -21,7 +22,7 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
     
     
     useEffect(() => {
-        axios.post('https://lifeline-rouge.vercel.app/create-payment-intent', { price })
+        axiosCommon.post('/create-payment-intent', { price })
             .then(res => {
                 console.log(res.data.clientSecret)
                 setClientSecret(res.data.clientSecret)
@@ -79,7 +80,7 @@ const AdminCheckOutForm: React.FC<AdminCheckOutFormProps> = ({ price,name,email 
                 }
                 console.log(info)
 
-                axios.post('https://lifeline-rouge.vercel.app/doctor-payment',info)
+                axiosCommon.post('/doctor-payment',info)
                 .then(res=>console.log(res.data))
             }
         }

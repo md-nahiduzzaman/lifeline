@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react"
 
 import { FaPaperPlane, FaPhone } from "react-icons/fa6"
 import { AuthContext } from "../../../providers/AuthProvider"
-import axios from "axios"
 
 const IndividualMessage = () => {
     const [messages,setMessages]=useState<any>('')
@@ -45,7 +44,7 @@ const IndividualMessage = () => {
             time,messages
         }
 
-        axios.post('https://lifeline-rouge.vercel.app/postMessage',information)
+        axiosCommon.post('/postMessage',information)
         .then(res=>{
             console.log(res.data)
             setMessages(''); 

@@ -1,13 +1,15 @@
 
-import axios from 'axios';
+
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useLoaderData } from 'react-router-dom';
 
 import Swal from 'sweetalert2';
+import useAxiosCommon from '../../../hooks/useAxiosCommon';
 
 const AdminEditDoctors = () => {
+    const axiosCommon=useAxiosCommon()
     console.log('testing')
     const [value, setValue] = useState('');
     const [selectedFile, setSelectedFile] = useState<any>(null);
@@ -62,7 +64,7 @@ const AdminEditDoctors = () => {
                         visit, time, short_des, long_des, photo
                     }
                    
-                    axios.put(`https://lifeline-rouge.vercel.app/admin-edit-doctor/${singleData._id}`, updateDoc, {
+                    axiosCommon.put(`/admin-edit-doctor/${singleData._id}`, updateDoc, {
                         headers: {
                             'Content-Type': 'application/json',
                         },

@@ -1,13 +1,14 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react"
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 const Total_Bed = () => {
-
+    const axiosCommon=useAxiosCommon()
     const [info, setInfo] = useState<any>([])
     const [fixed, setFixed] = useState<String>('all')
     
     useEffect(() => {
-        fetch('https://lifeline-rouge.vercel.app/admin-all-bed')
+        axiosCommon.get('/admin-all-bed')
             .then((res: any) => {
                 return res.json()
             })
@@ -26,7 +27,7 @@ const Total_Bed = () => {
 
     const handleChangeStatus=(id:any,condition:any)=>{
        console.log(id,condition)
-       axios.put(`https://lifeline-rouge.vercel.app/admin-change_status/${id}`,{condition})
+       axiosCommon.put(`/admin-change_status/${id}`,{condition})
        .then(res=>console.log(res.data))
     }
     return (

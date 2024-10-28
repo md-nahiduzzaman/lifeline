@@ -1,14 +1,15 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react"
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const Message = () => {
     const [users, setUsers] = useState<any>([]);
-
+    const axiosCommon=useAxiosCommon()
     useEffect(() => {
-        axios.get('https://lifeline-rouge.vercel.app/users')
+        axiosCommon.get('/users')
             .then(res => setUsers(res.data))
     }, [])
     return (
