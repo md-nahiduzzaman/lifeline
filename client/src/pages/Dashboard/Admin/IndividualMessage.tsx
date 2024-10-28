@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 
 import { FaPaperPlane, FaPhone } from "react-icons/fa6"
 import { AuthContext } from "../../../providers/AuthProvider"
+import { FaEllipsisV } from "react-icons/fa"
 
 const IndividualMessage = () => {
     const [messages,setMessages]=useState<any>('')
@@ -53,7 +54,10 @@ const IndividualMessage = () => {
     return (
         <div className="h-[100vh] w-full flex flex-col">
             <div className="min-h-[50px] w-full border-[2px] border-gray-400 mx-auto bg-white p-2 px-4 flex justify-between items-center">
+                <div className="flex space-x-2">
                 <img src={users.image_url} alt="" className="w-[55px] h-[55px] rounded-[50%]" />
+                <h1 className="font-medium text-[15px]">{users.name}</h1>
+                </div>
                 <FaPhone className="text-xl text-black"></FaPhone>
             </div>
             <div className="flex-grow w-full overflow-y-auto bg-gray-200 p-3">
@@ -62,12 +66,18 @@ const IndividualMessage = () => {
                     allMesage.map((info: any, index: number) => (
                         info.Senderemail === user?.email ? (
                             <div key={index} className="bg-[#dcf8c6] my-2 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
-                                <h1 className="font-medium text-[14px]">You</h1>
+                                <div className="flex justify-between">
+                                    <h1 className="font-medium text-[14px]">You</h1>
+                                    <FaEllipsisV></FaEllipsisV>
+                                    </div>
                                 {info?.messages}
                             </div>
                         ) : (
                             <div key={index} className="w-[350px] text-[14px] my-2 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
-                                <h1 className="font-medium">{users?.name}</h1>
+                                <div className="flex justify-between">
+                                    <h1 className="font-medium text-[14px]">{users.name}</h1>
+                                    <FaEllipsisV></FaEllipsisV>
+                                    </div>
                                 {info?.messages}
                             </div>
                         )
