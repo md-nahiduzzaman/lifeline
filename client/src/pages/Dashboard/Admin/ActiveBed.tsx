@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import useAxiosCommon from "../../../hooks/useAxiosCommon"
+
 
 const Total_Bed = () => {
-    const axiosCommon=useAxiosCommon()
+    
     const [info, setInfo] = useState<any>([])
     const [fixed, setFixed] = useState<String>('all')
     
