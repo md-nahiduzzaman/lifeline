@@ -107,6 +107,9 @@ const IndividualMessage = () => {
                     allMesage.map((info: any, index: number) => (
                         info.Senderemail === user?.email ? (
                             <div key={index} className="bg-[#dcf8c6] my-2 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
+                                {
+                                    info.reply?(<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0,30)}</div>):(null)
+                                }
                                 <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">You</h1>
                                     <button onClick={()=>{
@@ -160,6 +163,9 @@ const IndividualMessage = () => {
                             </div>
                         ) : (
                             <div key={index} className="w-[350px] text-[14px] my-2 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
+                                {
+                                    info.reply?(<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0,30)}</div>):(null)
+                                }
                                 <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">{users.name}</h1>
                                     <button onClick={()=>{
