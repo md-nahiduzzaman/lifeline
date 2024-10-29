@@ -40,16 +40,17 @@ const IndividualMessage = () => {
         }
     }, [user, users]);
     const handelArr = (id: any) => {
-        let arr1 = [];
-        arr1.push(id)
-        setArr(arr1)
-    }
+       
+       setArr([id])
+       
+    };
 
     
-
-    console.log("it is arr ", arr)
+    
     const sendMessage = () => {
-        setArr([])
+        if(!messages){
+            return
+        }
         const Senderemail = user.email;
         const reciverEmail = users.email;
         const time = new Date()
@@ -106,21 +107,18 @@ const IndividualMessage = () => {
                     allMesage.map((info: any, index: number) => (
                         info.Senderemail === user?.email ? (
                             <div key={index} className="bg-[#dcf8c6] my-2 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
-                                <div className="flex justify-between">
+                                <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">You</h1>
+                                    <button onClick={()=>{
+                                        setArr([])
+                                    }}><FaPlus className={`${arr.includes(info._id)?"rotate-45 absolute text-red-400 z-50 right-14":"hidden"}`}></FaPlus></button>
                                     <button onClick={() => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 py-7 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
-                                            <button onClick={()=>{
-                                                if(arr.length>0){
-                                                    setArr([])
-                                                    console.log(arr)
-                                                }
-                                                
-                                            }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
+                                            
                                             <button onClick={() => {
                                                 handleDelete(info._id)
                                             }} className="w-full"> <div className="flex w-full items-center justify-between">
@@ -162,24 +160,21 @@ const IndividualMessage = () => {
                             </div>
                         ) : (
                             <div key={index} className="w-[350px] text-[14px] my-2 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
-                                <div className="flex justify-between">
+                                <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">{users.name}</h1>
+                                    <button onClick={()=>{
+                                        setArr([])
+                                    }}><FaPlus className={`${arr.includes(info._id)?"rotate-45 absolute text-red-400 z-50 right-14":"hidden"}`}></FaPlus></button>
                                     <button onClick={() => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
-                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 right-[50px] bg-white h-[160px]" : "hidden"}`}
+                                            className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 py-7  right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
-                                            <button onClick={()=>{
-                                                if(arr.length>0){
-                                                    setArr([])
-                                                    console.log(arr)
-                                                }
-                                                
-                                            }}><FaPlus className="rotate-45 text-red-400"></FaPlus></button>
+                                            
                                             <button onClick={() => {
                                                 handleDelete(info._id)
-                                            }} className="w-full"> <div className="flex w-full justify-between items-center">
+                                            }} className="w-full"> <div className="flex w-full justify-between  items-center">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"
@@ -241,6 +236,7 @@ const IndividualMessage = () => {
                 <button onClick={() => {
                     sendMessage()
                     setBol(false)
+                    setArr([])
                 }} className="absolute right-0 top-3"><div className="p-2 right-0">
                         <FaPaperPlane className="text-gray-300 text-2xl rotate-45"></FaPaperPlane>
                     </div></button>
