@@ -6,13 +6,15 @@ import "../Calender/calenderCustomStyles.css";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface BookAppointmentModalProps {
   isOpen: boolean;
   closeModal: () => void;
   doctorName: string; // e.g., doctor's name
   doctorEmail: string; // e.g., doctor's name
-  doctorImage:string
+  doctorImage:string;
+  specialty:string
 }
 
 const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
@@ -20,7 +22,8 @@ const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
   closeModal,
   doctorEmail,
   doctorName,
-  doctorImage
+  doctorImage,
+  specialty
 }) => {
   const [selectedDate, setSelectedDate] = useState<any | null>(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
@@ -37,6 +40,7 @@ const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
     message:""
 
   })
+  const navigation=useNavigate()
 const {user}=useContext(AuthContext)
   const timeSlots = [
     "11:00 AM - 11:30 AM",
@@ -82,7 +86,9 @@ const {
     address,
     pushRate,
     image:user.photoURL,
-    status:'pending'
+    status:'pending',
+    doctorImage,
+    specialty
 
   }
 
@@ -95,6 +101,7 @@ const {
         icon: "success"
       });
 
+    return navigation('/dashboard/my-appointment')
     }
   }).catch(error=>{
     console.log(error)
@@ -117,7 +124,7 @@ console.log(user)
           </div>
           <div>
             <h2 className="text-2xl font-semibold">{doctorName}</h2>
-            <p className="text-sm text-gray-500">Neurologist</p>
+            <p className="text-sm text-gray-500">{specialty}</p>
           </div>
         </div>
   

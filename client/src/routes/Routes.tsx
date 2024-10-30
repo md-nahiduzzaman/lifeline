@@ -35,6 +35,7 @@ import Message from "../pages/Dashboard/Admin/Message";
 import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
 import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
 import Payments from "../pages/Payments/Payments";
+import PatientSeePrescription from "../pages/Dashboard/Patient/PatientSeePrescription";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
       {
         path:'my-appointment',
         element:<MyAppointment></MyAppointment>
+      },{
+        path:'/dashboard/patient-prescription/:id',
+        element:<PatientSeePrescription></PatientSeePrescription>,
+        loader:({params})=>fetch(`https://lifeline-rouge.vercel.app/see-prescription/${params.id}`)
       }
       ,
       // --------------------this is the doctor dshboard route arey -----------------------------------
