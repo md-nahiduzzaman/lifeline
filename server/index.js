@@ -258,6 +258,12 @@ async function run() {
        res.send(result)
     })
 
+    app.get('/find_admin', async (req,res)=>{
+        const query={role:'admin'}
+
+        const result =await userCollection.find(query).toArray()
+        res.send(result)
+    })
     
     // here End of Admin collection
 

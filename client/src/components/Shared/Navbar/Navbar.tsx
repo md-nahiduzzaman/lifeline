@@ -4,43 +4,45 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const {user}=useContext(AuthContext)as any
-  const {data}=userRole()as any
+  const { user } = useContext(AuthContext) as any
+  const { data } = userRole() as any
   const navelink = (
     <>
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
       </li>
-     {
-      !user&& <li>
-      { <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>}
-     </li>
-     }
-     {
-      !user&& <li>
-      <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
-    </li>
-     }
+      {
+        !user && <li>
+          {<NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>}
+        </li>
+      }
+      {
+        !user && <li>
+          <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
+        </li>
+      }
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
-      </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/home-service"}>Home Service</NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
       </li>
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/package"}>Ours Package</NavLink>{" "}
-      </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/about"}>About</NavLink>
-      </li>
-      <li>
-       {user&&(
-<NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={data?.role === 'admin' ? '/dashboard/admin-dashboard' :
-    data?.role === 'doctor' ? '/dashboard/doctorHome' :
-    '/dashboard/patient-appointment'}>Dashboard</NavLink>
-       )
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/home-service"}>Home Service</NavLink>
 
-       }
+      </li>
+     
+      <li>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/package"}>Ours Package</NavLink>{" "}
+      </li>
+      <li>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/about"}>About</NavLink>
+      </li>
+      <li>
+        {user && (
+          <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={data?.role === 'admin' ? '/dashboard/admin-dashboard' :
+            data?.role === 'doctor' ? '/dashboard/doctorHome' :
+              '/dashboard/patient-appointment'}>Dashboard</NavLink>
+        )
+
+        }
       </li>
     </>
   );
