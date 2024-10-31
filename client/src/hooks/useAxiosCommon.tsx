@@ -4,7 +4,7 @@ import axios from "axios";
 // https://lifeline-rouge.vercel.app/
 
 const axiosCommon=axios.create({
-    baseURL:'http://localhost:5000/'
+    baseURL:'https://lifeline-rouge.vercel.app/'
 })
 const useAxiosCommon=()=>{
     return axiosCommon
