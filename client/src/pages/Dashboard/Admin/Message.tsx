@@ -9,7 +9,7 @@ const Message = () => {
     const [users, setUsers] = useState<any>([]);
     const axiosCommon=useAxiosCommon()
     useEffect(() => {
-        axiosCommon.get('/users')
+        axiosCommon.get('/get_allUsers')
             .then(res => setUsers(res.data))
     }, [])
     return (

@@ -215,7 +215,10 @@ async function run() {
       res.send(result)
     })
 
-
+    app.get('/get_allUsers',async (req,res)=>{
+         const result=await userCollection.find().toArray()
+         res.send(result)
+    })
     // here is message system with socket
 
     
