@@ -159,7 +159,7 @@ const UserIndivudual = () => {
                                 {info?.messages}
                             </div>
                         ) : (
-                            <div key={index} className="w-[350px] text-[14px] my-2 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
+                            <div key={index} className="w-[350px] text-[14px] my-4 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
                                 {
                                     info.reply ? (<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0, 30)}</div>) : (null)
                                 }
