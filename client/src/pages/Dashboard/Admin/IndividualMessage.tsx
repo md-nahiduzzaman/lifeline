@@ -106,7 +106,7 @@ const IndividualMessage = () => {
                 {allMesage.length > 0 ? (
                     allMesage.map((info: any, index: number) => (
                         info.Senderemail === user?.email ? (
-                            <div key={index} className="bg-[#dcf8c6] my-2 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
+                            <div key={index} className="bg-[#dcf8c6] my-4 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
                                 {
                                     info.reply?(<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0,30)}</div>):(null)
                                 }
