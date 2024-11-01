@@ -22,7 +22,8 @@ const IndividualMessage = () => {
         axiosCommon.get(`/admin/${id}`)
             .then(res => setUser(res.data))
     }, [id])
-
+    
+    
 
     useEffect(() => {
         if (user && users) {
@@ -45,7 +46,6 @@ const IndividualMessage = () => {
        
     };
 
-    
     
     const sendMessage = () => {
         if(!messages){

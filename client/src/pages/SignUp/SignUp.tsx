@@ -7,10 +7,11 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const SignUp = () => {
   const auth = getAuth(app)
-  
+  const axiosCommon=useAxiosCommon()
   const { createUser, user } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [photo, setPhoto]=useState<any>('')
@@ -31,7 +32,7 @@ const SignUp = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.pass.value;
-    
+    const age=e.target.num.value
     const form: any = new FormData(e.target)
     const image2: any = form.get('image')
     const data: any = new FormData()
@@ -49,6 +50,7 @@ const SignUp = () => {
      setPhoto(data.data.url)
   })
    if(photo){
+    let image_url=photo;
     createUser(email, password)
     .then((res: any) => {
       console.log(res)
@@ -58,6 +60,8 @@ const SignUp = () => {
       })
         .then(() => {
           console.log("Yes");
+          let role='user'
+          axiosCommon.post('/user_post',{name,email,password,age,image_url,role})
         })
         .catch((error: any) => {
           console.log("No", error);
