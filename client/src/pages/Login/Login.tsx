@@ -16,9 +16,12 @@ import bg1 from '../../assets/images/new.avif'
 import bg2 from '../../assets/images/bg3.webp'
 import gog from '../../assets/images/google2.png'
 import face from '../../assets/images/facebook.png'
+import Swal from 'sweetalert2';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const Login = () => {
-  const { signIn, user } = useContext(AuthContext)
+  const { signIn, user,googleSignin } = useContext(AuthContext)
+  const axiosCommon=useAxiosCommon()
   console.log(signIn)
   console.log(user)
   const handleLogin = (e: any) => {
@@ -36,6 +39,29 @@ const Login = () => {
       })
 
   }
+
+  const handleclicked=()=>{
+        
+    googleSignin()
+    .then((res:any)=>{
+     const name=res.user.displayName;
+     const email=res.user.email;
+     const image_url=res.user.photoURL;
+     const age=24;
+     const role='user'
+     const password=''
+     axiosCommon.post('/user_post',{name,email,image_url,age,role,password})
+     .then(res=>console.log(res.data))
+     Swal.fire("You are in here");
+    })
+    .catch((error:any)=>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
+    })
+}
   const bannerStyle = {
     backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
@@ -137,7 +163,7 @@ const bannerStyle3 = {
           </div>
 
           <div className='p-3 flex justify-evenly mt-1'>
-              <button><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
+              <button onClick={handleclicked}><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
               <button><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
           </div>
         </div>
