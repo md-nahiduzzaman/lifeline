@@ -7,6 +7,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const { createServer } = require('http');
 const { Server } = require("socket.io");
+const { getCipherInfo } = require("crypto");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
@@ -267,6 +268,25 @@ async function run() {
         const result =await userCollection.find(query).toArray()
         res.send(result)
     })
+
+
+    app.post('/user_post', async (req,res)=>{
+       const info=req.body;
+
+       const query={email:info.email}
+       
+       const find=await userCollection.findOne(query)
+       if(!find)
+       {
+        const result=await userCollection.insertOne(info)
+        res.send(result)
+       }
+
+       else{
+        res.send('user already exist')
+       }
+       
+    })
     
     // here End of Admin collection
 
@@ -297,7 +317,7 @@ async function run() {
 
     app.patch(('/appionment-approve/:id'), async (req, res) => {
       const id = req.params.id
-
+      
       const query = { _id: new ObjectId(id) }
       const updates = {
         $set: {
