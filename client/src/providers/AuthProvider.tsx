@@ -4,11 +4,13 @@ interface AuthProviderProps {
 }
 import {
     getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword,
-    onAuthStateChanged
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup
 } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
-
+const googleProvidor= new GoogleAuthProvider()
 export const AuthContext = createContext<any>(undefined);
 const auth = getAuth(app)
 const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -26,6 +28,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const googleSignin = () => {
+        setLoading(true)
+        return signInWithPopup(auth, googleProvidor)
+    }
+
     const logOut = () => {
         setLoading(true)
         return signOut(auth)
@@ -41,7 +48,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     }, [])
     const authInfo: any = {
-        user, loading, logOut, signIn, createUser
+        user, loading, logOut, signIn, createUser,googleSignin
     }
 
     return (

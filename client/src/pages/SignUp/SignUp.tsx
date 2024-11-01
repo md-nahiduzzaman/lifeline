@@ -11,10 +11,10 @@ import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const SignUp = () => {
   const auth = getAuth(app)
-  const axiosCommon=useAxiosCommon()
+  const axiosCommon = useAxiosCommon()
   const { createUser, user } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState<any>(null);
-  const [photo, setPhoto]=useState<any>('')
+  const [photo, setPhoto] = useState<any>('')
   console.log(createUser)
   console.log(user)
   const bannerStyle = {
@@ -26,58 +26,58 @@ const SignUp = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    if(!selectedFile){
+    if (!selectedFile) {
       return
     }
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.pass.value;
-    const age=e.target.num.value
+    const age = e.target.num.value
     const form: any = new FormData(e.target)
     const image2: any = form.get('image')
     const data: any = new FormData()
     data.append("image", image2)
-    
+
     fetch('https://api.imgbb.com/1/upload?key=58c258f947a2113010411cf51afd6eec', {
       method: 'POST',
-      body:data,
-  })
-  .then((res:any)=>{
-     return res.json()
-  })
-  .then((data:any)=>{
-     console.log(data.data.url)
-     setPhoto(data.data.url)
-  })
-   if(photo){
-    let image_url=photo;
-    createUser(email, password)
-    .then((res: any) => {
-      console.log(res)
-      updateProfile(auth.currentUser as any, {
-        displayName: name,
-        photoURL:photo,
+      body: data,
+    })
+      .then((res: any) => {
+        return res.json()
       })
-        .then(() => {
-          console.log("Yes");
-          let role='user'
-          axiosCommon.post('/user_post',{name,email,password,age,image_url,role})
+      .then((data: any) => {
+        console.log(data.data.url)
+        setPhoto(data.data.url)
+      })
+    if (photo) {
+      let image_url = photo;
+      createUser(email, password)
+        .then((res: any) => {
+          console.log(res)
+          updateProfile(auth.currentUser as any, {
+            displayName: name,
+            photoURL: photo,
+          })
+            .then(() => {
+              console.log("Yes");
+              let role = 'user'
+              axiosCommon.post('/user_post', { name, email, password, age, image_url, role })
+            })
+            .catch((error: any) => {
+              console.log("No", error);
+            });
         })
         .catch((error: any) => {
-          console.log("No", error);
-        });
-    })
-    .catch((error: any) => {
-      console.error(error)
-    })
-   }
+          console.error(error)
+        })
+    }
   }
 
   return (
     <div className="my-8 rounded-xl w-[98%] mx-auto 
     min-h-[75vh] flex justify-center items-center">
       <div className="w-[94%] flex flex-wrap gap-2 justify-center shadow-lg py-4 rounded-xl mx-auto min-h-[62vh]">
-        <div 
+        <div
           className='bg-white rounded-lg p-2 w-[350x] md:w-[48%] lg:w-[31%]'>
 
           <img src={logo} className='w-[40px] h-[40px] block mx-auto mb-2' alt="" />
