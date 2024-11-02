@@ -55,7 +55,7 @@ const PaymentDetails = () => {
                 </div>
                 {
 
-                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md shadow-lg flex p-2 py-4 justify-between bg-white">
+                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md shadow-lg flex p-2 py-4 justify-between bg-white border-2 border-gray-300">
                     <p className="w-[250px] text-center font-medium">{info.paymentIntent.id}</p>
                     <p className="w-[130px] text-center font-medium ml-16">{info.price}$</p>
                     <p className="w-[160px] text-center font-medium">{info.date}</p>
