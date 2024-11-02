@@ -1,9 +1,9 @@
 
-import logo from '../../assets/images/signlogo (1).jpg';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link } from "react-router-dom";
-import { FaClinicMedical } from "react-icons/fa";
+import { FaClinicMedical, FaHeartbeat } from "react-icons/fa";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -105,9 +105,9 @@ const bannerStyle3 = {
   return (
     <div className="my-10 w-[96%] mx-auto">
       <div className="flex justify-between my-8">
-        <img src={logo} className="w-[60px] h-[60px]" alt="" />
-        <button className="text-xl font-medium text-white bg-black
-          px-3 rounded-3xl h-[45px]">Get Intouch</button>
+        <FaHeartbeat className='text-5xl text-[#00953B]'></FaHeartbeat>
+        <button className="text-[16] font-semibold text-white bg-[#00953B]
+          px-3 rounded-3xl h-[42px]">Get Intouch</button>
       </div>
       <div className="flex flex-wrap gap-4  justify-center p-2 rounded-xl">
         <div className="md:w-[650px] w-[360px]">
@@ -157,7 +157,7 @@ const bannerStyle3 = {
         <div className="w-[360px] md:w-[400px] lg:w-[440px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="px-6 py-4">
 
-            <div><FaClinicMedical className="block mx-auto text-4xl text-[#06B6D4]"></FaClinicMedical></div>
+            <div><FaClinicMedical className="block mx-auto text-4xl text-[#00953B]"></FaClinicMedical></div>
 
             <p className="mt-1 text-center text-2xl  text-black font-medium dark:text-gray-400 ">Login or create account</p>
 
@@ -173,7 +173,7 @@ const bannerStyle3 = {
               <div className="flex items-center justify-between mt-4">
                 
 
-                <button type="submit" className="w-full block mx-auto py-2 text-[16px] font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#06B6D4] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button type="submit" className="w-full block mx-auto py-2 text-[16px] font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#00953B] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   Sign In
                 </button>
               </div>
