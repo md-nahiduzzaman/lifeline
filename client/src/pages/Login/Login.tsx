@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
 import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const Login = () => {
-  const { signIn, user,googleSignin } = useContext(AuthContext)
+  const { signIn, user,googleSignin,facebookSignin } = useContext(AuthContext)
   const axiosCommon=useAxiosCommon()
   console.log(signIn)
   console.log(user)
@@ -61,6 +61,28 @@ const Login = () => {
             text: `${error.message}`,
           });
     })
+}
+
+const handleFaceBook=()=>{
+  facebookSignin()
+  .then((res:any)=>{
+   const name=res.user.displayName;
+   const email=res.user.email;
+   const image_url=res.user.photoURL;
+   const age=24;
+   const role='user'
+   const password=''
+   axiosCommon.post('/user_post',{name,email,image_url,age,role,password})
+   .then(res=>console.log(res.data))
+   Swal.fire("You are in here");
+  })
+  .catch((error:any)=>{
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+        });
+  })
 }
   const bannerStyle = {
     backgroundImage: `url(${bg})`,
@@ -164,7 +186,7 @@ const bannerStyle3 = {
 
           <div className='p-3 flex justify-evenly mt-1'>
               <button onClick={handleclicked}><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
-              <button><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
+              <button onClick={handleFaceBook}><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
           </div>
         </div>
       </div>
