@@ -6,15 +6,18 @@ import { useContext, useState } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosCommon from '../../hooks/useAxiosCommon';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+  
   const auth = getAuth(app)
   const axiosCommon = useAxiosCommon()
   const { createUser, user } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState<any>(null);
   const [photo, setPhoto] = useState<any>('')
+  const navigate=useNavigate()
   console.log(createUser)
   console.log(user)
   const bannerStyle = {
@@ -62,6 +65,13 @@ const SignUp = () => {
               console.log("Yes");
               let role = 'user'
               axiosCommon.post('/user_post', { name, email, password, age, image_url, role })
+              .then(res=>{
+                console.log(res.data)
+                Swal.fire("Register done successfully")
+                navigate('/')
+                 
+              })
+              
             })
             .catch((error: any) => {
               console.log("No", error);
