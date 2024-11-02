@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaClinicMedical, FaHeartbeat } from "react-icons/fa";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
@@ -22,6 +22,7 @@ import useAxiosCommon from '../../hooks/useAxiosCommon';
 const Login = () => {
   const { signIn, user,googleSignin,facebookSignin } = useContext(AuthContext)
   const axiosCommon=useAxiosCommon()
+  const navigate=useNavigate();
   console.log(signIn)
   console.log(user)
   const handleLogin = (e: any) => {
@@ -37,7 +38,6 @@ const Login = () => {
       .catch((error: any) => {
         console.log(error)
       })
-
   }
 
   const handleclicked=()=>{
@@ -53,6 +53,7 @@ const Login = () => {
      axiosCommon.post('/user_post',{name,email,image_url,age,role,password})
      .then(res=>console.log(res.data))
      Swal.fire("You are in here");
+     navigate('/')
     })
     .catch((error:any)=>{
         Swal.fire({
