@@ -1,29 +1,25 @@
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import useAxiosCommon from "../../../hooks/useAxiosCommon"
-import { useContext, useEffect, useState } from "react"
-
-import { FaPaperPlane, FaPhone, FaPlus, FaReply } from "react-icons/fa6"
+import { FaComment, FaPaperPlane, FaPlus, FaReply } from "react-icons/fa6"
 import { AuthContext } from "../../../providers/AuthProvider"
-import { FaEllipsisV, FaSave } from "react-icons/fa"
 import Swal from "sweetalert2"
+import { FaEllipsisV, FaSave } from "react-icons/fa"
 
-const IndividualMessage = () => {
+const UserIndivudual = () => {
+    const axiosCommon = useAxiosCommon()
+    const [users, setUsers] = useState<any>({})
+    const { id } = useParams()
     const [arr, setArr] = useState<any>([])
     const [messages, setMessages] = useState<any>('')
     const [allMesage, setAllmessage] = useState<any>([])
     const { user } = useContext(AuthContext)
-    const { id } = useParams()
-    const axiosCommon = useAxiosCommon()
-    const [users, setUser] = useState<any>({})
     const [reply, setReply] = useState<String>('')
     const [bol, setBol] = useState<Boolean>(false)
-
     useEffect(() => {
         axiosCommon.get(`/admin/${id}`)
-            .then(res => setUser(res.data))
+            .then(res => setUsers(res.data))
     }, [id])
-    
-    
 
     useEffect(() => {
         if (user && users) {
@@ -40,15 +36,15 @@ const IndividualMessage = () => {
             return () => clearInterval(interval);
         }
     }, [user, users]);
+
     const handelArr = (id: any) => {
-       
-       setArr([id])
-       
+
+        setArr([id])
+
     };
 
-    
     const sendMessage = () => {
-        if(!messages){
+        if (!messages) {
             return
         }
         const Senderemail = user.email;
@@ -93,35 +89,36 @@ const IndividualMessage = () => {
         });
     }
     return (
-        <div className="h-[100vh] w-full flex flex-col">
-            <div className="min-h-[50px] w-full border-[2px] border-gray-400 mx-auto bg-white p-2 px-4 flex justify-between items-center">
-                <div className="flex space-x-2 items-center">
-                    <img src={users.image_url} alt="" className="w-[55px] h-[55px] rounded-[50%]" />
-                    <h1 className="font-medium text-[15px]">{users.name}</h1>
+        <div className="w-[96%] mx-auto p-4 flex flex-col">
+            <div className="flex items-center justify-between bg-gray-200 p-3">
+                <div className="flex items-center space-x-4">
+                    <img src={users.image_url} className="w-[56px] rounded-[50%] bg-blue-400 h-[56px]" alt="" />
+                    <h1 className="text-xl font-semibold">{users.name}</h1>
                 </div>
-                <FaPhone className="text-xl text-black"></FaPhone>
+                <FaComment className="text-[24px]"></FaComment>
             </div>
-            <div className="flex-grow w-full overflow-y-auto bg-gray-100 p-3">
+
+            <div className="flex-grow w-full h-[70vh] overflow-y-auto bg-gray-100 p-3">
 
                 {allMesage.length > 0 ? (
                     allMesage.map((info: any, index: number) => (
                         info.Senderemail === user?.email ? (
                             <div key={index} className="bg-[#dcf8c6] my-4 ml-auto w-[350px] md:w-[500px] rounded-md p-2">
                                 {
-                                    info.reply?(<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0,30)}</div>):(null)
+                                    info.reply ? (<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0, 30)}</div>) : (null)
                                 }
                                 <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">You</h1>
-                                    <button onClick={()=>{
+                                    <button onClick={() => {
                                         setArr([])
-                                    }}><FaPlus className={`${arr.includes(info._id)?"rotate-45 absolute text-red-400 z-50 right-14":"hidden"}`}></FaPlus></button>
+                                    }}><FaPlus className={`${arr.includes(info._id) ? "rotate-45 absolute text-red-400 z-50 right-14" : "hidden"}`}></FaPlus></button>
                                     <button onClick={() => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
                                             className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 py-7 right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
-                                            
+
                                             <button onClick={() => {
                                                 handleDelete(info._id)
                                             }} className="w-full"> <div className="flex w-full items-center justify-between">
@@ -164,20 +161,20 @@ const IndividualMessage = () => {
                         ) : (
                             <div key={index} className="w-[350px] text-[14px] my-4 md:w-[500px] mr-auto shadow-md bg-white rounded-md p-2">
                                 {
-                                    info.reply?(<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0,30)}</div>):(null)
+                                    info.reply ? (<div className="my-1 opacity-65 py-1 border-[1px] border-gray-200">{info.reply.slice(0, 30)}</div>) : (null)
                                 }
                                 <div className="flex justify-between relative">
                                     <h1 className="font-medium text-[14px]">{users.name}</h1>
-                                    <button onClick={()=>{
+                                    <button onClick={() => {
                                         setArr([])
-                                    }}><FaPlus className={`${arr.includes(info._id)?"rotate-45 absolute text-red-400 z-50 right-14":"hidden"}`}></FaPlus></button>
+                                    }}><FaPlus className={`${arr.includes(info._id) ? "rotate-45 absolute text-red-400 z-50 right-14" : "hidden"}`}></FaPlus></button>
                                     <button onClick={() => {
                                         handelArr(info._id);
                                     }} className="relative">
                                         <div
                                             className={`${arr.includes(info._id) ? "w-[140px] p-2 absolute top-1 py-7  right-[50px] bg-white h-[160px]" : "hidden"}`}
                                         >
-                                            
+
                                             <button onClick={() => {
                                                 handleDelete(info._id)
                                             }} className="w-full"> <div className="flex w-full justify-between  items-center">
@@ -228,6 +225,7 @@ const IndividualMessage = () => {
                 )}
 
             </div>
+
             <div className="w-full relative">
                 <div className={`${bol ? "absolute w-full bottom-14 bg-white pl-2 opacity-70" : "hidden"}`}>{reply}
                     <button onClick={()=>{
@@ -247,7 +245,8 @@ const IndividualMessage = () => {
                         <FaPaperPlane className="text-gray-300 text-2xl rotate-45"></FaPaperPlane>
                     </div></button>
             </div>
+
         </div>
     )
 }
-export default IndividualMessage
+export default UserIndivudual

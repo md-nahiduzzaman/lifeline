@@ -54,7 +54,7 @@ const HSContact :React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter your full name"
-                className="input input-bordered w-full "
+                className="input input-bordered w-full  text-neutral"
                 name="fullName"
                 required
               />
@@ -64,7 +64,7 @@ const HSContact :React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter Your Email"
-                className="input input-bordered w-full "
+                className="input input-bordered w-full text-neutral"
                 name="email"
                 required
               />
@@ -76,7 +76,7 @@ const HSContact :React.FC = () => {
                 placeholder="Enter Your message"
                 id=""
                 required
-                className="w-full p-3  bg-white min-h-32 bg-transparent border"
+                className="w-full p-3  text-neutral  bg-white min-h-32 bg-transparent border"
               ></textarea>
 <p className='font-bold'>{sendMessage}</p>
               <button

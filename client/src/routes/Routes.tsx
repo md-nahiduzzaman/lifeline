@@ -36,6 +36,8 @@ import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
 import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
 import Payments from "../pages/Payments/Payments";
 import PatientSeePrescription from "../pages/Dashboard/Patient/PatientSeePrescription";
+import UserMessage from "../pages/Dashboard/Admin/UserMessage";
+import UserIndivudual from "../pages/Dashboard/Admin/UserIndividual";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path:'/userMessage',
+        element:<UserMessage></UserMessage>
+      },
+      {
+        path:'/userChat/:id',
+        element:<UserIndivudual></UserIndivudual>
       },
       {
         path: "/drCart", // Correcting the typo and keeping DrCart

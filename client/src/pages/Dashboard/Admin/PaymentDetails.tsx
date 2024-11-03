@@ -1,14 +1,16 @@
-import axios from "axios"
+
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import img from '../../../assets/images/Stripe-Payment-Logo.png'
+import useAxiosCommon from "../../../hooks/useAxiosCommon"
 
 const PaymentDetails = () => {
+  const axiosCommon=useAxiosCommon()
   const { email } = useParams()
   const [details, setDetails] = useState<any>([])
   console.log(email)
   useEffect(() => {
-    axios.get(`https://lifeline-rouge.vercel.app/get_doctor_payment/${email}`)
+    axiosCommon.get(`/get_doctor_payment/${email}`)
       .then(res => { console.log(res.data); setDetails(res.data) })
   }, [])
   console.log()
@@ -43,7 +45,7 @@ const PaymentDetails = () => {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden md:rounded-lg">
-                <div className="flex p-2 py-3 justify-between my-3 shadow-lg bg-white">
+                <div className="flex p-2 py-3 justify-between my-3 bg-white">
                   <p className="w-[250px] text-center font-medium">Transaction</p>
                   <p className="w-[130px] text-center font-medium ml-16">Salary</p>
                   <p className="w-[160px] text-center font-medium">Date</p>
@@ -53,7 +55,7 @@ const PaymentDetails = () => {
                 </div>
                 {
 
-                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md shadow-lg flex p-2 py-4 justify-between bg-white">
+                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md flex p-2 py-4 justify-between bg-white border-2 border-gray-300">
                     <p className="w-[250px] text-center font-medium">{info.paymentIntent.id}</p>
                     <p className="w-[130px] text-center font-medium ml-16">{info.price}$</p>
                     <p className="w-[160px] text-center font-medium">{info.date}</p>

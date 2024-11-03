@@ -1,8 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-const Total_Bed = () => {
 
+const Total_Bed = () => {
+    
     const [info, setInfo] = useState<any>([])
     const [fixed, setFixed] = useState<String>('all')
     

@@ -7,6 +7,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const { createServer } = require('http');
 const { Server } = require("socket.io");
+const { getCipherInfo } = require("crypto");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
@@ -215,7 +216,10 @@ async function run() {
       res.send(result)
     })
 
-
+    app.get('/get_allUsers',async (req,res)=>{
+         const result=await userCollection.find().toArray()
+         res.send(result)
+    })
     // here is message system with socket
 
     
@@ -246,10 +250,44 @@ async function run() {
     app.post('/postMessage', async (req,res)=>{
         const info=req.body;
         
-       
         const result= await messagesCollection.insertOne(info)
         res.send(result)
     })
+
+    app.delete('/deleteMessage/:id',async (req,res)=>{
+       const id=req.params.id;
+       const query={_id: new ObjectId(id)}
+
+       const result=await messagesCollection.deleteOne(query)
+       res.send(result)
+    })
+
+    app.get('/find_admin', async (req,res)=>{
+        const query={role:'admin'}
+        
+        const result =await userCollection.find(query).toArray()
+        res.send(result)
+    })
+
+
+    app.post('/user_post', async (req,res)=>{
+       const info=req.body;
+
+       const query={email:info.email}
+       
+       const find=await userCollection.findOne(query)
+       if(!find)
+       {
+        const result=await userCollection.insertOne(info)
+        res.send(result)
+       }
+
+       else{
+        res.send('user already exist')
+       }
+       
+    })
+    
     // here End of Admin collection
 
 
@@ -279,7 +317,7 @@ async function run() {
 
     app.patch(('/appionment-approve/:id'), async (req, res) => {
       const id = req.params.id
-
+      
       const query = { _id: new ObjectId(id) }
       const updates = {
         $set: {

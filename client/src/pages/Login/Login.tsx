@@ -1,9 +1,9 @@
 
-import logo from '../../assets/images/signlogo (1).jpg';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from "react-router-dom";
-import { FaClinicMedical } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaClinicMedical, FaHeartbeat } from "react-icons/fa";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,9 +16,13 @@ import bg1 from '../../assets/images/new.avif'
 import bg2 from '../../assets/images/bg3.webp'
 import gog from '../../assets/images/google2.png'
 import face from '../../assets/images/facebook.png'
+import Swal from 'sweetalert2';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const Login = () => {
-  const { signIn, user } = useContext(AuthContext)
+  const { signIn, user,googleSignin,facebookSignin } = useContext(AuthContext)
+  const axiosCommon=useAxiosCommon()
+  const navigate=useNavigate();
   console.log(signIn)
   console.log(user)
   const handleLogin = (e: any) => {
@@ -30,12 +34,58 @@ const Login = () => {
       .then((res: any) => {
         console.log(res)
         console.log('yes')
+        navigate('/')
       })
       .catch((error: any) => {
         console.log(error)
       })
-
   }
+
+  const handleclicked=()=>{
+        
+    googleSignin()
+    .then((res:any)=>{
+     const name=res.user.displayName;
+     const email=res.user.email;
+     const image_url=res.user.photoURL;
+     const age=24;
+     const role='user'
+     const password=''
+     axiosCommon.post('/user_post',{name,email,image_url,age,role,password})
+     .then(res=>console.log(res.data))
+     Swal.fire("You are in here");
+     navigate('/')
+    })
+    .catch((error:any)=>{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
+    })
+}
+
+const handleFaceBook=()=>{
+  facebookSignin()
+  .then((res:any)=>{
+   const name=res.user.displayName;
+   const email=res.user.email;
+   const image_url=res.user.photoURL;
+   const age=24;
+   const role='user'
+   const password=''
+   axiosCommon.post('/user_post',{name,email,image_url,age,role,password})
+   .then(res=>console.log(res.data))
+   Swal.fire("You are in here");
+  })
+  .catch((error:any)=>{
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+        });
+  })
+}
   const bannerStyle = {
     backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
@@ -57,9 +107,9 @@ const bannerStyle3 = {
   return (
     <div className="my-10 w-[96%] mx-auto">
       <div className="flex justify-between my-8">
-        <img src={logo} className="w-[60px] h-[60px]" alt="" />
-        <button className="text-xl font-medium text-white bg-black
-          px-3 rounded-3xl h-[45px]">Get Intouch</button>
+        <FaHeartbeat className='text-5xl text-[#00953B]'></FaHeartbeat>
+        <button className="text-[16] font-semibold text-white bg-[#00953B]
+          px-3 rounded-3xl h-[42px]">Get Intouch</button>
       </div>
       <div className="flex flex-wrap gap-4  justify-center p-2 rounded-xl">
         <div className="md:w-[650px] w-[360px]">
@@ -109,7 +159,7 @@ const bannerStyle3 = {
         <div className="w-[360px] md:w-[400px] lg:w-[440px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="px-6 py-4">
 
-            <div><FaClinicMedical className="block mx-auto text-4xl text-[#06B6D4]"></FaClinicMedical></div>
+            <div><FaClinicMedical className="block mx-auto text-4xl text-[#00953B]"></FaClinicMedical></div>
 
             <p className="mt-1 text-center text-2xl  text-black font-medium dark:text-gray-400 ">Login or create account</p>
 
@@ -125,7 +175,7 @@ const bannerStyle3 = {
               <div className="flex items-center justify-between mt-4">
                 
 
-                <button type="submit" className="w-full block mx-auto py-2 text-[16px] font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#06B6D4] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button type="submit" className="w-full block mx-auto py-2 text-[16px] font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#00953B] rounded-lg hover:bg-[#06d4c3] focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   Sign In
                 </button>
               </div>
@@ -137,8 +187,8 @@ const bannerStyle3 = {
           </div>
 
           <div className='p-3 flex justify-evenly mt-1'>
-              <button><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
-              <button><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
+              <button onClick={handleclicked}><img className='w-[90px] h-[95px]' src={gog} alt="" /></button>
+              <button onClick={handleFaceBook}><img className='w-[56px] h-[60px]' src={face} alt="" /></button>
           </div>
         </div>
       </div>

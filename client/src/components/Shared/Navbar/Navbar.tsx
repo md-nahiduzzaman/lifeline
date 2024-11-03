@@ -10,38 +10,40 @@ const Navbar = () => {
   const navelink = (
     <>
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/"}>Home</NavLink>
       </li>
-     {
-      !user&& <li>
-      { <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>}
-     </li>
-     }
-     {
-      !user&& <li>
-      <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
-    </li>
-     }
+      {
+        !user && <li>
+          {<NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/signup"}>Sign Up</NavLink>}
+        </li>
+      }
+      {
+        !user && <li>
+          <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/login"}>Login</NavLink>
+        </li>
+      }
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
-      </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/home-service"}>Home Service</NavLink>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={'/solutions'}>Solutions</NavLink>
       </li>
       <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/package"}>Ours Package</NavLink>{" "}
-      </li>
-      <li>
-        <NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={"/about"}>About</NavLink>
-      </li>
-      <li>
-       {user&&(
-<NavLink className={({isActive})=>isActive?'text-[#5dEB4B] hover:text-[#5dEB4B] ':'text-white hover:text-[#5dEB4B]'} to={data?.role === 'admin' ? '/dashboard/admin-dashboard' :
-    data?.role === 'doctor' ? '/dashboard/doctorHome' :
-    '/dashboard/patient-appointment'}>Dashboard</NavLink>
-       )
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/home-service"}>Home Service</NavLink>
 
-       }
+      </li>
+     
+      <li>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/package"}>Ours Package</NavLink>{" "}
+      </li>
+      <li>
+        <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={"/about"}>About</NavLink>
+      </li>
+      <li>
+        {user && (
+          <NavLink className={({ isActive }) => isActive ? 'text-[#5dEB4B] hover:text-[#5dEB4B] ' : 'text-white hover:text-[#5dEB4B]'} to={data?.role === 'admin' ? '/dashboard/admin-dashboard' :
+            data?.role === 'doctor' ? '/dashboard/doctorHome' :
+              '/dashboard/patient-appointment'}>Dashboard</NavLink>
+        )
+
+        }
       </li>
     </>
   );
@@ -91,7 +93,7 @@ if(user){
           <Link to={'/drCart'}> <button  className="btn border-none bg-[#23085A] text-white">Appointment </button> </Link>
         
         </div>
-        {user&& <div className="dropdown dropdown-end text-neutral">
+        {user&& <div className="dropdown dropdown-end text-neutral ml-6">
           <div
             tabIndex={0}
             role="button"
