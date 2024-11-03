@@ -4,18 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { Link } from "react-router-dom";
 
-interface Prescription {
-  date: string;
-  doctor: string;
-  diagnosis: string;
-  medications: {
-    name: string;
-    dosage: string;
-    frequency: string;
-    duration: string;
-  }[];
-  notes: string;
-}
+// interface Prescription {
+//   date: string;
+//   doctor: string;
+//   diagnosis: string;
+//   medications: {
+//     name: string;
+//     dosage: string;
+//     frequency: string;
+//     duration: string;
+//   }[];
+//   notes: string;
+// }
 
 const PatientPrescription: React.FC = () => {
   const {user}=useContext(AuthContext)

@@ -7,7 +7,6 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const { createServer } = require('http');
 const { Server } = require("socket.io");
-const { getCipherInfo } = require("crypto");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
