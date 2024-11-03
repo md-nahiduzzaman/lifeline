@@ -6,6 +6,7 @@ import { FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 const Speciality = () => {
       const axiosCommon=useAxiosCommon()
       const {data}=useQuery({
@@ -49,11 +50,13 @@ const Speciality = () => {
     >
      {
       data?.map((doctors:any)=> <SwiperSlide key={doctors._id}>
-      <div className='rounded-lg bg-base-200 p-6 shadow-md'>
+     <Link to={'/drCart'}>
+     <div className='rounded-lg bg-base-200 p-6 shadow-md'>
       <img className='image h-[350px] w-full object-cover object-center' src={doctors?.image_url} alt="" />
       <h2 className='font-bold mt-2 capitalize'>{doctors?.name}</h2>
       <p className='capitalize'>{doctors?.department}</p>
       </div>
+     </Link>
             </SwiperSlide>)
      }
     </Swiper>

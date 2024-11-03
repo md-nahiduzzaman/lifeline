@@ -115,7 +115,7 @@ console.log(user)
       <div className="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow-lg max-h-screen overflow-y-auto">
         {/* Doctor Info */}
         <div className="flex items-center pb-4 mb-4 space-x-4 border-b">
-          <div className="w-16  h-16">
+          <div className="w-16 mt-8 h-16">
             <img
               src={doctorImage}
               alt="Doctor"

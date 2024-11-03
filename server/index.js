@@ -467,6 +467,13 @@ async function run() {
       const result=await presaipationCollection.findOne(query)
       res.send(result)
     })
+
+
+    app.get('/all-dr-card',async(req,res)=>{
+       const query={role:'doctor'}
+      const result=await userCollection.find(query).toArray()
+      res.send(result)
+    })
     // app.get('/patient-see-prescription-datils', async (req, res) => {
     //   const query = { patientEmail: req.query.email}
 

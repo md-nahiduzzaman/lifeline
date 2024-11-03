@@ -9,12 +9,23 @@ interface Solutions {
 }
 interface PackageCardProps {
   solution: Solutions;
+  isLoading:boolean
 }
 
-const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {
+const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution,isLoading}) => {
     const {image,service,description,features,title}=solution
   return (
-    <div className="w-full grid items-end overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    isLoading?<div className="flex w-full flex-col gap-4">
+    <div className="flex items-center gap-4">
+      <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+      <div className="flex flex-col gap-4">
+        <div className="skeleton h-4 w-20"></div>
+        <div className="skeleton h-4 w-28"></div>
+      </div>
+    </div>
+    <div className="skeleton h-[250px] w-full"></div>
+  </div> :<>
+     <div className="w-full grid items-end overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
     <img className="object-cover object-center w-full h-56" src={image} alt="avatar" />
 
     <div className="flex items-center px-6 py-3 bg-gray-900">
@@ -38,6 +49,8 @@ const SolutionsCardDeatils:React.FC<PackageCardProps> = ({solution}) => {
         <button className="btn w-full mt-4 text-white bg-[#23085A]">View details</button>
     </div>
 </div>
+    </>
+   
 
   )
 }

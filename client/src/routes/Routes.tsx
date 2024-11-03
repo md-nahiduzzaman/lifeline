@@ -116,7 +116,7 @@ const router = createBrowserRouter([
       },{
         path:'/dashboard/patient-prescription/:id',
         element:<PatientSeePrescription></PatientSeePrescription>,
-        loader:({params})=>fetch(`https://lifeline-rouge.vercel.app/see-prescription/${params.id}`)
+        loader:({params})=>fetch(`http://localhost:5000/see-prescription/${params.id}`)
       }
       ,
       // --------------------this is the doctor dshboard route arey -----------------------------------

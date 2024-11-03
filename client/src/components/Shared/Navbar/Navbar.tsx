@@ -1,10 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import userRole from "../../../hooks/useRole";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const {user}=useContext(AuthContext)as any
+  const {user,logOut}=useContext(AuthContext)as any
+  const navigate=useNavigate()
   const {data}=userRole()as any
   const navelink = (
     <>
@@ -44,6 +45,13 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handileClickLogout=()=>{
+logOut()
+if(user){
+  navigate('/login')
+}
+  }
   return (
     <div className="bg-[#00953B] font-custom shadow-lg z-10 fixed mx-auto w-full text-white h-16">
       <div className="navbar max-w-screen-xl mx-auto">
@@ -80,8 +88,42 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a href="/drCart" className="btn border-none bg-[#23085A] text-white">Appointment</a>
+          <Link to={'/drCart'}> <button  className="btn border-none bg-[#23085A] text-white">Appointment </button> </Link>
+        
         </div>
+        {user&& <div className="dropdown dropdown-end text-neutral">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <a className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li onClick={handileClickLogout}>
+              <a>Logout</a>
+            </li>
+          </ul>
+        </div>
+
+        }
       </div>
     </div>
   );
