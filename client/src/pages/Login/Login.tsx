@@ -34,6 +34,7 @@ const Login = () => {
       .then((res: any) => {
         console.log(res)
         console.log('yes')
+        navigate('/')
       })
       .catch((error: any) => {
         console.log(error)

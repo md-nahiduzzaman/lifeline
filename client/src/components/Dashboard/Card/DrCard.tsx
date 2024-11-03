@@ -103,6 +103,7 @@ const DrCard: React.FC<DrCardProps> = ({ doctor }) => {
         doctorName={doctor.name}
         doctorEmail={doctor.email}
         doctorImage={doctor.image_url}
+        specialty={doctor.specialty}
       />
     </div>
   );

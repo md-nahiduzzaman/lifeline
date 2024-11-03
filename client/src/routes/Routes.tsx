@@ -35,6 +35,7 @@ import Message from "../pages/Dashboard/Admin/Message";
 import IndividualMessage from "../pages/Dashboard/Admin/IndividualMessage";
 import MyAppointment from "../pages/Dashboard/Patient/MyAppointment";
 import Payments from "../pages/Payments/Payments";
+import PatientSeePrescription from "../pages/Dashboard/Patient/PatientSeePrescription";
 import UserMessage from "../pages/Dashboard/Admin/UserMessage";
 import UserIndivudual from "../pages/Dashboard/Admin/UserIndividual";
 const router = createBrowserRouter([
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path:'my-appointment',
         element:<MyAppointment></MyAppointment>
+      },{
+        path:'/dashboard/patient-prescription/:id',
+        element:<PatientSeePrescription></PatientSeePrescription>,
+        loader:({params})=>fetch(`http://localhost:5000/see-prescription/${params.id}`)
       }
       ,
       // --------------------this is the doctor dshboard route arey -----------------------------------

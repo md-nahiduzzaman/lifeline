@@ -7,7 +7,6 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const { createServer } = require('http');
 const { Server } = require("socket.io");
-const { getCipherInfo } = require("crypto");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_GETWAY_KEY);
 
@@ -479,6 +478,46 @@ async function run() {
       console.log(result)
       res.send(result)
     })
+
+    app.get('/my-appiontments',async(req,res)=>{
+      const query={patientEmail:req?.query?.email}
+      const result =await appointmentCollection.find(query).toArray()
+      res.send(result)
+    })
+    app.delete('/appoinment-delete/:id',async(req,res)=>{
+      const id=req.params.id
+      const query={_id:new ObjectId(id)}
+      const result=await appointmentCollection.deleteOne(query)
+      res.send(result)
+    })
+
+    app.get('/my-prescriptions',async(req,res)=>{
+      const query={patientEmail:req.query.email}
+      console.log(query)
+      const result=await presaipationCollection.find(query).toArray()
+      res.send(result)
+    })
+
+    app.get('/see-prescription/:id',async(req,res)=>{
+      const id=req.params.id
+      const query={_id:new ObjectId(id)}
+      const result=await presaipationCollection.findOne(query)
+      res.send(result)
+    })
+
+
+    app.get('/all-dr-card',async(req,res)=>{
+       const query={role:'doctor'}
+      const result=await userCollection.find(query).toArray()
+      res.send(result)
+    })
+    // app.get('/patient-see-prescription-datils', async (req, res) => {
+    //   const query = { patientEmail: req.query.email}
+
+    //   const result = await presaipationCollection.findOne(query)
+    //   res.send(result)
+    // })
+
     // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"

@@ -24,7 +24,8 @@ interface PatientInfo {
   admittedDate: string;
   doctorEmail:string;
   doctorName:string;
-  message:string
+  message:string;
+  specialty:string;
 
 }
 const AddedPresaipation = () => {
@@ -49,7 +50,7 @@ e.preventDefault()
 setPresaipationData([...presaipationData,presaipation])
 
     }
-const {img, patientName, patientEmail,message,birth,gender,phone,address,doctorName,blood,doctorEmail,pressure,pushRate,weight,admittedDate}= patientInfos
+const {img, patientName,specialty,patientEmail,message,birth,gender,phone,address,doctorName,blood,doctorEmail,pressure,pushRate,weight,admittedDate}= patientInfos
 
 const handilePresaipationSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
 e.preventDefault()
@@ -69,7 +70,8 @@ const presaipationInfo={
    pushRate:pushRate,
    weight:weight,
    issuDate:new Date(),
-   instructions:doctorMessage?.drMessage
+   instructions:doctorMessage?.drMessage,
+   specialty
 
 }
 
