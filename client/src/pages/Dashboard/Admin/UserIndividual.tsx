@@ -44,6 +44,10 @@ const UserIndivudual = () => {
     };
 
     const sendMessage = () => {
+        if(users.email===user.email){
+            alert('you are not allowed to message your self')
+            return
+        }
         if (!messages) {
             return
         }
