@@ -264,7 +264,7 @@ async function run() {
 
     app.get('/find_admin', async (req,res)=>{
         const query={role:'admin'}
-
+        
         const result =await userCollection.find(query).toArray()
         res.send(result)
     })

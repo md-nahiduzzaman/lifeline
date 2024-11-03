@@ -45,7 +45,7 @@ const PaymentDetails = () => {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden md:rounded-lg">
-                <div className="flex p-2 py-3 justify-between my-3 shadow-lg bg-white">
+                <div className="flex p-2 py-3 justify-between my-3 bg-white">
                   <p className="w-[250px] text-center font-medium">Transaction</p>
                   <p className="w-[130px] text-center font-medium ml-16">Salary</p>
                   <p className="w-[160px] text-center font-medium">Date</p>
@@ -55,7 +55,7 @@ const PaymentDetails = () => {
                 </div>
                 {
 
-                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md shadow-lg flex p-2 py-4 justify-between bg-white border-2 border-gray-300">
+                  details.map((info: any) => <div key={info._id} className="my-3 rounded-md flex p-2 py-4 justify-between bg-white border-2 border-gray-300">
                     <p className="w-[250px] text-center font-medium">{info.paymentIntent.id}</p>
                     <p className="w-[130px] text-center font-medium ml-16">{info.price}$</p>
                     <p className="w-[160px] text-center font-medium">{info.date}</p>
