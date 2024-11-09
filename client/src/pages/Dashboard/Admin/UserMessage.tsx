@@ -24,7 +24,7 @@ const UserMessage = () => {
 
     return (
         <div className="w-full p-3 mt-5 min-h-[80vh] flex flex-col md:flex-row ">
-            <div className="w-[355px] h-[350px] overflow-y-auto border-r-2  p-2 bg-white border-gray-300">
+            <div className="w-full md:w-[355px] h-[350px] overflow-y-auto border-r-2  p-2 bg-white border-gray-300">
                 <div className="flex justify-between p-2 items-center">
                     <h1 className="text-[22px] font-medium">Message</h1>
                     <FaBars className="text-xl"></FaBars>

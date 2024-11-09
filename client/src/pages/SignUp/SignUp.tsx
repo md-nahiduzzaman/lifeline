@@ -52,7 +52,7 @@ const SignUp = () => {
         console.log(data.data.url)
         setPhoto(data.data.url)
       })
-    if (photo) {
+    if (photo){
       let image_url = photo;
       createUser(email, password)
         .then((res: any) => {
