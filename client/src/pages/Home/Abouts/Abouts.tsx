@@ -1,4 +1,4 @@
-import { FaUserDoctor } from "react-icons/fa6"
+import { FaEarDeaf, FaHeart, FaStethoscope, FaSyringe, FaUserDoctor } from "react-icons/fa6"
 
 
 
@@ -11,7 +11,7 @@ const Abouts = () => {
       <div className="grid gap-y-8 lg:grid-cols-3 mt-10 md:grid-cols-2 grid-cols-1">
         <div className="w-[345px] mx-auto hover:scale-105 hover:border-4 hover:border-green-400 border-2 border-green-200 p-4 rounded-lg">
           <div className="mb-3">
-            <FaUserDoctor className="text-6xl block mx-auto text-green-400" />
+            <FaStethoscope className="text-6xl block mx-auto text-green-400" />
           </div>
           <div>
             <h2 className="font-bold text-center text-[#23085A]">Conductive Hearing Loss</h2>
@@ -29,7 +29,7 @@ const Abouts = () => {
         </div>
         <div className="w-[345px] mx-auto hover:scale-105 hover:border-4 hover:border-green-400 border-2 border-green-200 p-4 rounded-lg">
           <div className="mb-3">
-            <FaUserDoctor className="text-6xl block mx-auto text-green-400" />
+            <FaSyringe className="text-6xl block mx-auto text-green-400" />
           </div>
           <div>
             <h2 className="font-bold text-center text-[#23085A]">Conductive Hearing Loss</h2>
@@ -47,7 +47,7 @@ const Abouts = () => {
         </div>
         <div className="w-[345px] mx-auto hover:scale-105 hover:border-4 hover:border-green-400 border-2 border-green-200 p-4 rounded-lg">
           <div className="mb-3">
-            <FaUserDoctor className="text-6xl block mx-auto text-green-400" />
+            <FaEarDeaf className="text-6xl block mx-auto text-green-400" />
           </div>
           <div>
             <h2 className="font-bold text-center text-[#23085A]">Conductive Hearing Loss</h2>
@@ -56,7 +56,7 @@ const Abouts = () => {
         </div>
         <div className="w-[345px] mx-auto hover:scale-105 hover:border-4 hover:border-green-400 border-2 border-green-200 p-4 rounded-lg">
           <div className="mb-3">
-            <FaUserDoctor className="text-6xl block mx-auto text-green-400" />
+            <FaHeart className="text-6xl block mx-auto text-green-400" />
           </div>
           <div>
             <h2 className="font-bold text-center text-[#23085A]">Conductive Hearing Loss</h2>
