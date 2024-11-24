@@ -44,7 +44,7 @@ const UserMessage = () => {
                
             </div>
             <div style={bgStyle} className="min-h-[80vh] flex-grow  p-4">
-                  <div className="bg-white p-3 rounded-md opacity-70">
+                  <div className="bg-white p-3 rounded-md opacity-100">
                        <p className="text-3xl font-medium text-center">Build Here Your A Communication</p>
                        <p className="mt-3 text-center font-medium">The definition of 
                         communication skills is the ability for an individual to 
@@ -52,7 +52,7 @@ const UserMessage = () => {
                   </div>
 
                   <div className="flex w-full justify-evenly flex-wrap mt-20 gap-5">
-                       <div className="w-[330px] h-[240px] rounded-md shadow-xl bg-[#3eb489] p-3">
+                       <div className="w-[330px] h-[240px] rounded-md shadow-xl bg-white p-3">
                            <img src={user2} className="block mx-auto w-[50px] h-[50px] rounded-[50%] mt-2" alt="" />
                            <p className="text-center mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Quia dolorem aperiam quae dolore doloribus sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, vel.

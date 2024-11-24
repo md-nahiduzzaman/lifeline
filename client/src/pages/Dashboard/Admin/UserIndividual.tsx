@@ -231,7 +231,7 @@ const UserIndivudual = () => {
             </div>
 
             <div className="w-full relative">
-                <div className={`${bol ? "absolute w-full bottom-14 bg-white pl-2 opacity-70" : "hidden"}`}>{reply}
+                <div className={`${bol ? "absolute w-full bottom-14 bg-white pl-2 opacity-100" : "hidden"}`}>{reply}
                     <button onClick={()=>{
                         setReply("")
                         setBol(false)
